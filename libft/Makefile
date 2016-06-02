@@ -47,7 +47,7 @@ $(NAME):
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-clear: $(OBJ)
+clear:
 	rm -rf $(OBJ)
 
 fclear: clear

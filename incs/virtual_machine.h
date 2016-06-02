@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/02 19:24:19 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/02 19:47:23 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct				s_vm
 	unsigned long long int	nb_proces;		//nb Processes
 	unsigned long long int	pause;			//pour gerer SUSPEND
 	unsigned long long int	dump;			//pour gerer DUMP
+	t_array					*array;			//tableau memoire instruction
 	t_player				*plr;			//tableau de joueur
 	WINDOW					*w_grid;		//affichage de la grille ncurses
 	WINDOW					*w_info;		//affichage des infos courante
