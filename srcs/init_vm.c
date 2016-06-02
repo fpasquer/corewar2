@@ -55,12 +55,12 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 
 int							init_vm(t_vm *new_, int argc, char **argv)
 {
-	if ((new_->grid = ft_memalloc(sizeof(int) * (NB_LINE_COLUMN *
-			(NB_CASE_TAB * 2)))) == NULL)
-		return (-1);
-	if ((new_->grid2d = make_tab_2d(new_->grid, NB_LINE_COLUMN,
-			NB_LINE_COLUMN * 2)) == NULL)
-		return (-1);
+	// if ((new_->grid = ft_memalloc(sizeof(int) * (NB_LINE_COLUMN *
+	// 		(NB_CASE_TAB * 2)))) == NULL)
+	// 	return (-1);
+	// if ((new_->grid2d = make_tab_2d(new_->grid, NB_LINE_COLUMN,
+	// 		NB_LINE_COLUMN * 2)) == NULL)
+	// 	return (-1);
 	if ((new_->flags = get_flag(new_, argc, argv)) == -1)
 		return (-1);
 	if ((new_->plr = save_player(argc - 1, &argv[1], new_)) == NULL)

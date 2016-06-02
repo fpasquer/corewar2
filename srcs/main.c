@@ -12,6 +12,20 @@
 
 #include "../incs/virtual_machine.h"
 
+void 						ft_free(t_vm *vm)
+{
+	t_player				*tmp;
+
+	while (vm->plr)
+	{
+		tmp = vm->plr->next;
+		free(vm->plr->name);
+		free(vm->plr->comment);
+		free(vm->plr);
+		vm->plr = tmp;
+	}
+}
+
 int							main(int argc, char **argv)
 {
 	t_vm					vm;
@@ -23,5 +37,6 @@ int							main(int argc, char **argv)
 		error("Initiation error");
 	loop_virtual_machin(&vm);
 	del_vm(&vm);
+	ft_free(&vm);
 	return (0);
 }
