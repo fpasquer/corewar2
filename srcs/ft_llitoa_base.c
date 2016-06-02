@@ -56,20 +56,27 @@ char			*ft_llitoa_base(long long int n, int base, int *u)
 	char		*str;
 	int			tab[64];
 	int			tmp;
+	char 		*tmp2;
 
 	*u = 0;
 	str = NULL;
 	*u = ft_count(n, base, tab);
-	str = (*u) ? ft_strnew(*u) : ft_strnew(1);
+	str = (*u) ? ft_strnew(*u) : ft_strnew(2);
 	if (!*u && str)
 	{
-		*u = 1;
-		*str = '0';
+		*u = 2;
+		ft_strcpy(str, "00");
 		return (str);
 	}
 	tmp = *u;
 	tmp--;
 	if (str)
 		ft_fill(str, tab, tmp, n);
+	if (*u == 1)
+	{
+		tmp2 = str;
+		str = ft_strjoin("0", str);
+		free(tmp2);
+	}
 	return (str);
 }

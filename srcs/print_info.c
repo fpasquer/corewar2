@@ -108,15 +108,24 @@ void						print_grid(t_vm *vm)
 	int 					size;
 	char 					*tmp;
 	int 					count;
+	int 					count2;
 
+	count2 = 0;
+	count = 0;
 	y = 0;
 	x = 0;
+	start_color(); 			
 	while (y < NB_LINE_COLUMN)
 	{
+		if (!vm->array[count2].player)
+			vm->array[count2].player = 7;
+		init_pair(vm->array[count2].player, vm->array[count2].player, COLOR_BLACK);
+		attron(COLOR_PAIR(vm->array[count2].player));
 		tmp = ft_llitoa_base(vm->array[count].code_hexa, 16, &size);
-		(size == 1) ? mvwprintw(vm->w_grid, y + 1, x + 2, "0%s ", tmp) :
-			mvwprintw(vm->w_grid, y + 1, x + 2, "%s ", tmp);
+		mvwprintw(stdscr, y + 1, x + 2, "%s ", tmp);
+		attroff(COLOR_PAIR(vm->array[count2].player));
 		ft_strdel(&tmp);
+		count2++;
 		count++;
 		x += 3;
 		if (x > 190 && ++y)
