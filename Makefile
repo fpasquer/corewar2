@@ -46,10 +46,10 @@ $(OBJDIR)/%.o : $(SRCDIR)/%.c $(INCLUDES)
 
 clean :
 	rm -rf $(OBJ)
-	make -C libft clear
 
 fclean : clean
 	rm -rf $(NAME)
+	make -C libft fclear
 
 re : fclean All
 
