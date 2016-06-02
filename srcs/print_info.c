@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
+#include "corewar.h"
 
 static void					print_flags(t_vm *vm)
 {
@@ -76,26 +77,50 @@ void						print_info(t_vm *vm)
 	wrefresh(vm->w_info);
 }
 
+// void						print_grid(t_vm *vm)
+// {
+// 	unsigned int			x;
+// 	unsigned int			y;
+// 	unsigned int			decalage;
+
+// 	y = 0;
+// 	while (y < NB_LINE_COLUMN)
+// 	{
+// 		x = 0;
+// 		decalage = 0;
+// 		while (x < NB_LINE_COLUMN * 2)
+// 		{
+// 			mvwprintw(vm->w_grid, y + 1, x + 2 + decalage, "%c",
+// 					vm->grid2d[y][x] + ((vm->grid2d[y][x] > 0 &&
+// 					vm->grid2d[y][x] < 9) ? '0' : 'A'));
+// 			decalage = (x % 2 == 1) ? decalage + 1 : decalage;
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	wrefresh(vm->w_grid);
+// }
+
 void						print_grid(t_vm *vm)
 {
 	unsigned int			x;
 	unsigned int			y;
-	unsigned int			decalage;
+	int 					size;
+	char 					*tmp;
+	int 					count;
 
 	y = 0;
+	x = 0;
 	while (y < NB_LINE_COLUMN)
 	{
-		x = 0;
-		decalage = 0;
-		while (x < NB_LINE_COLUMN * 2)
-		{
-			mvwprintw(vm->w_grid, y + 1, x + 2 + decalage, "%c",
-					vm->grid2d[y][x] + ((vm->grid2d[y][x] > 0 &&
-					vm->grid2d[y][x] < 9) ? '0' : 'A'));
-			decalage = (x % 2 == 1) ? decalage + 1 : decalage;
-			x++;
-		}
-		y++;
+		tmp = ft_llitoa_base(vm->array[count].code_hexa, 16, &size);
+		(size == 1) ? mvwprintw(vm->w_grid, y + 1, x + 2, "0%s ", tmp) :
+			mvwprintw(vm->w_grid, y + 1, x + 2, "%s ", tmp);
+		ft_strdel(&tmp);
+		count++;
+		x += 3;
+		if (x > 190 && ++y)
+			x = 0;
 	}
 	wrefresh(vm->w_grid);
 }

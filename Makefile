@@ -11,12 +11,18 @@
 #* ************************************************************************** *#
 
 GCC = gcc
-NAME = vm_corewar
+NAME = corewar
 
 DATE		= `date +'%d/%m/%y %H:%M:%S'`
 CFLAGS = -Wall -Wextra -Werror
 OBJ_NAME = $(SRC_NAME:.c=.o)
-SRC_NAME =	main.c util.c init_vm.c virtual_machin.c print_info.c save_player.c
+SRC_NAME =	main.c util.c init_vm.c virtual_machin.c print_info.c save_player.c\
+			ft_recover_name_comment_champ.c\
+			ft_recover_instruction.c\
+			ft_parse_instruction.c\
+			ft_power.c\
+			ft_llitoa_base.c\
+			
 OTHERS		= libft Makefile auteur minilibx_macos exemple
 
 NCURSE_FLAGS = -lncurses
@@ -32,6 +38,7 @@ LIBRARY = libft/libft.a
 SRC = $(addprefix $(SRCDIR)/, $(SRC_NAME))
 OBJ = $(addprefix $(OBJDIR)/, $(OBJ_NAME))
 
+
 All : $(NAME)
 
 $(NAME) : $(OBJ) $(LIBRARY)
@@ -41,7 +48,7 @@ $(NAME) : $(OBJ) $(LIBRARY)
 $(LIBRARY) :
 	make -C libft
 
-$(OBJDIR)/%.o : $(SRCDIR)/%.c $(INCLUDES)
+$(OBJDIR)/%.o : $(SRCDIR)/%.c $(INCLUDES) 
 	$(GCC) $(INCDIR1) $(CFLAG) -o $@ -c $<
 
 clean :

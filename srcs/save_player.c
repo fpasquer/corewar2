@@ -11,29 +11,54 @@
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
+#include "../incs/corewar.h"
 
-static t_player				*new_player(char *name, int nb)
+
+// static t_player				*new_player(char *name, int nb)
+// {
+// 	char					*end;
+// 	t_player				*new;
+
+
+// 	if (name == NULL || ((end = ft_strstr(name, ".cor")) == NULL) ||
+// 		(new = ft_memalloc(sizeof(t_player))) == NULL)
+// 		return (NULL);
+// 	*end = '\0';
+// 	if ((new->name = ft_strndup(name, MY_MAX_LEN_NAME)) == NULL)
+// 	{
+// 		ft_memdel((void**)&new);
+// 		return (NULL);
+// 	}
+// 	if ((new->color = ft_strdup(COLOR_0)) == NULL)
+// 	{
+// 		ft_memdel((void**)&new->name);
+// 		ft_memdel((void**)&new);
+// 		return (NULL);
+// 	}
+// 	new->nb_player = nb;
+// 	return (new);
+// }
+
+static t_player				*new_player(char *name, int nb,
+											unsigned int nb_champ, t_array *array)
 {
-	char					*end;
 	t_player				*new;
+	int						fd;
+	int 					y;
+	static int 				spacing;
 
-	if (name == NULL || ((end = ft_strstr(name, ".cor")) == NULL) ||
-		(new = ft_memalloc(sizeof(t_player))) == NULL)
+	y = NB_CASE_TAB / nb_champ;
+	if ((fd = ft_fopen(name, "r")) == -1)
 		return (NULL);
-	*end = '\0';
-	if ((new->name = ft_strndup(name, MY_MAX_LEN_NAME)) == NULL)
-	{
-		ft_memdel((void**)&new);
+	if (!(new = (t_player*)ft_memalloc(sizeof(t_player))))
 		return (NULL);
-	}
-	if ((new->color = ft_strdup(COLOR_0)) == NULL)
-	{
-		ft_memdel((void**)&new->name);
-		ft_memdel((void**)&new);
-		return (NULL);
-	}
+	new->name = ft_recover_name_champ(fd);
+	new->comment = ft_recover_comment_champ(fd, &new->size);
+	ft_recover_instruction(fd, &array[spacing], &new->size);
+	close(fd);
 	new->nb_player = nb;
-	return (new);
+	spacing += y;
+	return (new);	
 }
 
 static void					add_new_player(t_player **lst, t_player **new)
@@ -57,6 +82,7 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 {
 	int						i;
 	int						j;
+	unsigned int 			nb_champ;
 	t_player				*new;
 	t_player				*lst;
 
@@ -66,10 +92,12 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 				ft_strcmp(argv[i], "-s") == 0) ? i + 2 : i + 1;
 	j = -1;
 	lst = NULL;
+	nb_champ = argc - i;
 	while (i < argc)
 	{
 		if ((new = new_player(argv[i], (vm->flags & NUMBER)
-				!= 0 ? ft_atoi(argv[i - 1]) : j--)) == NULL)
+				!= 0 ? ft_atoi(argv[i - 1]) : j--, nb_champ, vm->array)) == NULL)
+				// != 0 ? ft_atoi(argv[i - 1]) : j--)) == NULL)
 			return (del_player(&lst));
 		add_new_player(&lst, &new);
 		i = (vm->flags & NUMBER) ? i + 2 : i + 1;

@@ -81,7 +81,7 @@ typedef struct				s_player
 	unsigned int			nb_live;		//nb de live dans le cicle
 	unsigned int			last_live;		//cicle du last live
 	unsigned int			i_player;		//index du joueur pour comter live
-	size_t					cham_size;		//taille du champion
+	int						size;		//taille du champion
 	struct s_player			*next;			//pour les forks
 }							t_player;
 
@@ -93,24 +93,24 @@ typedef struct				s_array
 
 typedef struct				s_vm
 {
-	int						status;			//run ou pause
-	int						*grid;			//grille 1d pour JC
-	int						**grid2d;		//dito grid en 2d
-	int						nb_dump;		//dump memoire / les nb_dump cycle
-	int						nb_susp;		//suspend memoire / les nb_susp cycle
-	int						flags;			//flags
-	int						fd;				//ou sera dump la memoire
-	unsigned int			nb_player;		//nombre de joueur de la partie
-	unsigned int			cycle;			//nb de cycle
-	unsigned int			cycle_to_die;	//nb de cycle_to_die
+	int						status;				//run ou pause
+	int						*grid;				//grille 1d pour JC
+	int						**grid2d;			//dito grid en 2d
+	int						nb_dump;			//dump memoire / les nb_dump cycle
+	int						nb_susp;			//suspend memoire / les nb_susp cycle
+	int						flags;				//flags
+	int						fd;					//ou sera dump la memoire
+	unsigned int			nb_player;			//nombre de joueur de la partie
+	unsigned int			cycle;				//nb de cycle
+	unsigned int			cycle_to_die;		//nb de cycle_to_die
 	unsigned int			nb_live[MAX_PLAYER];// pour compter le nombre de live
-	unsigned long long int	nb_proces;		//nb Processes
-	unsigned long long int	pause;			//pour gerer SUSPEND
-	unsigned long long int	dump;			//pour gerer DUMP
-	t_array					*array;			//tableau memoire instruction
-	t_player				*plr;			//tableau de joueur
-	WINDOW					*w_grid;		//affichage de la grille ncurses
-	WINDOW					*w_info;		//affichage des infos courante
+	unsigned long long int	nb_proces;			//nb Processes
+	unsigned long long int	pause;				//pour gerer SUSPEND
+	unsigned long long int	dump;				//pour gerer DUMP
+	t_array					array[NB_CASE_TAB];			//tableau memoire instruction
+	t_player				*plr;				//tableau de joueur
+	WINDOW					*w_grid;			//affichage de la grille ncurses
+	WINDOW					*w_info;			//affichage des infos courante
 }							t_vm;
 
 void						error(char *s);
