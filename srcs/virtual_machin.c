@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/02 18:18:41 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 10:19:44 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void						print_lst(t_player *lst, int fd)
 
 static void					get_status_suspend_dump(t_vm *vm)
 {
-	if ((vm->flags & DUMP) != 0)
+	if ((vm->flags & DUMP) != 0 || (vm->flags & DUMP_M) != 0)
 		print_dump(vm);
 	if ((vm->flags & SUSPEND) == 0 || vm->cycle != vm->pause)
 		return ;

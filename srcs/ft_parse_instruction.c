@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 void 		ft_stock_hexa_to_array(t_array *array, unsigned char *str, int size)
 {

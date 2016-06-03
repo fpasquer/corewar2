@@ -6,12 +6,12 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/02 19:17:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 10:55:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 static void					print_flags(t_vm *vm)
 {
@@ -28,6 +28,11 @@ static void					print_flags(t_vm *vm)
 		mvwprintw(vm->w_info, 23 + vm->nb_player * 3 + 1, 5, "SUSPEND : No");
 	mvwprintw(vm->w_info, 24 + vm->nb_player * 3 + 1, 5, "NUMBER  : %s",
 			(vm->flags & NUMBER) != 0 ? "Yes" : "No");
+	if ((vm->flags & DUMP_M) != 0)
+		mvwprintw(vm->w_info, 25 + vm->nb_player * 3 + 1, 5,
+				"DUMP_M  : Yes / %d", vm->nb_dump);
+	else
+		mvwprintw(vm->w_info, 25 + vm->nb_player * 3 + 1, 5, "DUMP_M  : No");
 }
 
 void						print_dump(t_vm *vm)
@@ -36,11 +41,26 @@ void						print_dump(t_vm *vm)
 		return ;
 	ft_putnbr_fd(vm->cycle, vm->fd);
 	ft_putchar_fd('\n', vm->fd);
-	vm->dump += vm->nb_dump;
+	if ((vm->flags & DUMP_M) != 0)
+		vm->dump += vm->nb_dump;
 }
+
+/*
+	start_color();
+	while (y < NB_LINE_COLUMN)
+	{
+		if (!vm->array[count2].player)
+			vm->array[count2].player = 7;
+		init_pair(vm->array[count2].player, vm->array[count2].player, COLOR_BLACK);
+		attron(COLOR_PAIR(vm->array[count2].player));
+		tmp = ft_llitoa_base(vm->array[count].code_hexa, 16, &size);
+		mvwprintw(stdscr, y + 1, x + 2, "%s ", tmp);
+		attroff(COLOR_PAIR(vm->array[count2].player));
+*/
 
 void						print_players(t_vm *vm)
 {
+	int						mem;
 	unsigned int			i;
 	t_player				*curs;
 
@@ -48,13 +68,19 @@ void						print_players(t_vm *vm)
 	i = 0;
 	while (i < vm->nb_player)
 	{
-		mvwprintw(vm->w_info, 11 + i * 4, 3, "Name %d : %s", curs->nb_player,
-				curs->name);
+		mem = 8 + i;
+		mvwprintw(vm->w_info, 11 + i * 4, 3, "Name %d : ", curs->nb_player);
+//		init_pair(mem, COLOR_RED, COLOR_BLUE);
+//		attron(COLOR_PAIR(mem));
+		mvwprintw(vm->w_info, 11 + i * 4, 15,"%s", curs->name);
+//		attroff(COLOR_PAIR(mem));
 		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %u", curs->last_live);
 		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %u", curs->nb_live);
+//mvwprintw(vm->w_info, 60 + i, 3, "color = : %u", mem);
 		curs = curs->next;
 		i++;
 	}
+	wrefresh(vm->w_info);
 }
 
 void						print_info(t_vm *vm)
@@ -114,7 +140,6 @@ void						print_grid(t_vm *vm)
 	count = 0;
 	y = 0;
 	x = 0;
-	start_color(); 			
 	while (y < NB_LINE_COLUMN)
 	{
 		if (!vm->array[count2].player)

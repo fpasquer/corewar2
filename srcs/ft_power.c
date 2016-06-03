@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 int 	ft_power(int power, int nb)
 {

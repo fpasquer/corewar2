@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/02 19:05:01 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 10:29:16 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 	i = 0;
 	flag = NONE;
 	while (i++ < argc)
-		if (ft_strcmp("-d", argv[i - 1]) == 0)
+		if (ft_strcmp("-d", argv[i - 1]) == 0 ||
+				ft_strcmp("-dm", argv[i - 1]) == 0)
 		{
-			flag = flag | DUMP;
+			flag = ft_strcmp("-d", argv[i - 1]) == 0 ? flag | DUMP : flag;
+			flag = ft_strcmp("-dm", argv[i - 1]) == 0 ? flag | DUMP_M : flag;
 			if ((vm->nb_dump = get_number(argv[i])) == -1)
 				return (-1);
 		}
@@ -67,14 +69,15 @@ int							init_vm(t_vm *new_, int argc, char **argv)
 		return (-1);
 	initscr();
 	noecho();
-	if ((new_->flags & DUMP) != 0)
+	start_color();
+	if ((new_->flags & DUMP) != 0 || (new_->flags & DUMP_M) != 0)
 		if ((new_->fd = ft_fopen(NAME_FILE_DUMP_MEM, "w+")) == -1)
 			return (-1);
 	new_->pause = ((new_->flags & SUSPEND) != 0) ? new_->nb_susp : 0;
 	new_->dump = ((new_->flags & DUMP) != 0) ? new_->nb_dump : 0;
 	curs_set(FALSE);
 	nodelay(stdscr, TRUE);
-	new_->nb_proces = 1;
+	new_->nb_proces = new_->nb_player;
 	new_->cycle_to_die = INIT_CYCLE_TO_DIE;
 	return (0);
 }

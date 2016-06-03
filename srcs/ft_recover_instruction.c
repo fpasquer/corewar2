@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 void		ft_recover_instruction(int fd, t_array *array, int *size)
 {

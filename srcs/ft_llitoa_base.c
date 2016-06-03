@@ -6,11 +6,11 @@
 /*   By: jchen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/18 13:39:42 by jchen             #+#    #+#             */
-/*   Updated: 2016/02/18 13:39:48 by jchen            ###   ########.fr       */
+/*   Updated: 2016/06/03 08:32:11 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 static int		ft_count(long long int n, int base, int *tab)
 {

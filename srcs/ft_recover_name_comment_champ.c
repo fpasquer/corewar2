@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 /*
 ** name_champ[4], car les 4 premiers caracteres

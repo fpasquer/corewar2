@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/02 19:47:23 by jchen            ###   ########.fr       */
+/*   Updated: 2016/06/03 10:08:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@
 # define NUMBER 2
 # define VISU 4
 # define SUSPEND 8
+# define DUMP_M 16
 
 # define NAME_FILE_DUMP_MEM "dump_memory.txt"
 
@@ -74,21 +75,21 @@ typedef struct				s_player
 {
 	char					*name;			//nom du joueur
 	char					*comment;		//commentaire du joueur
-	char					*color;			//couleur du joueur pour la grille
-	int						reg[MAX_REG];	//les 16 registres
+	unsigned char			color;			//couleur du joueur pour la grille
+	int						reg[MAX_REG];	//les 16 registres du joueur
 	int						nb_player;		//nb_representant le joueur
 	unsigned int			i_grid;			//index dans la grille
 	unsigned int			nb_live;		//nb de live dans le cicle
 	unsigned int			last_live;		//cicle du last live
 	unsigned int			i_player;		//index du joueur pour comter live
-	int						size;		//taille du champion
+	int						size;			//taille du champion
 	struct s_player			*next;			//pour les forks
 }							t_player;
 
 typedef struct				s_array
 {
-	unsigned char			code_hexa;
-	unsigned char			player;
+	unsigned char			code_hexa;			//code exa de la case
+	unsigned char			player;				//couleur du joueur
 }							t_array;
 
 typedef struct				s_vm
@@ -103,11 +104,11 @@ typedef struct				s_vm
 	unsigned int			nb_player;			//nombre de joueur de la partie
 	unsigned int			cycle;				//nb de cycle
 	unsigned int			cycle_to_die;		//nb de cycle_to_die
-	unsigned int			nb_live[MAX_PLAYER];// pour compter le nombre de live
+	unsigned int			nb_live[MAX_PLAYER];//pour compter le nombre de live
 	unsigned long long int	nb_proces;			//nb Processes
 	unsigned long long int	pause;				//pour gerer SUSPEND
 	unsigned long long int	dump;				//pour gerer DUMP
-	t_array					array[NB_CASE_TAB];			//tableau memoire instruction
+	t_array					array[NB_CASE_TAB];	//tableau memoire instruction
 	t_player				*plr;				//tableau de joueur
 	WINDOW					*w_grid;			//affichage de la grille ncurses
 	WINDOW					*w_info;			//affichage des infos courante
