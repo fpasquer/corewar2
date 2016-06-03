@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 11:09:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 11:13:54 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 	{
 		if ((new = new_player(argv[i], (vm->flags & NUMBER)
 			!= 0 ? ft_atoi(argv[i - 1]) : j--, nb_champ, vm->array)) == NULL)
-				// != 0 ? ft_atoi(argv[i - 1]) : j--)) == NULL)
 			return (del_player(&lst));
 		add_new_player(&lst, &new);
 		i = (vm->flags & NUMBER) ? i + 2 : i + 1;

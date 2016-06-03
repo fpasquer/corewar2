@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 10:55:24 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 11:15:26 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,6 @@ void						print_dump(t_vm *vm)
 	if ((vm->flags & DUMP_M) != 0)
 		vm->dump += vm->nb_dump;
 }
-
-/*
-	start_color();
-	while (y < NB_LINE_COLUMN)
-	{
-		if (!vm->array[count2].player)
-			vm->array[count2].player = 7;
-		init_pair(vm->array[count2].player, vm->array[count2].player, COLOR_BLACK);
-		attron(COLOR_PAIR(vm->array[count2].player));
-		tmp = ft_llitoa_base(vm->array[count].code_hexa, 16, &size);
-		mvwprintw(stdscr, y + 1, x + 2, "%s ", tmp);
-		attroff(COLOR_PAIR(vm->array[count2].player));
-*/
 
 void						print_players(t_vm *vm)
 {
