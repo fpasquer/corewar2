@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 11:15:26 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 11:19:23 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void						print_players(t_vm *vm)
 	{
 		mem = 8 + i;
 		mvwprintw(vm->w_info, 11 + i * 4, 3, "Name %d : ", curs->nb_player);
-//		init_pair(mem, COLOR_RED, COLOR_BLUE);
-//		attron(COLOR_PAIR(mem));
-		mvwprintw(vm->w_info, 11 + i * 4, 15,"%s", curs->name);
-//		attroff(COLOR_PAIR(mem));
+		init_pair(i + 1, i + 1, COLOR_BLACK);
+		attron(COLOR_PAIR(i + 1));
+		mvwprintw(stdscr, 11 + i * 4, 15,"%s", curs->name);
+		attroff(COLOR_PAIR(i + 1));
 		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %u", curs->last_live);
 		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %u", curs->nb_live);
 //mvwprintw(vm->w_info, 60 + i, 3, "color = : %u", mem);
