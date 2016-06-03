@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 10:29:16 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:40:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,36 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 	return (flag);
 }
 
-int							init_vm(t_vm *new_, int argc, char **argv)
-{
 	// if ((new_->grid = ft_memalloc(sizeof(int) * (NB_LINE_COLUMN *
 	// 		(NB_CASE_TAB * 2)))) == NULL)
 	// 	return (-1);
 	// if ((new_->grid2d = make_tab_2d(new_->grid, NB_LINE_COLUMN,
 	// 		NB_LINE_COLUMN * 2)) == NULL)
 	// 	return (-1);
+
+t_vm						*init_vm(int argc, char **argv)
+{
+	t_vm					*new_;
+
+	if ((new_ = ft_memalloc(sizeof(t_vm))) == NULL)
+		return (NULL);
 	if ((new_->flags = get_flag(new_, argc, argv)) == -1)
-		return (-1);
+		return (NULL);
 	if ((new_->plr = save_player(argc - 1, &argv[1], new_)) == NULL)
-		return (-1);
+		return (NULL);
 	initscr();
 	noecho();
 	start_color();
 	if ((new_->flags & DUMP) != 0 || (new_->flags & DUMP_M) != 0)
 		if ((new_->fd = ft_fopen(NAME_FILE_DUMP_MEM, "w+")) == -1)
-			return (-1);
+			return (NULL);
 	new_->pause = ((new_->flags & SUSPEND) != 0) ? new_->nb_susp : 0;
 	new_->dump = ((new_->flags & DUMP) != 0) ? new_->nb_dump : 0;
 	curs_set(FALSE);
 	nodelay(stdscr, TRUE);
 	new_->nb_proces = new_->nb_player;
 	new_->cycle_to_die = INIT_CYCLE_TO_DIE;
-	return (0);
+	return (new_);
 }
 
 void						refrech_win(t_vm *vm)
@@ -96,16 +101,18 @@ void						refrech_win(t_vm *vm)
 	refresh();
 }
 
-t_vm						*del_vm(t_vm *vm)
+t_vm						*del_vm(t_vm **vm)
 {
 	endwin();
-	if (vm == NULL)
+	if (vm == NULL || *vm ==NULL)
 		return (NULL);
-	if ((vm->flags & DUMP) != 0)
-		close(vm->fd);
-	if (vm->w_grid != NULL)
-		ft_memdel((void**)&vm->w_grid);
-	if (vm->w_info != NULL)
-		ft_memdel((void**)&vm->w_info);
+	del_player(&(*vm)->plr);
+	if (((*vm)->flags & DUMP) != 0)
+		close((*vm)->fd);
+	if ((*vm)->w_grid != NULL)
+		ft_memdel((void**)&(*vm)->w_grid);
+	if ((*vm)->w_info != NULL)
+		ft_memdel((void**)&(*vm)->w_info);
+	ft_memdel((void**)vm);
 	return (NULL);
 }

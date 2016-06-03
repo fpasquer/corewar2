@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 10:08:18 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:40:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ typedef struct				s_vm
 }							t_vm;
 
 void						error(char *s);
-int							init_vm(t_vm *new_, int argc, char **argv);
-t_vm						*del_vm(t_vm *vm);
+t_vm						*init_vm(int argc, char **argv);
+t_vm						*del_vm(t_vm **vm);
 void						refrech_win(t_vm *vm);
 void						loop_virtual_machin(t_vm *vm);
 int							check_key(int key, t_vm *vm);

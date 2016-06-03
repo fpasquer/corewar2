@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 11:13:54 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:47:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_player					*del_player(t_player **lst)
 		tmp = (*lst)->next;
 		ft_memdel((void**)&(*lst)->name);
 		ft_memdel((void**)&(*lst)->color);
+		ft_memdel((void**)&(*lst)->comment);
 		ft_memdel((void**)lst);
 		(*lst) = tmp;
 	}
