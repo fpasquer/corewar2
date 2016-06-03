@@ -43,7 +43,7 @@ All : $(NAME)
 
 $(NAME) : $(OBJ) $(LIBRARY)
 	$(GCC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBRARY) $(NCURSE_FLAGS)
-	@echo "\033[0;32mVM_COREWAR EXE: DONE\033[0m"
+	@echo "\033[0;32mCOREWAR EXE: DONE\033[0m"
 
 $(LIBRARY) :
 	make -C libft
