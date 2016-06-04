@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 21:50:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/04 22:18:01 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static t_player				*save_curs_player(t_player *lst,
 	while (curs != NULL)
 	{
 		curs->i_grid = position * i++;
+		printf("%s = %d\n", curs->name, curs->i_grid);
 		curs = curs->next;
 	}
 	return (lst);
@@ -75,7 +76,7 @@ static t_player				*new_player(char *name, int nb,
 	new->comment = ft_recover_comment_champ(fd, &new->size);
 	ft_recover_instruction(fd, &array[spacing], &new->size);
 	close(fd);
-	new->nb_player = nb;
+	new->reg[0] = nb;
 	spacing += y;
 	return (new);
 }
