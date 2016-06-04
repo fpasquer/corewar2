@@ -80,6 +80,27 @@ static int 			ft_param_2_octets(t_vm *vm, t_player *plr, int octet, int index)
 	return (nb);
 }
 
+
+void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsigned int nb)
+{
+	int 					size;
+	char 					*tmp;
+	int 					i;
+
+	i = 0;
+	tmp = ft_llitoa_base2(nb, 16, &size);
+	while (i < 4)
+	{
+		// code_hexa = tmp[i];
+		vm->array[index].code_hexa = 255;
+		// printf("\n\n%d\n\n", tmp[i]);
+		i++;
+		index++;
+	}
+	// printf("\n\n%s\n", tmp);
+	// printf("\n\n%d\n\n", tmp[0] + tmp[0]);
+}
+
 void 						ft_nothing(t_vm *vm, t_player *plr)
 {
 	return ;
@@ -98,28 +119,12 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 	i = ft_param_2_octets(vm, plr, tab[1], i + tab[1]) + ft_param_2_octets(vm, plr, tab[2], i + tab[2]
 	 + tab[1]);
 
-	// vm->array[plr->i_grid + i].code_hexa = 9;
-	
 	/*
-	** TEST
+	** PHASE TEST
 	*/
 
-	// char 					test[4096];
-	// int 					count = 0;
-	// int 					*test2;
-
-	// while (count < 4096)
-	// {
-	// 	test[i] = vm->array[count].code_hexa;
-	// 	count++;
-	// }
-
-	// unsigned int y = -1;
-	// printf("\n\n%D\n\n", y);
-	// printf("\n\n%d\n\n", 4294967295);
-	// // test2 = (int)test[plr->i_grid + i];
-	// test2[10] = 15;
-	// vm->array[plr->i_grid + i].code_hexa = 9;
+	plr->reg[1] = -1;
+	ft_print_param_to_array_4_octets(vm, plr, plr->i_grid + i, plr->reg[1]);
 
 	/*
 	**

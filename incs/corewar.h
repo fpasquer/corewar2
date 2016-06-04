@@ -110,6 +110,7 @@ int 		ft_power(int power, int nb);
 
 int 		ft_convert_hexa_to_int(unsigned char *str);
 char		*ft_llitoa_base(long long int n, int base, int *u);
+char		*ft_llitoa_base2(long long int n, int base, int *u);
 
 /*
 ** DIVERS INSTRUCTION
