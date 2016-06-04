@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:20:21 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 16:32:31 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/04 22:38:58 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int							main(int argc, char **argv)
 {
-	t_vm					*vm;
+	t_vm				*vm;
 
 	if (argc < 2)
 		error("Champions ar missing");

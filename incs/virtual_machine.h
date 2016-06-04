@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/04 10:26:18 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/04 22:14:42 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ typedef struct				s_player
 
 	char					*name;			//nom du joueur
 	char					*comment;		//commentaire du joueur
-	unsigned char			color;			//couleur du joueur pour la grille
 	int						reg[MAX_REG];	//les 16 registres du joueur
-	int						nb_player;		//nb_representant le joueur
 	unsigned int			i_grid;			//index dans la grille
 	unsigned int			nb_live;		//nb de live dans le cicle
 	unsigned int			last_live;		//cicle du last live
