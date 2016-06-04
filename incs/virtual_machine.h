@@ -77,7 +77,9 @@ typedef struct				s_player
 	** RAJOUT PAR JC
 	*/
 
-		
+	int 					do_instruction;
+	int 					delais;
+
 	/*
 	**
 	*/

@@ -85,9 +85,15 @@
 #define CHECKS_MAX 10
 
 
-typedef struct s_instruction
+typedef struct 	s_delais
 {
 	char 		instruction;
+	int 		delais;
+} 				t_delais;
+
+typedef struct s_instruction
+{
+	char  		instruction;
 	void		(*p)(t_vm *vm, t_player *plr);
 }				t_instruction;
 
