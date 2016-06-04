@@ -1,5 +1,9 @@
 .name "zork"
-.comment "I'M ALIIIIVE"
+.comment ",I'M ALIIIIVE"
 
-test1: zjmp %-65535
+l2:		and r1, %0, r1
+		sti r1, r2, r3
+		sti r1, %:live, %1
 
+live:	live %1
+		zjmp %:live

@@ -173,7 +173,7 @@ void						print_nb_in_grid(t_vm *vm, int i,
 	int						color;
 
 	attron(COLOR_PAIR((color = return_color_grid(vm, i))));
-//	attron(COLOR_PAIR(vm->array[i].player));
+	// attron(COLOR_PAIR(vm->array[i].player));
 	tmp = ft_llitoa_base(vm->array[i].code_hexa, 16, &size);
 	mvwprintw(stdscr, y + 1, x + 2, "%s", tmp);
 	attroff(COLOR_PAIR(color));

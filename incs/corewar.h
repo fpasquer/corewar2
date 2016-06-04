@@ -5,6 +5,34 @@
 #include <fcntl.h>
 
 /*
+**	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+		"store index", 1, 1},
+**	STI :
+**	01,	01|10|11,	10|01,00
+**	r1, r1, r1 = 84
+** 	r1, r1, %1 = 88
+**  r1, %1, r1 = 64
+** 	r1, %1, %1 = 68
+**  r1, 14, r1 = 74
+** 	r1, 14, %1 = 78
+**
+**	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
+**
+**	LIVE :
+**	10000000 PAS D'OCTET D'ENCODAGE
+**  SOUS 4 OCTETS
+**  %1 = 128
+**
+**  ZJMP :
+**	PAS d'OCTET D'ENCODAGE
+**  SOUS 2 OCTETS
+*/
+
+
+
+
+
+/*
 **
 ** instruction :
 **
@@ -22,6 +50,7 @@
 ** 0f
 **
 */
+
 
 #define MASK_6_BITS 0x30
 #define MASK_4_BITS 0xC
@@ -56,32 +85,12 @@
 #define CHECKS_MAX 10
 
 
-// typedef struct  	s_champ
-// {
-// 	char			*name;
-// 	char			*comment;
-// 	int 			size;
-// 	int 			reg_array[16];
-// 	int 			carry;
-// 	t_array			*pos;
-// 	t_array			*next_pos;
-// 	struct s_champ 	*next;
-// 	struct s_champ 	*prev;
-// }					t_champ;
+typedef struct s_instruction
+{
+	char 		instruction;
+	void		(*p)(t_vm *vm, t_player *plr);
+}				t_instruction;
 
-// typedef struct 		s_corewar
-// {
-// 	t_champ			champ[MAX_PLAYER];
-// 	t_array 		grid[SIZE_ARRAY];
-// 	unsigned int 	nb_live;
-// 	unsigned int	cycle_delta;
-// 	unsigned int 	nb_proc;
-// 	int 			cycle_to_die;
-// 	int 			cycle;
-// }					t_corewar;
-
-// void 		ft_debug_add_color(t_array *array, t_player *champ, int nb_champ, int i);
-// void 		ft_debug_print_array(t_array *array);
 char		*ft_recover_name_champ(int fd);
 char		*ft_recover_comment_champ(int fd, int *champ_size);
 int			ft_open_file(char **str, int nb_champ, t_player *champ, t_array *array);
@@ -95,19 +104,21 @@ int 		ft_power(int power, int nb);
 
 int 		ft_convert_hexa_to_int(unsigned char *str);
 char		*ft_llitoa_base(long long int n, int base, int *u);
+
 /*
 ** DIVERS INSTRUCTION
 */
 
+void 		ft_processus(t_vm *vm);
+void 		ft_check_processus_life(t_vm *vm);
 
 /* 
 ** OPERATIONS / BITWISES
 */
 
-void 		ft_add(int r1, int r2, int *r3, int *carry);
-void 		ft_or(int r1, int r2, int *r3, int *carry);
-void 		ft_xor(int r1, int r2, int *r3, int *carry);
-void 		ft_sub(int r1, int r2, int *r3, int *carry);
-void 		ft_and(int r1, int r2, int *r3, int *carry);
+void 		ft_nothing(t_vm *vm, t_player *plr);
+void 		ft_sti(t_vm *vm, t_player *plr);
+void 		ft_zjmp(t_vm *vm, t_player *plr);
+void 		ft_live(t_vm *vm, t_player *plr);
 
 #endif

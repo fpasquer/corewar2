@@ -73,6 +73,15 @@
 
 typedef struct				s_player
 {
+	/*
+	** RAJOUT PAR JC
+	*/
+
+		
+	/*
+	**
+	*/
+
 	char					*name;			//nom du joueur
 	char					*comment;		//commentaire du joueur
 	unsigned char			color;			//couleur du joueur pour la grille
@@ -94,6 +103,17 @@ typedef struct				s_array
 
 typedef struct				s_vm
 {
+	/*
+	** RAJOUT PAR JC
+	*/
+
+	unsigned int 			cycle_tmp;			// compteur s'incremente jusqu'a cycle_to_die puis reset a 0;
+	unsigned int 			check_max;
+
+	/*
+	**
+	*/
+
 	int						status;				//run ou pause
 	int						*grid;				//grille 1d pour JC
 	int						**grid2d;			//dito grid en 2d
@@ -104,7 +124,7 @@ typedef struct				s_vm
 	unsigned int			nb_player;			//nombre de joueur de la partie
 	unsigned int			cycle;				//nb de cycle
 	unsigned int			cycle_to_die;		//nb de cycle_to_die
-	unsigned int			nb_live[MAX_PLAYER];//pour compter le nombre de live
+	unsigned int			nb_live;			//pour compter le nombre de live
 	unsigned long long int	nb_proces;			//nb Processes
 	unsigned long long int	pause;				//pour gerer SUSPEND
 	unsigned long long int	dump;				//pour gerer DUMP

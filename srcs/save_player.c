@@ -135,7 +135,7 @@ t_player					*del_player(t_player **lst)
 	{
 		tmp = (*lst)->next;
 		ft_memdel((void**)&(*lst)->name);
-		ft_memdel((void**)&(*lst)->color);
+		// ft_memdel((void**)&(*lst)->color);
 		ft_memdel((void**)&(*lst)->comment);
 		ft_memdel((void**)lst);
 		(*lst) = tmp;

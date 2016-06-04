@@ -1,6 +1,6 @@
 #include "../incs/corewar.h"
 
-void 		ft_stock_hexa_to_array(t_array *array, unsigned char *str, int size)
+static void 		ft_stock_hexa_to_array(t_array *array, unsigned char *str, int size)
 {
 	int 	i;
 
@@ -12,7 +12,7 @@ void 		ft_stock_hexa_to_array(t_array *array, unsigned char *str, int size)
 	}
 }
 
-int 		ft_name_instruction(char instruction, t_array *array)
+static int 		ft_name_instruction(char instruction, t_array *array)
 {
 	if (instruction == LD || instruction == AND || instruction == OR
 			|| instruction == XOR || instruction == LLD)
@@ -31,7 +31,7 @@ int 		ft_name_instruction(char instruction, t_array *array)
 	return (instruction);
 }
 
-void 		ft_instruction_type(int tmp, int i, int *size_param)
+static void 		ft_instruction_type(int tmp, int i, int *size_param)
 {
 	if (tmp == 3)
 		tmp--;
@@ -41,7 +41,7 @@ void 		ft_instruction_type(int tmp, int i, int *size_param)
 		*size_param += tmp;
 }
 
-int			ft_ocp_instruction(unsigned char *str, int i, t_array *array)
+static int			ft_ocp_instruction(unsigned char *str, int i, t_array *array)
 {
 	char 	tmp;
 	int 	size_param;

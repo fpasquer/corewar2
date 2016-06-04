@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
+#include "corewar.h"
 
 void						print_lst(t_player *lst, int fd)
 {
@@ -48,6 +49,8 @@ void						loop_virtual_machin(t_vm *vm)
 		if ((key = check_key(getch(), vm)) == ESCAPE)
 			break ;
 		get_status_suspend_dump(vm);
+		ft_processus(vm);
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
+		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle;
 	}
 }
