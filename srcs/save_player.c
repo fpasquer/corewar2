@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 16:47:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/03 21:50:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,25 @@
 // 	new->nb_player = nb;
 // 	return (new);
 // }
+
+
+static t_player				*save_curs_player(t_player *lst,
+		unsigned int nb_champ)
+{
+	unsigned int			i;
+	unsigned int			position;
+	t_player				*curs;
+
+	curs = lst;
+	position = NB_CASE_TAB / nb_champ;
+	i = 0;
+	while (curs != NULL)
+	{
+		curs->i_grid = position * i++;
+		curs = curs->next;
+	}
+	return (lst);
+}
 
 static t_player				*new_player(char *name, int nb,
 		unsigned int nb_champ, t_array *array)
@@ -103,7 +122,7 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 		i = (vm->flags & NUMBER) ? i + 2 : i + 1;
 		vm->nb_player++;
 	}
-	return (lst);
+	return (save_curs_player(lst, nb_champ));
 }
 
 t_player					*del_player(t_player **lst)

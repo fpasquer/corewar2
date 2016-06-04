@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 11:32:07 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/04 11:03:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void						print_info(t_vm *vm)
 // 	}
 // 	wrefresh(vm->w_grid);
 // }
-
+/*
 void						print_grid(t_vm *vm)
 {
 	unsigned int			x;
@@ -129,8 +129,8 @@ void						print_grid(t_vm *vm)
 	x = 0;
 	while (y < NB_LINE_COLUMN)
 	{
-		if (!vm->array[count2].player)
-			vm->array[count2].player = 7;
+	//	if (!vm->array[count2].player)
+	//		vm->array[count2].player = 7;
 		init_pair(vm->array[count2].player, vm->array[count2].player, COLOR_BLACK);
 		attron(COLOR_PAIR(vm->array[count2].player));
 		tmp = ft_llitoa_base(vm->array[count].code_hexa, 16, &size);
@@ -139,6 +139,60 @@ void						print_grid(t_vm *vm)
 		ft_strdel(&tmp);
 		count2++;
 		count++;
+		x += 3;
+		if (x > 190 && ++y)
+			x = 0;
+	}
+	wrefresh(vm->w_grid);
+}*/
+
+static int					return_color_grid(t_vm *vm, unsigned int position)
+{
+	unsigned int			i;
+	t_player				*curs;
+
+	curs = vm->plr;
+	i = 0;
+	if (vm->array[position].player == 0)
+		return (0);
+	while (i < vm->nb_player && curs != NULL)
+	{
+		if (position == curs->i_grid)
+			return (i + 5);
+		curs = curs->next;
+		i++;
+	}
+	return (vm->array[position].player);
+}
+
+void						print_nb_in_grid(t_vm *vm, int i,
+		unsigned int y, unsigned int x)
+{
+	char 					*tmp;
+	int 					size;
+	int						color;
+
+	attron(COLOR_PAIR((color = return_color_grid(vm, i))));
+//	attron(COLOR_PAIR(vm->array[i].player));
+	tmp = ft_llitoa_base(vm->array[i].code_hexa, 16, &size);
+	mvwprintw(stdscr, y + 1, x + 2, "%s", tmp);
+	attroff(COLOR_PAIR(color));
+	ft_strdel(&tmp);
+}
+
+
+void						print_grid(t_vm *vm)
+{
+	unsigned int			x;
+	unsigned int			y;
+	int 					count2;
+
+	count2 = 0;
+	y = 0;
+	x = 0;
+	while (y < NB_LINE_COLUMN)
+	{
+		print_nb_in_grid(vm, count2++, y, x);
 		x += 3;
 		if (x > 190 && ++y)
 			x = 0;

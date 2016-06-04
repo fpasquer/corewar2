@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 16:40:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/04 11:04:14 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 	// if ((new_->grid2d = make_tab_2d(new_->grid, NB_LINE_COLUMN,
 	// 		NB_LINE_COLUMN * 2)) == NULL)
 	// 	return (-1);
+	//
+
+static void					init_color_grid(t_vm *vm)
+{
+		init_pair(1, COLOR_RED, COLOR_BLACK);
+		init_pair(2, COLOR_GREEN, COLOR_BLACK);
+		init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+		init_pair(4, COLOR_BLUE, COLOR_BLACK);
+		init_pair(5, COLOR_BLACK, COLOR_RED);
+		init_pair(6, COLOR_BLACK, COLOR_GREEN);
+		init_pair(7, COLOR_BLACK, COLOR_YELLOW);
+		init_pair(8, COLOR_BLACK, COLOR_BLUE);
+}
 
 t_vm						*init_vm(int argc, char **argv)
 {
@@ -75,6 +88,7 @@ t_vm						*init_vm(int argc, char **argv)
 	initscr();
 	noecho();
 	start_color();
+	init_color_grid(new_);
 	if ((new_->flags & DUMP) != 0 || (new_->flags & DUMP_M) != 0)
 		if ((new_->fd = ft_fopen(NAME_FILE_DUMP_MEM, "w+")) == -1)
 			return (NULL);

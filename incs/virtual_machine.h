@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 16:40:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/04 10:26:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct				s_player
 typedef struct				s_array
 {
 	unsigned char			code_hexa;			//code exa de la case
-	unsigned char			player;				//couleur du joueur
+	unsigned char			player;				//nb du joueur a qui est la case
 }							t_array;
 
 typedef struct				s_vm
