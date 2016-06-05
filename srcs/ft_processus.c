@@ -76,10 +76,20 @@ static int 			ft_param_2_octets(t_vm *vm, t_player *plr, int octet, int index)
 		if (index > 4095)
 			index %= 4096;
 	}
-	// printf("\n\n%d\n\n", nb);
 	return (nb);
 }
 
+void  						ft_str_base_16(char *str)
+{
+	while (*str)
+	{
+		if (*str >= '0' && *str <= '9')
+			*str = *str - 48;
+		else if (*str >= 'a' && *str <= 'f')
+			*str = *str - 87;
+		str++;
+	}
+}
 
 void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsigned int nb)
 {
@@ -89,16 +99,15 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 
 	i = 0;
 	tmp = ft_llitoa_base2(nb, 16, &size);
-	while (i < 4)
+	ft_str_base_16(tmp);
+	while (i < 8)
 	{
-		// code_hexa = tmp[i];
-		vm->array[index].code_hexa = 255;
-		// printf("\n\n%d\n\n", tmp[i]);
-		i++;
+		vm->array[index].code_hexa = 16 * tmp[i] + tmp[i + 1];
+		vm->array[index].player = 1; // REMODIFIER CETTE PARTIE OKLM
+		i += 2;
 		index++;
 	}
-	// printf("\n\n%s\n", tmp);
-	// printf("\n\n%d\n\n", tmp[0] + tmp[0]);
+	ft_strdel(&tmp);
 }
 
 void 						ft_nothing(t_vm *vm, t_player *plr)
