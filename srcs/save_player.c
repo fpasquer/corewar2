@@ -53,7 +53,7 @@ static t_player				*save_curs_player(t_player *lst,
 	while (curs != NULL)
 	{
 		curs->i_grid = position * i++;
-		printf("%s = %d\n", curs->name, curs->i_grid);
+		// printf("%s = %d\n", curs->name, curs->i_grid);
 		curs = curs->next;
 	}
 	return (lst);

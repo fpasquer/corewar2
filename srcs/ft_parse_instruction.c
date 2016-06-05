@@ -43,7 +43,7 @@ static void 		ft_instruction_type(int tmp, int i, int *size_param)
 
 static int			ft_ocp_instruction(unsigned char *str, int i, t_array *array)
 {
-	char 	tmp;
+	unsigned char 	tmp;
 	int 	size_param;
 
 	size_param = 0;

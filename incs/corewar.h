@@ -118,11 +118,13 @@ char		*ft_llitoa_base2(long long int n, int base, int *u);
 
 void 		ft_processus(t_vm *vm);
 void 		ft_check_processus_life(t_vm *vm);
+void 		ft_check_delais(t_vm *vm);
 
 /* 
 ** OPERATIONS / BITWISES
 */
 
+void 		ft_and(t_vm *vm, t_player *plr);
 void 		ft_nothing(t_vm *vm, t_player *plr);
 void 		ft_sti(t_vm *vm, t_player *plr);
 void 		ft_zjmp(t_vm *vm, t_player *plr);

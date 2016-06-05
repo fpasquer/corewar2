@@ -40,7 +40,6 @@ void						loop_virtual_machin(t_vm *vm)
 	int						key;
 
 	key = REFRESH;
-	// vm->status = 1;
 	while (1)
 	{
 		if (key == REFRESH)
@@ -56,13 +55,14 @@ void						loop_virtual_machin(t_vm *vm)
 		*/
 		
 		ft_processus(vm);
-		// sleep(1);
 
 		/*
 		** JC
 		*/ 
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
 		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle;
-
+		if (vm->cycle > 25)
+			sleep(1);
 	}
+
 }

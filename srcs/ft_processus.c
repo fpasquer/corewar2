@@ -2,30 +2,10 @@
 
 t_instruction g_instruction[] = {
 	{11, ft_sti},
+	{6, ft_and},
 	{1, ft_live},
 	{9, ft_zjmp},
 	{-1, NULL},
-};
-
-t_delais g_delais[] = {
-	{0, 0},
-	{LIVE, 10},
-	{LD, 5},
-	{ST, 5},
-	{ADD, 10},
-	{SUB, 10},
-	{AND, 6},
-	{OR, 6},
-	{XOR, 6},
-	{ZJMP, 20},
-	{LDI, 25},
-	{STI, 25},
-	{FORK, 800},
-	{LLD, 10},
-	{LLDI, 50},
-	{LFORK, 1000},
-	{AFF, 2},
-	{25, 0},
 };
 
 static void 		ft_instruction_type(int tmp, int i, int *size_param, int *tab)
@@ -36,14 +16,14 @@ static void 		ft_instruction_type(int tmp, int i, int *size_param, int *tab)
 		tmp = i;
 	if (tmp > 0)
 	{
-		tab[0] = tmp;
+		*tab = tmp;
 		*size_param += tmp;
 	}
 }
 
-static int			ft_ocp_instruction(char str, int i, int *tab)
+static int			ft_ocp_instruction(unsigned char str, int i, int *tab)
 {
-	char 	tmp;
+	unsigned char 	tmp;
 	int 	size_param;
 
 	size_param = 0;
@@ -69,7 +49,30 @@ static int 			ft_param_2_octets(t_vm *vm, t_player *plr, int octet, int index)
 		return (plr->reg[vm->array[index].code_hexa]);
 	while (octet-- > 0)
 	{
-		if (vm->array[index].code_hexa) // utile? revoir
+		if (vm->array[index].code_hexa)
+			nb = nb + ((ft_power(octet, 16)) * vm->array[index].code_hexa);
+		power++;
+		index++;
+		if (index > 4095)
+			index %= 4096;
+	}
+	return (nb);
+}
+
+static unsigned int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
+{
+	int 					power;
+	unsigned int  					nb;
+
+	nb = 0;
+	power = 0;
+	if (index > 4095)
+		index %= 4096;
+	if (octet == 1)
+		return (plr->reg[vm->array[index].code_hexa]);
+	while (octet-- > 0)
+	{
+		if (vm->array[index].code_hexa)
 			nb = nb + ((ft_power(octet, 16)) * vm->array[index].code_hexa);
 		power++;
 		index++;
@@ -100,6 +103,10 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 	i = 0;
 	tmp = ft_llitoa_base2(nb, 16, &size);
 	ft_str_base_16(tmp);
+	if (index > 511)
+			index %= 512;
+	else if (index < 0)
+		index = NB_CASE_TAB - ft_abs(index) % 512;
 	while (i < 8)
 	{
 		vm->array[index].code_hexa = 16 * tmp[i] + tmp[i + 1];
@@ -108,6 +115,30 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 		index++;
 	}
 	ft_strdel(&tmp);
+}
+
+void 						ft_and(t_vm *vm, t_player *plr)
+{
+	int 					i;
+	int 					tmp_i;
+	int 					ocp;
+	int 					tab[3];
+
+	ft_bzero(tab, sizeof(int) * 3);
+	i = plr->i_grid + 1;
+	i = (i == NB_CASE_TAB) ? 0 : i;
+
+	ocp = ft_ocp_instruction(vm->array[i].code_hexa, 4, tab);
+	i++;
+	tmp_i = i + tab[0] + tab[1];
+	plr->reg[vm->array[tmp_i].code_hexa] = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
+	// i = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
+
+
+
+
+	plr->i_grid += ocp + 2;
+	plr->do_instruction = 0;
 }
 
 void 						ft_nothing(t_vm *vm, t_player *plr)
@@ -124,9 +155,20 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 	ft_bzero(tab, sizeof(int) * 3);
 	i = plr->i_grid + 1;
 	i = (i == NB_CASE_TAB) ? 0 : i;
+
+	/*
+	** 2, car les directs dans cette instruction sont code sous 2 octets
+	*/
+
 	ocp = ft_ocp_instruction(vm->array[i].code_hexa, 2, tab);
-	i = ft_param_2_octets(vm, plr, tab[1], i + tab[1]) + ft_param_2_octets(vm, plr, tab[2], i + tab[2]
-	 + tab[1]);
+
+	/*
+	** j'incremete de 2, pour que l'index passe au second parametre de l'instruction.
+	** le premier etant forcement un registre.
+	*/
+
+	i = ft_param_2_octets(vm, plr, tab[1], i + 2) + 
+		ft_param_2_octets(vm, plr, tab[2], i + 2 + tab[1]);
 
 	/*
 	** PHASE TEST
@@ -136,11 +178,12 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 	ft_print_param_to_array_4_octets(vm, plr, plr->i_grid + i, plr->reg[1]);
 
 	/*
-	**
+	** ocp = taile de l'instruction
+	** 2 = le nom de l'instruction + le code ocp
 	*/
-
-	plr->i_grid += ocp + 2;
 	plr->do_instruction = 0;
+	plr->i_grid += ocp + 2;
+	// printf("\n\n%d\n\n", plr->i_grid);
 }
 
 void 						ft_live(t_vm *vm, t_player *plr)
@@ -161,10 +204,13 @@ void 						ft_processus_instruction(t_vm *vm, t_player *plr)
 	i = 0;
 	if (vm->array[plr->i_grid].code_hexa < 1 || vm->array[plr->i_grid].code_hexa > 16)
 		ft_nothing(vm, plr);
-	while (g_instruction[i].p)
+	while (g_instruction[i].instruction > 0)
 	{
 		if (g_instruction[i].instruction == vm->array[plr->i_grid].code_hexa)
+		{
 			g_instruction[i].p(vm, plr);
+			break ;
+		}
 		i++;
 	}
 }
@@ -176,51 +222,19 @@ void						ft_check_processus(t_vm *vm)
 	tmp = vm->plr;
 	while (tmp)
 	{
-		if (!tmp->delais)
+		if (tmp->delais == 0 && tmp->do_instruction == 1)
 			ft_processus_instruction(vm, tmp);
 		tmp = tmp->next;
 	}
 } 
 
-int 						ft_add_delais(t_vm *vm, t_player *plr)
-{
-	int 					i;
-
-	i = 0;
-	while (g_delais[i].instruction < 25)
-	{
-		if (vm->array[plr->i_grid].code_hexa == g_delais[i].instruction)
-			return (g_delais[i].delais);
-		i++;
-	}
-	return (0);
-}
-
-void 						ft_check_delais(t_vm *vm)
-{
-	t_player 				*tmp;
-
-	tmp = vm->plr;
-	while (tmp)
-	{
-		if (!tmp->delais)
-			tmp->delais = ft_add_delais(vm, tmp);
-		if (tmp->delais == vm->cycle)
-		{
-			tmp->delais = 0;
-			tmp->do_instruction = 1;
-		}
-		tmp = tmp->next;
-	}
-}
-
 void 						ft_processus(t_vm *vm)
 {
 	ft_check_delais(vm);
 	ft_check_processus(vm);
-	if (vm->cycle_tmp == vm->cycle_to_die)
-	{
-		ft_check_processus_life(vm);
-		vm->cycle_tmp = 0;
-	}
+	// if (vm->cycle_tmp == vm->cycle_to_die)
+	// {
+	// 	ft_check_processus_life(vm);
+	// 	vm->cycle_tmp = 0;
+	// }
 }
