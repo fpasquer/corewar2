@@ -187,8 +187,12 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 }
 
 int 						ft_live(t_vm *vm, t_player *plr)
-{	
+{
+	int 					i;
 	
+	i = ft_param_4_octets(vm, plr, 4, plr->i_grid + 1);
+	// get_hexa(vm, plr->i_grid + 1 % NB_CASE_TAB, 4, &i);
+	printf("\n%d\n",i);
 	return (0);
 }
 
