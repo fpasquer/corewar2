@@ -6,12 +6,12 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/03 10:19:44 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 11:46:35 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 void						print_lst(t_player *lst, int fd)
 {

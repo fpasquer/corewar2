@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/04 22:18:01 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 13:52:03 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static t_player				*save_curs_player(t_player *lst,
 	while (curs != NULL)
 	{
 		curs->i_grid = position * i++;
-		// printf("%s = %d\n", curs->name, curs->i_grid);
 		curs = curs->next;
 	}
 	return (lst);
@@ -81,6 +80,7 @@ static t_player				*new_player(char *name, int nb,
 	new->reg[1] = nb;
 	spacing += y;
 	i++;
+
 	return (new);
 }
 
@@ -101,6 +101,13 @@ static void					add_new_player(t_player **lst, t_player **new)
 	}
 }
 
+static int					change_index(int i, char *argv, int argc)
+{
+	i = (ft_strcmp(argv, "-d") == 0 || ft_strcmp(argv, "-s") == 0) ||
+			ft_strcmp(argv, "-dm") == 0 ? i + 2 : i + 1;
+	return ((i >= argc) ? -1 : i);
+}
+
 t_player					*save_player(int argc, char **argv, t_vm *vm)
 {
 	int						i;
@@ -111,12 +118,12 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 
 	i = 0;
 	while (i < argc && argv[i][0] == '-')
-		i = (ft_strcmp(argv[i], "-d") == 0 || ft_strcmp(argv[i], "-n") == 0 ||
-				ft_strcmp(argv[i], "-s") == 0) ||
-				ft_strcmp(argv[i], "-dm") == 0 ? i + 2 : i + 1;
+		if ((i = change_index(i, argv[i], argc)) < 0)
+			return (del_player(&lst));
 	j = -1;
 	lst = NULL;
 	nb_champ = ((vm->flags & NUMBER) != 0) ? (argc - i + 1) / 2 : argc - i;
+	i = ((vm->flags & NUMBER) != 0) ? i + 1 : i;
 	while (i < argc)
 	{
 		if ((new = new_player(argv[i], (vm->flags & NUMBER)
