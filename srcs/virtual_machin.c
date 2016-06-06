@@ -54,7 +54,10 @@ void						loop_virtual_machin(t_vm *vm)
 		** JC
 		*/
 		
-		ft_processus(vm);
+		(vm->status != PAUSE) ? ft_processus(vm) : 0;
+		// if (vm->cycle > 1380)
+		// 	sleep(1);
+
 		/*
 		** JC
 		*/ 

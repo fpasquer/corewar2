@@ -92,6 +92,9 @@ int 						ft_check_size_max(int i, int index)
 
 int 						ft_nothing(t_vm *vm, t_player *plr)
 {
+	// vm->array[plr->i_grid].player = 0;
+	plr->i_grid = ft_check_size_max(1, plr->i_grid);
+	// vm->array[plr->i_grid].player = plr->pos;
 	return (0);
 }
 
@@ -143,7 +146,10 @@ int							ft_processus_instruction(t_vm *vm, t_player *plr)
 
 	i = 0;
 	if (vm->array[plr->i_grid].code_hexa < 1 || vm->array[plr->i_grid].code_hexa > 16)
+	{
 		ft_nothing(vm, plr);
+		return (0);
+	}
 	while (g_instruction[i].instruction > 0)
 	{
 		if (g_instruction[i].instruction == vm->array[plr->i_grid].code_hexa)
