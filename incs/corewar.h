@@ -139,5 +139,6 @@ int 		ft_zjmp(t_vm *vm, t_player *plr);
 int 		ft_live(t_vm *vm, t_player *plr);
 
 int			ft_fork(t_vm *vm, t_player *plr);
+//int			ft_lfork(t_vm *vm, t_player *plr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 15:37:58 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 17:33:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,10 +154,10 @@ static int					return_color_grid(t_vm *vm, unsigned int position)
 	i = 0;
 	if (vm->array[position].player == 0)
 		return (0);
-	while (i < vm->nb_player && curs != NULL)
+	while (curs != NULL)
 	{
 		if (position == curs->i_grid)
-			return (i + 5);
+			return (curs->pos + 5 - 1);
 		curs = curs->next;
 		i++;
 	}

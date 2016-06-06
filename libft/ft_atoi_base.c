@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/31 19:30:16 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/05/31 19:33:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 20:35:15 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ unsigned long long int		ret_val(char c, size_t exp, int base)
 	return (c * power);
 }
 
-int							ft_atoi_base(const char *s, int base,
-		unsigned long long int *nb)
+int							ft_atoi_base(const char *s, int base, int *nb)
 {
 	size_t					len;
 	size_t					i;

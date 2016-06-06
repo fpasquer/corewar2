@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/04 11:04:14 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 20:28:44 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_vm						*init_vm(int argc, char **argv)
 	nodelay(stdscr, TRUE);
 	new_->nb_proces = new_->nb_player;
 	new_->cycle_to_die = INIT_CYCLE_TO_DIE;
+	if ((new_->mem = fopen("mem.txt", "w+")) == NULL)
+		return (NULL);
 	return (new_);
 }
 
@@ -120,6 +122,7 @@ t_vm						*del_vm(t_vm **vm)
 	endwin();
 	if (vm == NULL || *vm ==NULL)
 		return (NULL);
+	fclose((*vm)->mem);
 	del_player(&(*vm)->plr);
 	if (((*vm)->flags & DUMP) != 0)
 		close((*vm)->fd);

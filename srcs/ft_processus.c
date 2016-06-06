@@ -6,6 +6,7 @@ t_instruction g_instruction[] = {
 	{9, ft_zjmp},
 	{11, ft_sti},
 	{12, ft_fork},
+//	{15, ft_lfork},
 	{-1, NULL},
 };
 
@@ -184,6 +185,7 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 	plr->i_grid += ocp + 2;
 	return (0);
 	// printf("\n\n%d\n\n", plr->i_grid);
+	return (0);
 }
 
 int 						ft_live(t_vm *vm, t_player *plr)
@@ -201,7 +203,7 @@ int 						ft_zjmp(t_vm *vm, t_player *plr)
 	return (0);
 }
 
-void 						ft_processus_instruction(t_vm *vm, t_player *plr)
+int							ft_processus_instruction(t_vm *vm, t_player *plr)
 {
 	int 					i;
 
@@ -217,6 +219,7 @@ void 						ft_processus_instruction(t_vm *vm, t_player *plr)
 		}
 		i++;
 	}
+	return (0);
 }
 
 void						ft_check_processus(t_vm *vm)

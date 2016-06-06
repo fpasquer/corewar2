@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 15:41:02 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 19:01:39 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void						loop_virtual_machin(t_vm *vm)
 		*/
 		
 		ft_processus(vm);
-		ft_fork(vm, vm->plr);
 		/*
 		** JC
 		*/ 
