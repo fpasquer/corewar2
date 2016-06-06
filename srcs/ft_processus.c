@@ -8,6 +8,7 @@ t_instruction g_instruction[] = {
 	{-1, NULL},
 };
 
+
 static void 		ft_instruction_type(int tmp, int i, int *size_param, int *tab)
 {
 	if (tmp == 3)
@@ -109,8 +110,8 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 		index = NB_CASE_TAB - ft_abs(index) % 512;
 	while (i < 8)
 	{
-		vm->array[index].code_hexa = 16 * tmp[i] + tmp[i + 1];
-		vm->array[index].player = 1; // REMODIFIER CETTE PARTIE OKLM
+		vm->array[plr->i_grid + index].code_hexa = 16 * tmp[i] + tmp[i + 1];
+		vm->array[plr->i_grid + index].player = plr->pos; // REMODIFIER CETTE PARTIE OKLM
 		i += 2;
 		index++;
 	}
@@ -174,13 +175,14 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 	** PHASE TEST
 	*/
 
-	plr->reg[1] = -1;
-	ft_print_param_to_array_4_octets(vm, plr, plr->i_grid + i, plr->reg[1]);
+	// plr->reg[1] = -1;
+	ft_print_param_to_array_4_octets(vm, plr, i, plr->reg[1]);
 
 	/*
 	** ocp = taile de l'instruction
 	** 2 = le nom de l'instruction + le code ocp
 	*/
+
 	plr->do_instruction = 0;
 	plr->i_grid += ocp + 2;
 	// printf("\n\n%d\n\n", plr->i_grid);
@@ -232,9 +234,9 @@ void 						ft_processus(t_vm *vm)
 {
 	ft_check_delais(vm);
 	ft_check_processus(vm);
-	// if (vm->cycle_tmp == vm->cycle_to_die)
-	// {
-	// 	ft_check_processus_life(vm);
-	// 	vm->cycle_tmp = 0;
-	// }
+	if (vm->cycle_tmp == vm->cycle_to_die)
+	{
+		ft_check_processus_life(vm);
+		vm->cycle_tmp = 0;
+	}
 }

@@ -84,6 +84,11 @@
 #define NB_LIVE_MIN 21
 #define CHECKS_MAX 10
 
+typedef struct s_ocp
+{
+	int 		i;
+	int  		(*p)()
+}				t_ocp;
 
 typedef struct 	s_delais
 {

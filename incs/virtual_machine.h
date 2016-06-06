@@ -78,12 +78,12 @@ typedef struct				s_player
 	*/
 
 	int 					do_instruction;
-	int 					delais;
+	unsigned int 			delais;
 
 	/*
 	**
 	*/
-
+	int 					pos; 			//numero du joueur par rapport a la liste chaine au start.
 	char					*name;			//nom du joueur
 	char					*comment;		//commentaire du joueur
 	unsigned int			reg[MAX_REG];	//les 16 registres du joueur

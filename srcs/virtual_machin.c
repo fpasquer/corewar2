@@ -61,8 +61,6 @@ void						loop_virtual_machin(t_vm *vm)
 		*/ 
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
 		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle;
-		if (vm->cycle > 25)
-			sleep(1);
 	}
 
 }

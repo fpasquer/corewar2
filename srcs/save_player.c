@@ -66,6 +66,7 @@ static t_player				*new_player(char *name, int nb,
 	int						fd;
 	int 					y;
 	static int 				spacing;
+	static int 				i = 1;
 
 	y = NB_CASE_TAB / nb_champ;
 	if ((fd = ft_fopen(name, "r")) == -1)
@@ -74,10 +75,12 @@ static t_player				*new_player(char *name, int nb,
 		return (NULL);
 	new->name = ft_recover_name_champ(fd);
 	new->comment = ft_recover_comment_champ(fd, &new->size);
+	new->pos = i;
 	ft_recover_instruction(fd, &array[spacing], &new->size);
 	close(fd);
-	new->reg[0] = nb;
+	new->reg[1] = nb;
 	spacing += y;
+	i++;
 	return (new);
 }
 
