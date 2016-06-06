@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/04 22:14:42 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:16:32 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,7 @@ void						print_info(t_vm *vm);
 void						print_dump(t_vm *vm);
 t_player					*save_player(int argc, char **argv, t_vm *vm);
 t_player					*del_player(t_player **lst);
+int							get_hexa(t_vm *vm, unsigned int i_grid,
+		unsigned int nb_octet, int *nb);
 
 #endif

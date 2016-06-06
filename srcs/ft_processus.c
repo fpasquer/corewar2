@@ -1,10 +1,11 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 t_instruction g_instruction[] = {
-	{11, ft_sti},
-	{6, ft_and},
 	{1, ft_live},
+	{6, ft_and},
 	{9, ft_zjmp},
+	{11, ft_sti},
+	{12, ft_fork},
 	{-1, NULL},
 };
 
