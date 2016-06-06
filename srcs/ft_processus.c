@@ -139,12 +139,14 @@ int 						ft_check_size_max(int i, int index)
 	int 					tmp;
 
 	if (i > 511)
-		return (i % 512);
+		i = i % 512;
 	else if (i < 0)
 		i = i % 512;
 	tmp = index + i;
 	if (tmp < 0)
 		return (NB_CASE_TAB + i);
+	else if (tmp > 4095)
+		return (tmp - NB_CASE_TAB);
 	return (index + i);
 }
 
@@ -202,7 +204,7 @@ int 						ft_live(t_vm *vm, t_player *plr)
 		plr->nb_live++;
 	else
 		vm->nb_live++;
-	plr->i_grid += 5; 
+	plr->i_grid = ft_check_size_max(5, plr->i_grid); 
 	return (0);
 }
 
