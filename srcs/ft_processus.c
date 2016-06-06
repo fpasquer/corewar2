@@ -13,7 +13,7 @@ t_instruction g_instruction[] = {
 t_ocp g_ocp[] = {
 	{0, NULL},
 	{1, ft_param_1_octets},
-	{2, ft_param_2_octets},
+	{2, ft_param_4_octets},
 	{3, NULL},
 	{4, ft_param_4_octets},
 };
