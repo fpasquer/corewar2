@@ -92,6 +92,7 @@ typedef struct				s_player
 	unsigned int			last_live;		//cicle du last live
 	unsigned int			i_player;		//index du joueur pour comter live
 	int						size;			//taille du champion
+	int 					carry;
 	struct s_player			*next;			//pour les forks
 }							t_player;
 

@@ -8,6 +8,11 @@ t_instruction g_instruction[] = {
 	{-1, NULL},
 };
 
+t_ocp g_ocp[] = {
+	// {1, ft_reg},
+	{2, ft_param_2_octets},
+	{4, ft_param_2_octets},
+};
 
 static void 		ft_instruction_type(int tmp, int i, int *size_param, int *tab)
 {
@@ -83,15 +88,41 @@ static unsigned int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int
 	return (nb);
 }
 
+char						*ft_fill_less(char *str, int size, int octet)
+{
+	char 					*tmp;
+	int 					i;
+	int 					count;
+
+	octet = (octet == 2) ? 4 : 8;
+	count = 0;
+	i = 8 - size;
+	if (size == octet)
+		return (str);
+	if (!(tmp = ft_strnew(octet)))
+		exit (-1);
+	while (i < octet)
+	{
+		tmp[i] = str[count];
+		i++;
+		count++;
+	}
+	free(str);
+	return(tmp);
+}
+
 void  						ft_str_base_16(char *str)
 {
-	while (*str)
+	int 					i;
+
+	i = 0;
+	while (i < 8)
 	{
-		if (*str >= '0' && *str <= '9')
-			*str = *str - 48;
-		else if (*str >= 'a' && *str <= 'f')
-			*str = *str - 87;
-		str++;
+		if (str[i] >= '0' && str[i] <= '9')
+			str[i] = str[i] - 48;
+		else if (str[i] >= 'a' && str[i] <= 'f')
+			str[i] = str[i] - 87;
+		i++;
 	}
 }
 
@@ -103,6 +134,7 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 
 	i = 0;
 	tmp = ft_llitoa_base2(nb, 16, &size);
+	tmp = ft_fill_less(tmp, size, 4);
 	ft_str_base_16(tmp);
 	if (index > 511)
 			index %= 512;
@@ -110,8 +142,8 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 		index = NB_CASE_TAB - ft_abs(index) % 512;
 	while (i < 8)
 	{
-		vm->array[plr->i_grid + index].code_hexa = 16 * tmp[i] + tmp[i + 1];
-		vm->array[plr->i_grid + index].player = plr->pos; // REMODIFIER CETTE PARTIE OKLM
+		vm->array[plr->i_grid + index].code_hexa = (16 * tmp[i]) + (tmp[i + 1]);
+		vm->array[plr->i_grid + index].player = plr->pos;
 		i += 2;
 		index++;
 	}
@@ -135,6 +167,7 @@ void 						ft_and(t_vm *vm, t_player *plr)
 	plr->reg[vm->array[tmp_i].code_hexa] = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
 	// i = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
 
+	plr->carry = (plr->reg[vm->array[tmp_i].code_hexa]) ? 0 : 1; 
 
 
 
@@ -175,7 +208,6 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 	** PHASE TEST
 	*/
 
-	// plr->reg[1] = -1;
 	ft_print_param_to_array_4_octets(vm, plr, i, plr->reg[1]);
 
 	/*
