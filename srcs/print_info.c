@@ -121,12 +121,12 @@ void 						print_hightlight(t_vm *vm, t_player *plr)
 	while (plr)
 	{
 		attron(A_STANDOUT);
-		// attron(COLOR_PAIR(vm->array[plr->i_grid].player));
+		 attron(COLOR_PAIR(plr->pos));
 		tmp = ft_llitoa_base(vm->array[plr->i_grid].code_hexa, 16, &size);
 		// vm->array[plr->i_grid].code_hexa;
 		mvwprintw(stdscr, vm->array[plr->i_grid].y, vm->array[plr->i_grid].x, "%s", tmp);
 		attroff(A_STANDOUT);
-		// attroff(COLOR_PAIR(vm->array[plr->i_grid].player));
+		attroff(COLOR_PAIR(plr->pos));
 		plr = plr->next;
 		ft_strdel(&tmp);
 	}
