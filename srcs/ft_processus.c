@@ -94,14 +94,18 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 	tmp = ft_llitoa_base2(nb, 16, &size);
 	tmp = ft_fill_less(tmp, size, 4);
 	ft_str_base_16(tmp);
-	if (index > 511)
-			index %= 512;
-	else if (index < 0)
-		index = NB_CASE_TAB - ft_abs(index) % 512;
+	// if (index > 511)
+			// index %= 512;
+	// else if (index < 0)
+	// {
+	// 	if ((size = plr->i_grid + index) < 0)
+	// 		index = ft_abs(plr->i_grid + index);
+	// 	index = NB_CASE_TAB - ft_abs(index) % 512;
+	// }
 	while (i < 8)
 	{
-		vm->array[plr->i_grid + index].code_hexa = (16 * tmp[i]) + (tmp[i + 1]);
-		vm->array[plr->i_grid + index].player = plr->pos;
+		vm->array[index].code_hexa = (16 * tmp[i]) + (tmp[i + 1]);
+		vm->array[index].player = plr->pos;
 		i += 2;
 		index++;
 	}
@@ -131,7 +135,6 @@ int 						ft_and(t_vm *vm, t_player *plr)
 	plr->carry = (plr->reg[vm->array[tmp_i].code_hexa]) ? 0 : 1; 
 
 
-
 	plr->i_grid += ocp + 2;
 	plr->do_instruction = 0;
 	return (0);
@@ -146,10 +149,10 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					ocp;
-	int 					tab[3];
+	int 					tab[4];
 	int 					nb_reg;
 
-	ft_bzero(tab, sizeof(int) * 3);
+	ft_bzero(tab, sizeof(int) * 4);
 	i = plr->i_grid + 1;
 	i = (i == NB_CASE_TAB) ? 0 : i;
 	nb_reg = vm->array[i + 1].code_hexa;
@@ -169,12 +172,31 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 
 	// i = ft_param_2_octets(vm, plr, tab[1], i + 2) + 
 	// 	ft_param_2_octets(vm, plr, tab[2], i + 2 + tab[1]);
+	int test;
+
+	test = (plr->i_grid + i);
+	if (i > 511)
+	{
+		i %= 512;
+		ft_print_param_to_array_4_octets(vm, plr, i + plr->i_grid, plr->reg[nb_reg]);
+	}
+	else if (test < 0)
+	{
+		test = NB_CASE_TAB + test;
+	 	// if ((size = plr->i_grid + i) < 0)
+	 		// i = ft_abs(plr->i_grid + i);
+	 	// i = NB_CASE_TAB - ft_abs(i) % 512;
+	 	ft_print_param_to_array_4_octets(vm, plr, test, plr->reg[nb_reg]);
+	}
+	else
+		ft_print_param_to_array_4_octets(vm, plr, i + plr->i_grid, plr->reg[nb_reg]);
 
 	/*
 	** PHASE TEST
 	*/
 
-	ft_print_param_to_array_4_octets(vm, plr, i, plr->reg[nb_reg]);
+
+	// ft_print_param_to_array_4_octets(vm, plr, i, plr->reg[nb_reg]);
 
 	/*
 	** ocp = taile de l'instruction
@@ -183,7 +205,6 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 
 	plr->do_instruction = 0;
 	plr->i_grid += ocp + 2;
-	return (0);
 	// printf("\n\n%d\n\n", plr->i_grid);
 	return (0);
 }
@@ -194,12 +215,23 @@ int 						ft_live(t_vm *vm, t_player *plr)
 	
 	i = ft_param_4_octets(vm, plr, 4, plr->i_grid + 1);
 	// get_hexa(vm, plr->i_grid + 1 % NB_CASE_TAB, 4, &i);
-	printf("\n%d\n",i);
+	if (i == plr->reg[1])
+		plr->nb_live++;
+	else
+		vm->nb_live++;
+	plr->i_grid += 5; 
+	// printf("\n%d\n",i);
 	return (0);
 }
 
 int 						ft_zjmp(t_vm *vm, t_player *plr)
 {
+	short 					i;
+
+	i = ft_param_4_octets(vm, plr, 2, plr->i_grid + 1);
+	if (plr->carry)
+		plr->i_grid += i;
+	// printf("%d\n",i);
 	return (0);
 }
 

@@ -33,7 +33,7 @@ int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
 	int 		 		 			nb;
 	char 							*str;
 	char 							tab[9];
-	unsigned long long int      	i;
+	int      	i;
 
 	ft_bzero(tab, sizeof(char) * 9);
 	nb = 0;
@@ -52,7 +52,6 @@ int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
 			index %= 4096;
 		ft_strdel(&str);
 	}
-	ft_atoi_base(tab, 10, &i);
-	printf("\n%s : %llu", tab, i);
+	ft_atoi_base(tab, 16, &i);
 	return (i);
 }
