@@ -98,11 +98,7 @@ typedef struct 	s_delais
 
 typedef struct s_instruction
 {
-<<<<<<< HEAD
-	char		instruction;
-=======
 	char  		instruction;
->>>>>>> 9c1746bb08f044b7c37e2375208a3adfba85ec0c
 	int			(*p)(t_vm *vm, t_player *plr);
 }				t_instruction;
 
@@ -136,19 +132,11 @@ void 		ft_check_delais(t_vm *vm);
 ** OPERATIONS / BITWISES
 */
 
-<<<<<<< HEAD
-int			ft_and(t_vm *vm, t_player *plr);
-int			ft_nothing(t_vm *vm, t_player *plr);
-int			ft_sti(t_vm *vm, t_player *plr);
-int			ft_zjmp(t_vm *vm, t_player *plr);
-int			ft_live(t_vm *vm, t_player *plr);
-=======
 int 		ft_and(t_vm *vm, t_player *plr);
 int 		ft_nothing(t_vm *vm, t_player *plr);
 int 		ft_sti(t_vm *vm, t_player *plr);
 int 		ft_zjmp(t_vm *vm, t_player *plr);
 int 		ft_live(t_vm *vm, t_player *plr);
->>>>>>> 9c1746bb08f044b7c37e2375208a3adfba85ec0c
 
 int			ft_fork(t_vm *vm, t_player *plr);
 //int			ft_lfork(t_vm *vm, t_player *plr);

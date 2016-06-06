@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 11:07:53 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 20:37:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 20:39:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,8 @@ int							get_hexa(t_vm *vm, unsigned int i_grid,
 		all_octet = tmp;
 		i_grid  = (i_grid + 1) % NB_CASE_TAB;
 	}
-<<<<<<< HEAD
 	ret = ft_atoi_base(all_octet, 16, nb);
-=======
 	// mvwprintw(vm->w_info, line++, 3, "all_octet = %s", all_octet);
-	ret = ft_atoi_base(all_octet, 16, (unsigned long long int*)nb);
->>>>>>> 9c1746bb08f044b7c37e2375208a3adfba85ec0c
 	if (all_octet != NULL)
 		ft_memdel((void**)&all_octet);
 	if (curent_octet != NULL)

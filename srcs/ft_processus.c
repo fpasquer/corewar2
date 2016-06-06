@@ -108,11 +108,7 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 	ft_strdel(&tmp);
 }
 
-<<<<<<< HEAD
-int							ft_and(t_vm *vm, t_player *plr)
-=======
 int 						ft_and(t_vm *vm, t_player *plr)
->>>>>>> 9c1746bb08f044b7c37e2375208a3adfba85ec0c
 {
 	int 					i;
 	int 					tmp_i;
@@ -141,20 +137,12 @@ int 						ft_and(t_vm *vm, t_player *plr)
 	return (0);
 }
 
-<<<<<<< HEAD
-int							ft_nothing(t_vm *vm, t_player *plr)
-=======
 int 						ft_nothing(t_vm *vm, t_player *plr)
->>>>>>> 9c1746bb08f044b7c37e2375208a3adfba85ec0c
 {
 	return (0);
 }
 
-<<<<<<< HEAD
-int							ft_sti(t_vm *vm, t_player *plr)
-=======
 int 						ft_sti(t_vm *vm, t_player *plr)
->>>>>>> 9c1746bb08f044b7c37e2375208a3adfba85ec0c
 {
 	int 					i;
 	int 					ocp;
@@ -200,15 +188,6 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 	return (0);
 }
 
-<<<<<<< HEAD
-int							ft_live(t_vm *vm, t_player *plr)
-{
-
-	return (0);
-}
-
-int							ft_zjmp(t_vm *vm, t_player *plr)
-=======
 int 						ft_live(t_vm *vm, t_player *plr)
 {	
 	
@@ -216,7 +195,6 @@ int 						ft_live(t_vm *vm, t_player *plr)
 }
 
 int 						ft_zjmp(t_vm *vm, t_player *plr)
->>>>>>> 9c1746bb08f044b7c37e2375208a3adfba85ec0c
 {
 	return (0);
 }
