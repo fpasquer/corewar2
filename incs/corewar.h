@@ -116,6 +116,7 @@ int 		ft_power(int power, int nb);
 int 		ft_convert_hexa_to_int(unsigned char *str);
 char		*ft_llitoa_base(long long int n, int base, int *u);
 char		*ft_llitoa_base2(long long int n, int base, int *u);
+short		ft_atoi_base2(const char *s, int base, short *nb);
 
 int 			ft_param_2_octets(t_vm *vm, t_player *plr, int octet, int index);
 int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index);
