@@ -6,6 +6,7 @@ t_instruction g_instruction[] = {
 	{9, ft_zjmp},
 	{11, ft_sti},
 	{12, ft_fork},
+//	{15, ft_lfork},
 	{-1, NULL},
 };
 
@@ -119,7 +120,7 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 	ft_strdel(&tmp);
 }
 
-void 						ft_and(t_vm *vm, t_player *plr)
+int							ft_and(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					tmp_i;
@@ -141,14 +142,15 @@ void 						ft_and(t_vm *vm, t_player *plr)
 
 	plr->i_grid += ocp + 2;
 	plr->do_instruction = 0;
+	return (0);
 }
 
-void 						ft_nothing(t_vm *vm, t_player *plr)
+int							ft_nothing(t_vm *vm, t_player *plr)
 {
-	return ;
+	return (0);
 }
 
-void 						ft_sti(t_vm *vm, t_player *plr)
+int							ft_sti(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					ocp;
@@ -187,20 +189,21 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 	plr->do_instruction = 0;
 	plr->i_grid += ocp + 2;
 	// printf("\n\n%d\n\n", plr->i_grid);
+	return (0);
 }
 
-void 						ft_live(t_vm *vm, t_player *plr)
+int							ft_live(t_vm *vm, t_player *plr)
 {
 
-	return ;
+	return (0);
 }
 
-void 						ft_zjmp(t_vm *vm, t_player *plr)
+int							ft_zjmp(t_vm *vm, t_player *plr)
 {
-	return ;
+	return (0);
 }
 
-void 						ft_processus_instruction(t_vm *vm, t_player *plr)
+int							ft_processus_instruction(t_vm *vm, t_player *plr)
 {
 	int 					i;
 
@@ -216,6 +219,7 @@ void 						ft_processus_instruction(t_vm *vm, t_player *plr)
 		}
 		i++;
 	}
+	return (0);
 }
 
 void						ft_check_processus(t_vm *vm)

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 15:16:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 20:25:08 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <ncurses.h>
 
 # define NB_CASE_TAB 4096
+# define NB_MOD 512
 # define NB_LINE_COLUMN 64
 
 # define MAX_REG 17
@@ -113,6 +114,7 @@ typedef struct				s_vm
 	/*
 	**
 	*/
+	FILE *mem;									//a supprimer
 
 	int						status;				//run ou pause
 	int						*grid;				//grille 1d pour JC

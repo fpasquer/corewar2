@@ -6,11 +6,13 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 11:07:53 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 16:50:06 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 20:37:22 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
+
+
 
 void						error(char *s)
 {
@@ -55,12 +57,12 @@ int							**make_tab_2d(int *tab, int height, int width)
 	return (ret);
 }
 
-static char					*get_curent_octet(t_vm *vm, unsigned int i_grid)
+static char					*get_curent_octet(t_array *array, unsigned int i_grid)
 {
 	char					*curent_octet;
 	char					*tmp;
 
-	if ((curent_octet = ft_itoa_base(vm->array[i_grid].code_hexa, 16)) == NULL)
+	if ((curent_octet = ft_itoa_base(array[i_grid].code_hexa, 16)) == NULL)
 		return (NULL);
 	if (ft_strlen(curent_octet) < 2)
 	{
@@ -80,21 +82,21 @@ int							get_hexa(t_vm *vm, unsigned int i_grid,
 	char					*tmp;
 	int						ret;
 
-	int						line = 60;
+		fprintf(vm->mem, "i_grid = %u, nb_octet = %u\n", i_grid, nb_octet);
 	curent_octet = NULL;
 	all_octet = NULL;
 	while (nb_octet--)
 	{
-		if((curent_octet = get_curent_octet(vm, i_grid++)) == NULL ||
+		if((curent_octet = get_curent_octet(vm->array, i_grid)) == NULL ||
 				(tmp = ft_strjoin(all_octet, curent_octet)) == NULL)
 			return (-1);
 		if (all_octet != NULL)
 			ft_memdel((void**)&all_octet);
 		ft_memdel((void**)&curent_octet);
 		all_octet = tmp;
+		i_grid  = (i_grid + 1) % NB_CASE_TAB;
 	}
-	mvwprintw(vm->w_info, line++, 3, "all_octet = %s", all_octet);
-	ret = ft_atoi_base(all_octet, 16, (unsigned long long int*)nb);
+	ret = ft_atoi_base(all_octet, 16, nb);
 	if (all_octet != NULL)
 		ft_memdel((void**)&all_octet);
 	if (curent_octet != NULL)
