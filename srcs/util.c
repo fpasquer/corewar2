@@ -93,7 +93,7 @@ int							get_hexa(t_vm *vm, unsigned int i_grid,
 		ft_memdel((void**)&curent_octet);
 		all_octet = tmp;
 	}
-	mvwprintw(vm->w_info, line++, 3, "all_octet = %s", all_octet);
+	// mvwprintw(vm->w_info, line++, 3, "all_octet = %s", all_octet);
 	ret = ft_atoi_base(all_octet, 16, (unsigned long long int*)nb);
 	if (all_octet != NULL)
 		ft_memdel((void**)&all_octet);

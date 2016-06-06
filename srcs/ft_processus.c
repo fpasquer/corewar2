@@ -10,9 +10,11 @@ t_instruction g_instruction[] = {
 };
 
 t_ocp g_ocp[] = {
-	// {1, ft_reg},
+	{0, NULL},
+	{1, ft_param_1_octets},
 	{2, ft_param_2_octets},
-	{4, ft_param_2_octets},
+	{3, NULL},
+	{4, ft_param_4_octets},
 };
 
 static void 		ft_instruction_type(int tmp, int i, int *size_param, int *tab)
@@ -41,52 +43,6 @@ static int			ft_ocp_instruction(unsigned char str, int i, int *tab)
 	tmp = (str & MASK_4_BITS) >> 2;
 	ft_instruction_type(tmp, i, &size_param, &tab[2]);
 	return (size_param);
-}
-
-static int 			ft_param_2_octets(t_vm *vm, t_player *plr, int octet, int index)
-{
-	int 					power;
-	short 					nb;
-
-	nb = 0;
-	power = 0;
-	if (index > 4095)
-		index %= 4096;
-	if (octet == 1)
-		return (plr->reg[vm->array[index].code_hexa]);
-	while (octet-- > 0)
-	{
-		if (vm->array[index].code_hexa)
-			nb = nb + ((ft_power(octet, 16)) * vm->array[index].code_hexa);
-		power++;
-		index++;
-		if (index > 4095)
-			index %= 4096;
-	}
-	return (nb);
-}
-
-static unsigned int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
-{
-	int 					power;
-	unsigned int  					nb;
-
-	nb = 0;
-	power = 0;
-	if (index > 4095)
-		index %= 4096;
-	if (octet == 1)
-		return (plr->reg[vm->array[index].code_hexa]);
-	while (octet-- > 0)
-	{
-		if (vm->array[index].code_hexa)
-			nb = nb + ((ft_power(octet, 16)) * vm->array[index].code_hexa);
-		power++;
-		index++;
-		if (index > 4095)
-			index %= 4096;
-	}
-	return (nb);
 }
 
 char						*ft_fill_less(char *str, int size, int octet)
@@ -151,7 +107,7 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 	ft_strdel(&tmp);
 }
 
-void 						ft_and(t_vm *vm, t_player *plr)
+int 						ft_and(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					tmp_i;
@@ -165,7 +121,10 @@ void 						ft_and(t_vm *vm, t_player *plr)
 	ocp = ft_ocp_instruction(vm->array[i].code_hexa, 4, tab);
 	i++;
 	tmp_i = i + tab[0] + tab[1];
-	plr->reg[vm->array[tmp_i].code_hexa] = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
+	
+	plr->reg[vm->array[tmp_i].code_hexa] = g_ocp[tab[0]].p(vm, plr, tab[0], i) & g_ocp[tab[1]].p(vm, plr, tab[1], i + tab[0]);
+	
+	// plr->reg[vm->array[tmp_i].code_hexa] = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
 	// i = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
 
 	plr->carry = (plr->reg[vm->array[tmp_i].code_hexa]) ? 0 : 1; 
@@ -174,22 +133,25 @@ void 						ft_and(t_vm *vm, t_player *plr)
 
 	plr->i_grid += ocp + 2;
 	plr->do_instruction = 0;
+	return (0);
 }
 
-void 						ft_nothing(t_vm *vm, t_player *plr)
+int 						ft_nothing(t_vm *vm, t_player *plr)
 {
-	return ;
+	return (0);
 }
 
-void 						ft_sti(t_vm *vm, t_player *plr)
+int 						ft_sti(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					ocp;
 	int 					tab[3];
+	int 					nb_reg;
 
 	ft_bzero(tab, sizeof(int) * 3);
 	i = plr->i_grid + 1;
 	i = (i == NB_CASE_TAB) ? 0 : i;
+	nb_reg = vm->array[i + 1].code_hexa;
 
 	/*
 	** 2, car les directs dans cette instruction sont code sous 2 octets
@@ -202,14 +164,16 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 	** le premier etant forcement un registre.
 	*/
 
-	i = ft_param_2_octets(vm, plr, tab[1], i + 2) + 
-		ft_param_2_octets(vm, plr, tab[2], i + 2 + tab[1]);
+	i = g_ocp[tab[1]].p(vm, plr, tab[1], i + 2) + g_ocp[tab[2]].p(vm, plr, tab[2], i + 2 + tab[1]);
+
+	// i = ft_param_2_octets(vm, plr, tab[1], i + 2) + 
+	// 	ft_param_2_octets(vm, plr, tab[2], i + 2 + tab[1]);
 
 	/*
 	** PHASE TEST
 	*/
 
-	ft_print_param_to_array_4_octets(vm, plr, i, plr->reg[1]);
+	ft_print_param_to_array_4_octets(vm, plr, i, plr->reg[nb_reg]);
 
 	/*
 	** ocp = taile de l'instruction
@@ -218,18 +182,19 @@ void 						ft_sti(t_vm *vm, t_player *plr)
 
 	plr->do_instruction = 0;
 	plr->i_grid += ocp + 2;
+	return (0);
 	// printf("\n\n%d\n\n", plr->i_grid);
 }
 
-void 						ft_live(t_vm *vm, t_player *plr)
-{
-
-	return ;
+int 						ft_live(t_vm *vm, t_player *plr)
+{	
+	
+	return (0);
 }
 
-void 						ft_zjmp(t_vm *vm, t_player *plr)
+int 						ft_zjmp(t_vm *vm, t_player *plr)
 {
-	return ;
+	return (0);
 }
 
 void 						ft_processus_instruction(t_vm *vm, t_player *plr)

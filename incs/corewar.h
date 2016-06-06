@@ -87,7 +87,7 @@
 typedef struct s_ocp
 {
 	int 		i;
-	int  		(*p)(t_vm *vm, t_player *plr, int index);
+	int  		(*p)(t_vm *vm, t_player *plr, int octet, int index);
 }				t_ocp;
 
 typedef struct 	s_delais
@@ -99,7 +99,7 @@ typedef struct 	s_delais
 typedef struct s_instruction
 {
 	char  		instruction;
-	void		(*p)(t_vm *vm, t_player *plr);
+	int			(*p)(t_vm *vm, t_player *plr);
 }				t_instruction;
 
 char		*ft_recover_name_champ(int fd);
@@ -117,6 +117,9 @@ int 		ft_convert_hexa_to_int(unsigned char *str);
 char		*ft_llitoa_base(long long int n, int base, int *u);
 char		*ft_llitoa_base2(long long int n, int base, int *u);
 
+int 			ft_param_2_octets(t_vm *vm, t_player *plr, int octet, int index);
+int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index);
+int 			ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index);
 /*
 ** DIVERS INSTRUCTION
 */
@@ -129,11 +132,11 @@ void 		ft_check_delais(t_vm *vm);
 ** OPERATIONS / BITWISES
 */
 
-void 		ft_and(t_vm *vm, t_player *plr);
-void 		ft_nothing(t_vm *vm, t_player *plr);
-void 		ft_sti(t_vm *vm, t_player *plr);
-void 		ft_zjmp(t_vm *vm, t_player *plr);
-void 		ft_live(t_vm *vm, t_player *plr);
+int 		ft_and(t_vm *vm, t_player *plr);
+int 		ft_nothing(t_vm *vm, t_player *plr);
+int 		ft_sti(t_vm *vm, t_player *plr);
+int 		ft_zjmp(t_vm *vm, t_player *plr);
+int 		ft_live(t_vm *vm, t_player *plr);
 
 int			ft_fork(t_vm *vm, t_player *plr);
 

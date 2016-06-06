@@ -39,10 +39,10 @@ int							ft_fork(t_vm *vm, t_player *plr)
 {
 	int						val;
 
-	if (get_hexa(vm, (plr->next->next->i_grid + 1) % NB_CASE_TAB, 2, &val) == -1)
+	if (get_hexa(vm, (plr->i_grid + 1) % NB_CASE_TAB, 2, &val) == -1)
 		return (-1);
-	mvwprintw(vm->w_info, 61, 3, "val = %d", val);
-//	if ((vm->plr = copy_with_the_new_index(vm->plr->next, &vm->plr, 45)) == NULL)
-//		return (-1);
+	// mvwprintw(vm->w_info, 61, 3, "val = %d", val);
+	//	if ((vm->plr = copy_with_the_new_index(vm->plr->next, &vm->plr, 45)) == NULL)
+	//		return (-1);
 	return (0);
 }
