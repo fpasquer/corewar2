@@ -6,7 +6,7 @@
 /*   By: fpasquer <florianpasquereau37@gmail.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/02 21:31:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/04/21 10:05:51 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:10:10 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,5 +173,7 @@ char				**join_tab2d_str(char **tab, char *str, int where);
 char				**join_2_tabs_2d(char **tab1, char **tab2);
 char				**ft_strsplit_guil(char *s, char c);
 int					ft_is_number(char *s);
+int					ft_atoi_base(const char *s, int base,
+		unsigned long long int *nb);
 
 #endif

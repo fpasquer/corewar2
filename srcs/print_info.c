@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 13:52:29 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/06 15:37:58 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void						print_players(t_vm *vm)
 		attroff(COLOR_PAIR(i + 1));
 		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %u", curs->last_live);
 		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %u", curs->nb_live);
-//mvwprintw(vm->w_info, 60 + i, 3, "color = : %u", mem);
 		curs = curs->next;
 		i++;
 	}
