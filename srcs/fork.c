@@ -32,6 +32,7 @@ t_player					*copy_with_the_new_index(t_player *plr,
 	curs = (*lst);
 	while (curs->next != NULL)
 		curs = curs->next;
+	new->do_instruction = 0;
 	curs->next = new;
 	new->next = NULL;
 	vm->nb_proces++;
