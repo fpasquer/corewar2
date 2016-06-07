@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 09:13:18 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/07 11:10:53 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,6 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 		}
 	return (flag);
 }
-
-	// if ((new_->grid = ft_memalloc(sizeof(int) * (NB_LINE_COLUMN *
-	// 		(NB_CASE_TAB * 2)))) == NULL)
-	// 	return (-1);
-	// if ((new_->grid2d = make_tab_2d(new_->grid, NB_LINE_COLUMN,
-	// 		NB_LINE_COLUMN * 2)) == NULL)
-	// 	return (-1);
-	//
 
 static void					init_color_grid(t_vm *vm)
 {

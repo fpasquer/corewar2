@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 09:01:18 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/07 16:17:14 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <ncurses.h>
+
+# define WIDTH_WINNER 44
+# define HEIGHT_WINNER 12
 
 # define NB_CASE_TAB 4096
 # define NB_MOD 512
@@ -137,6 +140,7 @@ typedef struct				s_vm
 	t_player				*plr;				//tableau de joueur
 	WINDOW					*w_grid;			//affichage de la grille ncurses
 	WINDOW					*w_info;			//affichage des infos courante
+	WINDOW					*w_winner;			//affiche le winner
 }							t_vm;
 
 void						error(char *s);
@@ -156,5 +160,10 @@ int							get_hexa(t_vm *vm, unsigned int i_grid,
 int							change_index(int i, char *argv, int argc);
 int							change_index2(t_vm *vm, int i, char **argv,
 		int argc);
+void						pop_winner(t_vm *vm);
+int							ft_ld(t_vm *vm, t_player *plr);
+int							ft_lld(t_vm *vm, t_player *plr);
+int							ft_lfork(t_vm *vm, t_player *plr);
+int							ft_st(t_vm *vm, t_player *plr);
 
 #endif

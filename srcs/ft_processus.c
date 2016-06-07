@@ -2,11 +2,14 @@
 
 t_instruction g_instruction[] = {
 	{1, ft_live},
+	{2, ft_ld},
+	{3, ft_st},
 	{6, ft_and},
 	{9, ft_zjmp},
 	{11, ft_sti},
 	{12, ft_fork},
-//	{15, ft_lfork},
+	{13, ft_lld},
+	{15, ft_lfork},
 	{-1, NULL},
 };
 

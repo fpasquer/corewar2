@@ -31,6 +31,9 @@ SRC_NAME =	main.c util.c init_vm.c virtual_machin.c print_info.c save_player.c\
 			save_player2.c\
 			ft_instruction_without_ocp.c\
 			ft_print_param_to_array_4_octets.c\
+			winner.c\
+			ld.c\
+			st.c
 			
 OTHERS		= libft Makefile auteur minilibx_macos exemple
 

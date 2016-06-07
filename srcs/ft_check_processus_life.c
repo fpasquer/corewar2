@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 static int 						ft_count_all_processus_live(t_player *plr)
 {

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:20:00 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 20:42:43 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/07 15:57:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,22 @@ int							ft_fork(t_vm *vm, t_player *plr)
 
 	if (vm == NULL || plr == NULL)
 		return (-1);
-	if (get_hexa(vm, plr->i_grid + 1, 2, &adr) == -1)
+	if (get_hexa(vm, (plr->i_grid + 1) % NB_CASE_TAB, 2, &adr) == -1)
 		return (-1);
 	if (copy_with_the_new_index(plr, &vm->plr, adr, vm) == NULL)
 		return (-1);
 	return (0);
 }
-/*
+
 int							ft_lfork(t_vm *vm, t_player *plr)
 {
 	int						adr;
 
 	if (vm == NULL || plr == NULL)
 		return (-1);
-	if (get_hexa(vm, plr->i_grid, 2, &adr) == -1)
+	if (get_hexa(vm, (plr->i_grid + 1) % NB_CASE_TAB, 2, &adr) == -1)
 		return (-1);
 	if (copy_with_the_new_index(plr, &vm->plr, adr, vm) == NULL)
 		return (-1);
 	return (0);
-}*/
+}

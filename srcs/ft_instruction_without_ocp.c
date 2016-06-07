@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 int 						ft_live(t_vm *vm, t_player *plr)
 {
@@ -6,7 +6,10 @@ int 						ft_live(t_vm *vm, t_player *plr)
 	
 	i = ft_param_4_octets(vm, plr, 4, plr->i_grid + 1);
 	if (i == plr->reg[1])
+	{
+//		plr->last_live = vm->cycle;
 		plr->nb_live++;
+	}
 	else
 		vm->nb_live++;
 	plr->i_grid = ft_check_size_max(3, plr->i_grid);
@@ -23,6 +26,5 @@ int 						ft_zjmp(t_vm *vm, t_player *plr)
 		plr->i_grid = ft_check_size_max(i, plr->i_grid);
 	else
 		plr->i_grid = ft_check_size_max(5, plr->i_grid);
-
 	return (0);
 }
