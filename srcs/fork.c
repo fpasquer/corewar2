@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:20:00 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 15:57:45 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/07 17:41:21 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../incs/virtual_machine.h"
 
 t_player					*copy_with_the_new_index(t_player *plr,
-		t_player **lst, int i_grid,t_vm *vm)
+		t_player **lst, int i_grid, t_vm *vm)
 {
 	t_player				*new;
 	t_player				*curs;
@@ -28,13 +28,12 @@ t_player					*copy_with_the_new_index(t_player *plr,
 		return (NULL);
 	if ((new->comment = ft_strdup(plr->comment)) == NULL)
 		return (NULL);
-	new->i_grid = i_grid;
+	new->i_grid = plr->i_grid + i_grid;;
 	curs = (*lst);
 	while (curs->next != NULL)
 		curs = curs->next;
 	curs->next = new;
 	new->next = NULL;
-	plr->i_grid = (plr->i_grid + 3) % NB_CASE_TAB;
 	vm->nb_proces++;
 	return (new);
 }
@@ -49,6 +48,7 @@ int							ft_fork(t_vm *vm, t_player *plr)
 		return (-1);
 	if (copy_with_the_new_index(plr, &vm->plr, adr, vm) == NULL)
 		return (-1);
+	plr->i_grid = (plr->i_grid + 3) % NB_CASE_TAB;
 	return (0);
 }
 
@@ -62,5 +62,6 @@ int							ft_lfork(t_vm *vm, t_player *plr)
 		return (-1);
 	if (copy_with_the_new_index(plr, &vm->plr, adr, vm) == NULL)
 		return (-1);
+	plr->i_grid = (plr->i_grid + 3) % NB_CASE_TAB;
 	return (0);
 }

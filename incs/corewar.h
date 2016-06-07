@@ -11,10 +11,10 @@
 **	01,	01|10|11,	10|01,00
 **	r1, r1, r1 = 84
 ** 	r1, r1, %1 = 88
-**  r1, %1, r1 = 64
-** 	r1, %1, %1 = 68
-**  r1, 14, r1 = 74
-** 	r1, 14, %1 = 78
+**  r1, %1, r1 = 100
+** 	r1, %1, %1 = 104
+**  r1, 14, r1 = 116
+** 	r1, 14, %1 = 120
 **
 **	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 **
@@ -26,6 +26,23 @@
 **  ZJMP :
 **	PAS d'OCTET D'ENCODAGE
 **  SOUS 2 OCTETS
+**
+**	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0},
+**	r1, r1, r1 = 84
+** 	r1, %1, r1 = 88
+** 	r1, 1, r1 = 116
+**	%1, r1, r1 = 148
+**	%1, %1, r1 = 164
+** 	%1, 1, r1 = 180
+** 	1, r1, r1 = 212
+**	1, %1, r1 = 228
+**	1, 1, r1 = 244
+**
+**
+**
+**
+**
 */
 
 
@@ -122,6 +139,8 @@ int 		ft_check_size_max(int i, int index);
 int 		ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index);
 int 		ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index);
 void 		ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsigned int nb);
+int 						ft_check_size_max(int i, int index);
+
 /*
 ** DIVERS INSTRUCTION
 */
@@ -135,6 +154,10 @@ void 		ft_check_delais(t_vm *vm);
 */
 
 int 		ft_and(t_vm *vm, t_player *plr);
+int 		ft_xor(t_vm *vm, t_player *plr);
+int 		ft_or(t_vm *vm, t_player *plr);
+int 		ft_sub(t_vm *vm, t_player *plr);
+int 		ft_add(t_vm *vm, t_player *plr);
 int 		ft_nothing(t_vm *vm, t_player *plr);
 int 		ft_sti(t_vm *vm, t_player *plr);
 int 		ft_zjmp(t_vm *vm, t_player *plr);

@@ -4,7 +4,11 @@ t_instruction g_instruction[] = {
 	{1, ft_live},
 	{2, ft_ld},
 	{3, ft_st},
+	{4, ft_add},
+	{5, ft_sub},
 	{6, ft_and},
+	{7, ft_or},
+	{8, ft_xor},
 	{9, ft_zjmp},
 	{11, ft_sti},
 	{12, ft_fork},
@@ -49,30 +53,130 @@ static int			ft_ocp_instruction(unsigned char str, int i, int *tab)
 	return (size_param);
 }
 
+int 						ft_add(t_vm *vm, t_player *plr)
+{
+	int 					tab[3];
+	int 					i;
+
+	ft_bzero(tab, sizeof(int) * 3);
+	i = ft_check_size_max(1, plr->i_grid);
+	tab[0] = ft_check_size_max(1, i);
+	tab[1] = ft_check_size_max(2, i);
+	tab[2] = ft_check_size_max(3, i);
+	if (((tab[0] < 1 || tab[0] > 16) || (tab[1] < 1 || tab[1] > 16) || (tab[2] < 1 || tab[2] > 16)) && vm->array[i].code_hexa != 54)
+	{
+			ft_nothing(vm, plr);
+			return (0);
+	}
+	plr->reg[tab[2]] = g_ocp[1].p(vm, plr, 1, tab[0]) + g_ocp[1].p(vm, plr, 1, tab[1]);
+	plr->carry = (plr->reg[tab[2]]) ? 0 : 1; 
+	plr->i_grid = ft_check_size_max(5, plr->i_grid);
+	return (0);
+}
+
+int 						ft_sub(t_vm *vm, t_player *plr)
+{
+	int 					tab[3];
+	int 					i;
+
+	ft_bzero(tab, sizeof(int) * 3);
+	i = ft_check_size_max(1, plr->i_grid);
+	tab[0] = ft_check_size_max(1, i);
+	tab[1] = ft_check_size_max(2, i);
+	tab[2] = ft_check_size_max(3, i);
+	if (((tab[0] < 1 || tab[0] > 16) || (tab[1] < 1 || tab[1] > 16) || (tab[2] < 1 || tab[2] > 16)) && vm->array[i].code_hexa != 54)
+	{
+			ft_nothing(vm, plr);
+			return (0);
+	}
+	plr->reg[tab[2]] = g_ocp[1].p(vm, plr, 1, tab[0]) - g_ocp[1].p(vm, plr, 1, tab[1]);
+	plr->carry = (plr->reg[tab[2]]) ? 0 : 1; 
+	plr->i_grid = ft_check_size_max(5, plr->i_grid);
+	return (0);
+}
+
 int 						ft_and(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					tmp_i;
 	int 					ocp;
 	int 					tab[3];
+	int 					tmp;
 
 	ft_bzero(tab, sizeof(int) * 3);
-	i = plr->i_grid + 1;
-	i = (i == NB_CASE_TAB) ? 0 : i;
-
+	i = ft_check_size_max(1, plr->i_grid);
+	tmp = i;
 	ocp = ft_ocp_instruction(vm->array[i].code_hexa, 4, tab);
-	i++;
-	tmp_i = i + tab[0] + tab[1];
-	
+	i = ft_check_size_max(1, i);
+	tmp_i = ft_check_size_max(tab[0] + tab[1], i);
+	if ((vm->array[tmp_i].code_hexa < 1 || vm->array[tmp_i].code_hexa > 16) && (vm->array[tmp].code_hexa != 84 && vm->array[tmp].code_hexa != 88 && vm->array[tmp].code_hexa != 116 && 
+		vm->array[tmp].code_hexa != 148 && vm->array[tmp].code_hexa != 164 && vm->array[tmp].code_hexa != 180 &&
+		vm->array[tmp].code_hexa != 212 && vm->array[tmp].code_hexa != 228 && vm->array[tmp].code_hexa != 244))
+	{
+			ft_nothing(vm, plr);
+			return (0);
+	}
 	plr->reg[vm->array[tmp_i].code_hexa] = g_ocp[tab[0]].p(vm, plr, tab[0], i) & g_ocp[tab[1]].p(vm, plr, tab[1], i + tab[0]);
-	
-	// plr->reg[vm->array[tmp_i].code_hexa] = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
-	// i = ft_param_4_octets(vm, plr, tab[0], i) & ft_param_4_octets(vm, plr, tab[1], i + tab[0]);
-
 	plr->carry = (plr->reg[vm->array[tmp_i].code_hexa]) ? 0 : 1; 
+	plr->i_grid = ft_check_size_max(ocp + 2, plr->i_grid);
+	plr->do_instruction = 0;
+	return (0);
+}
 
+int 						ft_or(t_vm *vm, t_player *plr)
+{
+	int 					i;
+	int 					tmp_i;
+	int 					ocp;
+	int 					tab[3];
+	int 					tmp;
 
-	plr->i_grid += ocp + 2;
+	ft_bzero(tab, sizeof(int) * 3);
+	i = ft_check_size_max(1, plr->i_grid);
+	tmp = i;
+	ocp = ft_ocp_instruction(vm->array[i].code_hexa, 4, tab);
+	i = ft_check_size_max(1, i);
+	tmp_i = ft_check_size_max(tab[0] + tab[1], i);
+	if ((vm->array[tmp_i].code_hexa < 1 || vm->array[tmp_i].code_hexa > 16) &&
+		(vm->array[tmp].code_hexa != 84 && vm->array[tmp].code_hexa != 88 && vm->array[tmp].code_hexa != 116 && 
+		vm->array[tmp].code_hexa != 148 && vm->array[tmp].code_hexa != 164 && vm->array[tmp].code_hexa != 180 &&
+		vm->array[tmp].code_hexa != 212 && vm->array[tmp].code_hexa != 228 && vm->array[tmp].code_hexa != 244))
+	{
+			ft_nothing(vm, plr);
+			return (0);
+	}
+	plr->reg[vm->array[tmp_i].code_hexa] = g_ocp[tab[0]].p(vm, plr, tab[0], i) | g_ocp[tab[1]].p(vm, plr, tab[1], i + tab[0]);
+	plr->carry = (plr->reg[vm->array[tmp_i].code_hexa]) ? 0 : 1; 
+	plr->i_grid = ft_check_size_max(ocp + 2, plr->i_grid);
+	plr->do_instruction = 0;
+	return (0);
+}
+
+int 						ft_xor(t_vm *vm, t_player *plr)
+{
+	int 					i;
+	int 					tmp_i;
+	int 					ocp;
+	int 					tab[3];
+	int 					tmp;
+
+	ft_bzero(tab, sizeof(int) * 3);
+	i = ft_check_size_max(1, plr->i_grid);
+	tmp = i;
+	ocp = ft_ocp_instruction(vm->array[i].code_hexa, 4, tab);
+	i = ft_check_size_max(1, i);
+	tmp_i = ft_check_size_max(tab[0] + tab[1], i);
+	if ((vm->array[tmp_i].code_hexa < 1 || vm->array[tmp_i].code_hexa > 16) &&
+		(vm->array[tmp].code_hexa != 84 && vm->array[tmp].code_hexa != 88 && vm->array[tmp].code_hexa != 116 && 
+		vm->array[tmp].code_hexa != 148 && vm->array[tmp].code_hexa != 164 && vm->array[tmp].code_hexa != 180 &&
+		vm->array[tmp].code_hexa != 212 && vm->array[tmp].code_hexa != 228 && vm->array[tmp].code_hexa != 244))
+	{
+			ft_nothing(vm, plr);
+			return (0);
+	}
+	plr->reg[vm->array[tmp_i].code_hexa] = g_ocp[tab[0]].p(vm, plr, tab[0], i) ^ g_ocp[tab[1]].p(vm, plr, tab[1], i + tab[0]);
+	plr->carry = (plr->reg[vm->array[tmp_i].code_hexa]) ? 0 : 1; 
+	plr->i_grid = ft_check_size_max(ocp + 2, plr->i_grid);
 	plr->do_instruction = 0;
 	return (0);
 }
@@ -95,9 +199,7 @@ int 						ft_check_size_max(int i, int index)
 
 int 						ft_nothing(t_vm *vm, t_player *plr)
 {
-	// vm->array[plr->i_grid].player = 0;
 	plr->i_grid = ft_check_size_max(1, plr->i_grid);
-	// vm->array[plr->i_grid].player = plr->pos;
 	return (0);
 }
 
@@ -109,10 +211,17 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 	int 					nb_reg;
 
 	ft_bzero(tab, sizeof(int) * 4);
-	i = plr->i_grid + 1;
-	i = (i == NB_CASE_TAB) ? 0 : i;
+	i = ft_check_size_max(1, plr->i_grid);
 	nb_reg = vm->array[i + 1].code_hexa;
 
+	// printf("\n\n%d\n", nb_reg);
+	if ((nb_reg < 1 || nb_reg > 16) && ((vm->array[i].code_hexa != 132 && vm->array[i].code_hexa != 136 &&
+			vm->array[i].code_hexa != 100 && vm->array[i].code_hexa != 104 
+			&& vm->array[i].code_hexa != 116 && vm->array[i].code_hexa != 120)))
+	{
+			ft_nothing(vm, plr);
+			return (0);
+	}
 	/*
 	** 2, car les directs dans cette instruction sont code sous 2 octets
 	*/
@@ -137,7 +246,7 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 	*/
 
 	plr->do_instruction = 0;
-	plr->i_grid += ocp + 2;
+	plr->i_grid = ft_check_size_max(ocp + 2, plr->i_grid);
 	return (0);
 }
 

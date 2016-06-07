@@ -1,8 +1,10 @@
 .name "test_1"
 .comment "I'm alown"
 
+	fork %:dest
+	ld %56, r5
+	st r5, 67
 
-	ld %90, r3
-	st r3, r6
-	st r6, 78
+dest:
+	live %-1
 

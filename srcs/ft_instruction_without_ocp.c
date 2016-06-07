@@ -12,8 +12,7 @@ int 						ft_live(t_vm *vm, t_player *plr)
 	}
 	else
 		vm->nb_live++;
-	plr->i_grid = ft_check_size_max(3, plr->i_grid);
-	// vm->array[plr->i_grid] = plr->pos;
+	plr->i_grid = ft_check_size_max(5, plr->i_grid);
 	return (0);
 }
 
@@ -25,6 +24,6 @@ int 						ft_zjmp(t_vm *vm, t_player *plr)
 	if (plr->carry)
 		plr->i_grid = ft_check_size_max(i, plr->i_grid);
 	else
-		plr->i_grid = ft_check_size_max(5, plr->i_grid);
+		plr->i_grid = ft_check_size_max(3, plr->i_grid);
 	return (0);
 }
