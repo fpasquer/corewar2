@@ -2,6 +2,7 @@
 
 t_instruction g_instruction[] = {
 	{1, ft_live},
+	// {3, ft_st},
 	{4, ft_add},
 	{5, ft_sub},
 	{6, ft_and},
@@ -200,6 +201,40 @@ int 						ft_nothing(t_vm *vm, t_player *plr)
 	return (0);
 }
 
+/*
+int 						ft_st(t_vm *vm, t_player *plr)
+{
+	int 					i;
+	int 					ocp;
+	int 					tab[4];
+	int 					nb_reg;
+
+	ft_bzero(tab, sizeof(int) * 4);
+	i = ft_check_size_max(1, plr->i_grid);
+	nb_reg = vm->array[i + 1 % NB_CASE_TAB].code_hexa;
+	ocp = ft_ocp_instruction(vm->array[i].code_hexa, 2, tab);
+	// if ((vm->array[i].code_hexa != 70 && vm->array[i].code_hexa != 50)
+	// 		|| (nb_reg < 1 || nb_reg > 17))
+	// {
+	// 	ft_nothing(vm,plr);
+	// 	return (0);
+	// }
+	// if (tab[1] == 1 && (vm->array[(i + tab[1]) % NB_CASE_TAB].code_hexa < 1 || vm->array[(i + tab[1]) % NB_CASE_TAB].code_hexa < 16))
+	// {		
+	// 	ft_nothing(vm,plr);
+	// 	return (0);
+	// }
+	if (tab[1] == 1)
+		plr->reg[vm->array[(i + 2) % NB_CASE_TAB].code_hexa] = plr->reg[nb_reg];
+	else
+		ft_print_param_to_array_4_octets(vm, plr, plr->i_grid + ft_param_4_octets(vm, plr, 2, i + 2), plr->reg[nb_reg]);
+	
+	plr->do_instruction = 0;
+	plr->i_grid = ft_check_size_max(ocp + 2, plr->i_grid);
+	return (0);
+}
+*/
+
 int 						ft_sti(t_vm *vm, t_player *plr)
 {
 	int 					i;
@@ -212,13 +247,13 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 	nb_reg = vm->array[i + 1].code_hexa;
 
 	// printf("\n\n%d\n", nb_reg);
-	if ((nb_reg < 1 || nb_reg > 16) && ((vm->array[i].code_hexa != 132 && vm->array[i].code_hexa != 136 &&
-			vm->array[i].code_hexa != 100 && vm->array[i].code_hexa != 104 
-			&& vm->array[i].code_hexa != 116 && vm->array[i].code_hexa != 120)))
-	{
-			ft_nothing(vm, plr);
-			return (0);
-	}
+	// if ((nb_reg < 1 || nb_reg > 16) && ((vm->array[i].code_hexa != 132 && vm->array[i].code_hexa != 136 &&
+	// 		vm->array[i].code_hexa != 100 && vm->array[i].code_hexa != 104 
+	// 		&& vm->array[i].code_hexa != 116 && vm->array[i].code_hexa != 120)))
+	// {
+	// 		ft_nothing(vm, plr);
+	// 		return (0);
+	// }
 	/*
 	** 2, car les directs dans cette instruction sont code sous 2 octets
 	*/
