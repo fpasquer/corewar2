@@ -6,39 +6,12 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 13:52:03 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/07 09:10:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
 #include "../incs/corewar.h"
-
-
-// static t_player				*new_player(char *name, int nb)
-// {
-// 	char					*end;
-// 	t_player				*new;
-
-
-// 	if (name == NULL || ((end = ft_strstr(name, ".cor")) == NULL) ||
-// 		(new = ft_memalloc(sizeof(t_player))) == NULL)
-// 		return (NULL);
-// 	*end = '\0';
-// 	if ((new->name = ft_strndup(name, MY_MAX_LEN_NAME)) == NULL)
-// 	{
-// 		ft_memdel((void**)&new);
-// 		return (NULL);
-// 	}
-// 	if ((new->color = ft_strdup(COLOR_0)) == NULL)
-// 	{
-// 		ft_memdel((void**)&new->name);
-// 		ft_memdel((void**)&new);
-// 		return (NULL);
-// 	}
-// 	new->nb_player = nb;
-// 	return (new);
-// }
-
 
 static t_player				*save_curs_player(t_player *lst,
 		unsigned int nb_champ)
@@ -101,13 +74,6 @@ static void					add_new_player(t_player **lst, t_player **new)
 	}
 }
 
-static int					change_index(int i, char *argv, int argc)
-{
-	i = (ft_strcmp(argv, "-d") == 0 || ft_strcmp(argv, "-s") == 0) ||
-			ft_strcmp(argv, "-dm") == 0 ? i + 2 : i + 1;
-	return ((i >= argc) ? -1 : i);
-}
-
 t_player					*save_player(int argc, char **argv, t_vm *vm)
 {
 	int						i;
@@ -117,7 +83,7 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 	t_player				*lst;
 
 	i = 0;
-	while (i < argc && argv[i][0] == '-')
+	while (i < argc && argv[i][0] == '-' && ft_is_number(argv[i]) == 0)
 		if ((i = change_index(i, argv[i], argc)) < 0)
 			return (del_player(&lst));
 	j = -1;
@@ -130,7 +96,8 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 			!= 0 ? ft_atoi(argv[i - 1]) : j--, nb_champ, vm->array)) == NULL)
 			return (del_player(&lst));
 		add_new_player(&lst, &new);
-		i = (vm->flags & NUMBER) ? i + 2 : i + 1;
+		if ((i = change_index2(vm, i, argv, argc)) == -1)
+			return (del_player(&lst));
 		vm->nb_player++;
 	}
 	return (save_curs_player(lst, nb_champ));
@@ -146,7 +113,6 @@ t_player					*del_player(t_player **lst)
 	{
 		tmp = (*lst)->next;
 		ft_memdel((void**)&(*lst)->name);
-		// ft_memdel((void**)&(*lst)->color);
 		ft_memdel((void**)&(*lst)->comment);
 		ft_memdel((void**)lst);
 		(*lst) = tmp;

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 20:28:44 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/07 09:13:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_vm						*init_vm(int argc, char **argv)
 	new_->cycle_to_die = INIT_CYCLE_TO_DIE;
 	if ((new_->mem = fopen("mem.txt", "w+")) == NULL)
 		return (NULL);
-	return (new_);
+	return (new_->nb_player <= MAX_PLAYER ? new_ : del_vm(&new_));
 }
 
 void						refrech_win(t_vm *vm)
