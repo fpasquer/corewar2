@@ -101,6 +101,8 @@ typedef struct				s_array
 {
 	unsigned char			code_hexa;			//code exa de la case
 	unsigned char			player;				//nb du joueur a qui est la case
+	int 					x;
+	int 					y;
 }							t_array;
 
 typedef struct				s_vm

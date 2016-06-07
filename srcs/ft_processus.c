@@ -13,7 +13,7 @@ t_instruction g_instruction[] = {
 t_ocp g_ocp[] = {
 	{0, NULL},
 	{1, ft_param_1_octets},
-	{2, ft_param_2_octets},
+	{2, ft_param_4_octets},
 	{3, NULL},
 	{4, ft_param_4_octets},
 };
@@ -46,68 +46,6 @@ static int			ft_ocp_instruction(unsigned char str, int i, int *tab)
 	return (size_param);
 }
 
-char						*ft_fill_less(char *str, int size, int octet)
-{
-	char 					*tmp;
-	int 					i;
-	int 					count;
-
-	octet = (octet == 2) ? 4 : 8;
-	count = 0;
-	i = 8 - size;
-	if (size == octet)
-		return (str);
-	if (!(tmp = ft_strnew(octet)))
-		exit (-1);
-	while (i < octet)
-	{
-		tmp[i] = str[count];
-		i++;
-		count++;
-	}
-	free(str);
-	return(tmp);
-}
-
-void  						ft_str_base_16(char *str)
-{
-	int 					i;
-
-	i = 0;
-	while (i < 8)
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			str[i] = str[i] - 48;
-		else if (str[i] >= 'a' && str[i] <= 'f')
-			str[i] = str[i] - 87;
-		i++;
-	}
-}
-
-void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsigned int nb)
-{
-	int 					size;
-	char 					*tmp;
-	int 					i;
-
-	i = 0;
-	tmp = ft_llitoa_base2(nb, 16, &size);
-	tmp = ft_fill_less(tmp, size, 4);
-	ft_str_base_16(tmp);
-	if (index > 511)
-			index %= 512;
-	else if (index < 0)
-		index = NB_CASE_TAB - ft_abs(index) % 512;
-	while (i < 8)
-	{
-		vm->array[plr->i_grid + index].code_hexa = (16 * tmp[i]) + (tmp[i + 1]);
-		vm->array[plr->i_grid + index].player = plr->pos;
-		i += 2;
-		index++;
-	}
-	ft_strdel(&tmp);
-}
-
 int 						ft_and(t_vm *vm, t_player *plr)
 {
 	int 					i;
@@ -131,14 +69,32 @@ int 						ft_and(t_vm *vm, t_player *plr)
 	plr->carry = (plr->reg[vm->array[tmp_i].code_hexa]) ? 0 : 1; 
 
 
-
 	plr->i_grid += ocp + 2;
 	plr->do_instruction = 0;
 	return (0);
 }
 
+int 						ft_check_size_max(int i, int index)
+{
+	int 					tmp;
+
+	if (i > 511)
+		i = i % 512;
+	else if (i < 0)
+		i = i % 512;
+	tmp = index + i;
+	if (tmp < 0)
+		return (NB_CASE_TAB + i);
+	else if (tmp > 4095)
+		return (tmp - NB_CASE_TAB);
+	return (index + i);
+}
+
 int 						ft_nothing(t_vm *vm, t_player *plr)
 {
+	// vm->array[plr->i_grid].player = 0;
+	plr->i_grid = ft_check_size_max(1, plr->i_grid);
+	// vm->array[plr->i_grid].player = plr->pos;
 	return (0);
 }
 
@@ -146,10 +102,10 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					ocp;
-	int 					tab[3];
+	int 					tab[4];
 	int 					nb_reg;
 
-	ft_bzero(tab, sizeof(int) * 3);
+	ft_bzero(tab, sizeof(int) * 4);
 	i = plr->i_grid + 1;
 	i = (i == NB_CASE_TAB) ? 0 : i;
 	nb_reg = vm->array[i + 1].code_hexa;
@@ -167,14 +123,10 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 
 	i = g_ocp[tab[1]].p(vm, plr, tab[1], i + 2) + g_ocp[tab[2]].p(vm, plr, tab[2], i + 2 + tab[1]);
 
-	// i = ft_param_2_octets(vm, plr, tab[1], i + 2) + 
-	// 	ft_param_2_octets(vm, plr, tab[2], i + 2 + tab[1]);
 
-	/*
-	** PHASE TEST
-	*/
-
+	i = ft_check_size_max(i, plr->i_grid);
 	ft_print_param_to_array_4_octets(vm, plr, i, plr->reg[nb_reg]);
+
 
 	/*
 	** ocp = taile de l'instruction
@@ -184,20 +136,9 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 	plr->do_instruction = 0;
 	plr->i_grid += ocp + 2;
 	return (0);
-	// printf("\n\n%d\n\n", plr->i_grid);
-	return (0);
 }
 
-int 						ft_live(t_vm *vm, t_player *plr)
-{	
-	
-	return (0);
-}
 
-int 						ft_zjmp(t_vm *vm, t_player *plr)
-{
-	return (0);
-}
 
 int							ft_processus_instruction(t_vm *vm, t_player *plr)
 {
@@ -205,7 +146,10 @@ int							ft_processus_instruction(t_vm *vm, t_player *plr)
 
 	i = 0;
 	if (vm->array[plr->i_grid].code_hexa < 1 || vm->array[plr->i_grid].code_hexa > 16)
+	{
 		ft_nothing(vm, plr);
+		return (0);
+	}
 	while (g_instruction[i].instruction > 0)
 	{
 		if (g_instruction[i].instruction == vm->array[plr->i_grid].code_hexa)
