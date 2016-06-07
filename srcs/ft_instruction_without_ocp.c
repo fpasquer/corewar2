@@ -9,7 +9,7 @@ int 						ft_live(t_vm *vm, t_player *plr)
 		plr->nb_live++;
 	else
 		vm->nb_live++;
-	plr->i_grid = ft_check_size_max(5, plr->i_grid);
+	plr->i_grid = ft_check_size_max(3, plr->i_grid);
 	// vm->array[plr->i_grid] = plr->pos;
 	return (0);
 }
