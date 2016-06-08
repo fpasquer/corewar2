@@ -93,7 +93,10 @@ typedef struct s_info
 	int 		index_f_param;			//index de du premier parametre dans la grille.
 	int 		index_s_param;			//index de du second parametre dans la grille.
 	int 		index_t_param;			//index de du third parametre dans la grille.
-	int 		reg;					//numero du registre.
+	int 		reg_f;					//numero du registre.
+	int 		reg_s;
+	int 		reg_t;
+	int 		error;
 }				t_info;
 
 

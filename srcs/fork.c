@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:20:00 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 17:50:31 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/08 14:31:00 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_player					*copy_with_the_new_index(t_player *plr,
 	curs->next = new;
 	new->next = NULL;
 	vm->nb_proces++;
-	mvwprintw(vm->w_info, 60, 3, "i_fils = %d, i_pere = %d", new->i_grid, plr->i_grid);
+	//mvwprintw(vm->w_info, 60, 3, "i_fils = %d, i_pere = %d", new->i_grid, plr->i_grid);
 	wrefresh(vm->w_info);
 	return (new);
 }

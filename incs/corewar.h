@@ -68,38 +68,43 @@
 **
 */
 
+# define T_REG 1
+# define T_DIR 2
+# define T_IND 3
 
-#define MASK_6_BITS 0x30
-#define MASK_4_BITS 0xC
+# define MASK_6_BITS 0x30
+# define MASK_4_BITS 0xC
 
-#define LIVE 1
-#define LD 2
-#define ST 3
-#define ADD 4
-#define SUB 5
-#define AND 6
-#define OR 7
-#define XOR 8
-#define ZJMP 9
-#define LDI 10
-#define STI 11
-#define FORK 12
-#define LLD 13
-#define LLDI 14
-#define LFORK 15
-#define AFF 16
+# define LIVE 1
+# define LD 2
+# define ST 3
+# define ADD 4
+# define SUB 5
+# define AND 6
+# define OR 7
+# define XOR 8
+# define ZJMP 9
+# define LDI 10
+# define STI 11
+# define FORK 12
+# define LLD 13
+# define LLDI 14
+# define LFORK 15
+# define AFF 16
 
-#define ERROR_MALLOC 10
-#define ERROR_READ 11
-#define ERROR_FILE 12
-#define ERROR_SIZE_CHAMP 13
+# define ERROR_MALLOC 10
+# define ERROR_READ 11
+# define ERROR_FILE 12
+# define ERROR_SIZE_CHAMP 13
+# define ERROR_REG 55
 
-#define DIR_C 30
-#define IND_C 31
-#define REG_C 32
+# define DIR_C 30
+# define IND_C 31
+# define REG_C 32
 
-#define NB_LIVE_MIN 21
-#define CHECKS_MAX 10
+# define NB_LIVE_MIN 21
+# define CHECKS_MAX 10
+
 
 typedef struct s_ocp
 {
@@ -130,7 +135,7 @@ int 		ft_power(int power, int nb);
 /*
 ** UTILITAIRE
 */
-
+void 						ft_parse_info(t_vm *vm, t_player *plr);
 int 		ft_convert_hexa_to_int(unsigned char *str);
 char		*ft_llitoa_base(long long int n, int base, int *u);
 char		*ft_llitoa_base2(long long int n, int base, int *u);

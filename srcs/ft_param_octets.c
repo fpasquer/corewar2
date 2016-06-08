@@ -10,7 +10,15 @@ int 			ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index)
 	int			reg;
 
 	reg = vm->array[index].code_hexa;
-	return (reg);
+	if (reg < 1 || reg > 16)
+	{
+		plr->info.error = ERROR_REG;
+		return (0);
+	}
+	plr->info.reg_f = plr->info.index_f_param == index ? reg : 0;
+	plr->info.reg_s = plr->info.index_s_param == index ? reg : 0;
+	plr->info.reg_t = plr->info.index_t_param == index ? reg : 0;
+	return (plr->reg[reg]);
 }
 
 int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)

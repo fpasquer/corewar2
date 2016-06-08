@@ -62,7 +62,7 @@ void						loop_virtual_machin(t_vm *vm)
 		** JC
 		*/ 
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
-		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle;
+		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle_tmp;
 		pop_winner(vm);
 	}
 
