@@ -33,8 +33,9 @@ int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
 	char 							tab[9];
 	char 							zero[3];
 	int      						i;
-	int 							octet_save;
+	int 								octet_save;
 
+	i = 0;
 	octet_save = octet;
 	ft_bzero(tab, sizeof(char) * 9);
 	while (octet-- > 0)
@@ -42,8 +43,9 @@ int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
 		str = ft_itoa_base(vm->array[index].code_hexa, 16);
 		if (ft_strlen(str) < 2)
 		{
-			ft_memset(zero, '0', sizeof(char) * 2);
+			ft_memset(zero, '0', sizeof(char) * 3);
 			zero[1] = str[0];
+			zero[2] = 0;
 			ft_strcat(tab, zero);
 		}
 		else
