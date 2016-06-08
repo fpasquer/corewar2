@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 16:17:14 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/08 11:09:11 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ typedef struct				s_vm
 	unsigned int			cycle;				//nb de cycle
 	unsigned int			cycle_to_die;		//nb de cycle_to_die
 	unsigned int			nb_live;			//pour compter le nombre de live
+	unsigned int			nb_live_each_plr[MAX_PLAYER];// Pour afficher le nombre de live fork compris
+	unsigned int			cycle_last_live[MAX_PLAYER];// pour afficher le cycle du dernier live
 	unsigned long long int	nb_proces;			//nb Processes
 	unsigned long long int	pause;				//pour gerer SUSPEND
 	unsigned long long int	dump;				//pour gerer DUMP
@@ -165,5 +167,9 @@ int							ft_ld(t_vm *vm, t_player *plr);
 int							ft_lld(t_vm *vm, t_player *plr);
 int							ft_lfork(t_vm *vm, t_player *plr);
 int							ft_st(t_vm *vm, t_player *plr);
+unsigned int				get_new_index(int decalage, unsigned int i_grid);
+unsigned int				get_new_index_with_mod(int decalage,
+		unsigned int i_grid);
+
 
 #endif

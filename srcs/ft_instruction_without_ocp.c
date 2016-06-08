@@ -4,11 +4,12 @@ int 						ft_live(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	
-	i = ft_param_4_octets(vm, plr, 4, plr->i_grid + 1);
+	i = ft_param_4_octets(vm, plr, 4, plr->i_grid + 1); //attention il faut % 4096
 	if (i == plr->reg[1])
 	{
-//		plr->last_live = vm->cycle;
+		vm->cycle_last_live[plr->pos - 1] = vm->cycle;
 		plr->nb_live++;
+		vm->nb_live_each_plr[plr->pos - 1]++;
 	}
 	else
 		vm->nb_live++;

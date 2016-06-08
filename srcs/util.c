@@ -6,13 +6,11 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 11:07:53 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 20:39:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/08 11:15:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
-
-
 
 void						error(char *s)
 {
@@ -57,50 +55,25 @@ int							**make_tab_2d(int *tab, int height, int width)
 	return (ret);
 }
 
-static char					*get_curent_octet(t_array *array, unsigned int i_grid)
+unsigned int				get_new_index(int decalage, unsigned int i_grid)
 {
-	char					*curent_octet;
-	char					*tmp;
+	long long int			cpy_i_grid;
 
-	if ((curent_octet = ft_itoa_base(array[i_grid].code_hexa, 16)) == NULL)
-		return (NULL);
-	if (ft_strlen(curent_octet) < 2)
+	cpy_i_grid = (long long int)i_grid;
+	if (cpy_i_grid + decalage < NB_CASE_TAB && cpy_i_grid + decalage > 0)
+		return ((cpy_i_grid + decalage) % NB_CASE_TAB);
+	else if (cpy_i_grid + decalage < 0)
 	{
-		if ((tmp = ft_strjoin("0", curent_octet)) == NULL)
-			return (NULL);
-		ft_memdel((void**)&curent_octet);
-		curent_octet = tmp;
+		decalage = decalage % NB_CASE_TAB;
+		decalage += cpy_i_grid;
+		return ((NB_CASE_TAB + decalage) % NB_CASE_TAB);
 	}
-	return (curent_octet);
+	decalage -= NB_CASE_TAB - i_grid;
+	return ((decalage) % NB_CASE_TAB);
 }
 
-int							get_hexa(t_vm *vm, unsigned int i_grid,
-		unsigned int nb_octet, int *nb)
+unsigned int				get_new_index_with_mod(int decalage,
+		unsigned int i_grid)
 {
-	char					*all_octet;
-	char					*curent_octet;
-	char					*tmp;
-	int						ret;
-
-		fprintf(vm->mem, "i_grid = %u, nb_octet = %u\n", i_grid, nb_octet);
-	curent_octet = NULL;
-	all_octet = NULL;
-	while (nb_octet--)
-	{
-		if((curent_octet = get_curent_octet(vm->array, i_grid)) == NULL ||
-				(tmp = ft_strjoin(all_octet, curent_octet)) == NULL)
-			return (-1);
-		if (all_octet != NULL)
-			ft_memdel((void**)&all_octet);
-		ft_memdel((void**)&curent_octet);
-		all_octet = tmp;
-		i_grid  = (i_grid + 1) % NB_CASE_TAB;
-	}
-	ret = ft_atoi_base(all_octet, 16, nb);
-	// mvwprintw(vm->w_info, line++, 3, "all_octet = %s", all_octet);
-	if (all_octet != NULL)
-		ft_memdel((void**)&all_octet);
-	if (curent_octet != NULL)
-		ft_memdel((void**)&curent_octet);
-	return (ret);
+	return (get_new_index(decalage % NB_MOD, i_grid));
 }

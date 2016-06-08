@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 t_delais g_delais[] = {
 	{0, 0}, // revoir

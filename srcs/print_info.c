@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 10:38:52 by jchen            ###   ########.fr       */
+/*   Updated: 2016/06/08 09:24:56 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,86 @@ static void					print_flags(t_vm *vm)
 		mvwprintw(vm->w_info, 25 + vm->nb_player * 3 + 1, 5, "DUMP_M  : No");
 }
 
+static void					dump_print_player(t_vm *vm)
+{
+	unsigned int			i;
+	t_player				*curs;
+
+	i = 0;
+	curs = vm->plr;
+	while (curs != NULL && i++ < vm->nb_player)
+	{
+		ft_putstr_fd("* Player ", vm->fd);
+		ft_putnbr_fd(i, vm->fd);
+		ft_putstr_fd(", weighing ", vm->fd);
+		ft_putnbr_fd(curs->size, vm->fd);
+		ft_putstr_fd(" bytes, \"", vm->fd);
+		ft_putstr_fd(curs->name, vm->fd);
+		ft_putstr_fd("\" (\"", vm->fd);
+		ft_putstr_fd(curs->comment, vm->fd);
+		ft_putstr_fd("\") !\n", vm->fd);
+		curs = curs->next;
+	}
+}
+
+static int					change_line(t_vm *vm, unsigned int i, char *line)
+{
+	char					*nb;
+	char					*tmp;
+	static unsigned int		j = 0;
+
+	if (j == 0)
+	{
+		if ((nb = ft_itoa_base(i, 16)) == NULL)
+			return (-1);
+		while (ft_strlen(nb) < 3)
+		{
+			if ((tmp = ft_strjoin("0", nb)) == NULL)
+				return (-1);
+			ft_memdel((void**)&nb);
+			nb = tmp;
+		}
+		ft_putstr_fd("0x0", vm->fd);
+		ft_putstr_fd(nb, vm->fd);
+		ft_putstr_fd(" : ", vm->fd);
+		ft_memdel((void**)&nb);
+	}
+	ft_putstr_fd(line, vm->fd);
+	ft_putstr_fd(j == 63 ? " \n" : " ", vm->fd);
+	j = j == 63 ? j = 0 : j + 1;
+	return (0);
+}
+
+static void					dump_memory(t_vm *vm)
+{
+	char					*s;
+	char					*tmp;
+	unsigned int			i;
+
+	i = 0;
+	ft_putstr_fd("Introducing contestants...\n", vm->fd);
+	dump_print_player(vm);
+	while (i < NB_CASE_TAB)
+	{
+		if ((s = ft_itoa_base(vm->array[i++].code_hexa, 16)) == NULL)
+			return ;
+		if (ft_strlen(s) < 2)
+		{
+			if ((tmp = ft_strjoin("0", s)) == NULL)
+				return ;
+			ft_memdel((void**)&s);
+			s = tmp;
+		}
+		change_line(vm, i - 1, s);
+		ft_memdel((void**)&s);
+	}
+}
+
 void						print_dump(t_vm *vm)
 {
 	if (vm->dump != vm->cycle)
 		return ;
-	ft_putnbr_fd(vm->cycle, vm->fd);
-	ft_putchar_fd('\n', vm->fd);
+	dump_memory(vm);
 	if ((vm->flags & DUMP_M) != 0)
 		vm->dump += vm->nb_dump;
 }
@@ -61,8 +135,8 @@ void						print_players(t_vm *vm)
 		attron(COLOR_PAIR(i + 1));
 		mvwprintw(stdscr, 11 + i * 4, 210,"%s", curs->name);
 		attroff(COLOR_PAIR(i + 1));
-		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %u", curs->last_live);
-		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %u", curs->nb_live);
+		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %u", vm->cycle_last_live[curs->pos -1]);
+		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %u", vm->nb_live_each_plr[curs->pos - 1]);
 		curs = curs->next;
 		i++;
 	}

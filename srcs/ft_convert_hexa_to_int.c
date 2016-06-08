@@ -1,4 +1,4 @@
-#include "../INC/corewar.h"
+#include "../incs/corewar.h"
 
 int 	ft_convert_hexa_to_int(unsigned char *str)
 {
