@@ -1,19 +1,19 @@
 #include "../incs/corewar.h"
 
 t_instruction g_instruction[] = {
-	{1, ft_live},
-	{2, ft_ld},
+	{1, ft_live, 4},
+	{2, ft_ld, 4},
 	// {3, ft_st},
-	{4, ft_add},
-	{5, ft_sub},
-	{6, ft_and},
-	{7, ft_or},
-	{8, ft_xor},
-	{9, ft_zjmp},
-	{11, ft_sti},
-	{12, ft_fork},
-	{13, ft_lld},
-	{15, ft_lfork},
+	{4, ft_add, 0},
+	{5, ft_sub, 0},
+	{6, ft_and, 4},
+	{7, ft_or, 4},
+	{8, ft_xor, 4},
+	{9, ft_zjmp, 2},
+	{11, ft_sti, 2},
+	{12, ft_fork, 2},
+	{13, ft_lld, 4},
+	{15, ft_lfork, 2},
 	{-1, NULL},
 };
 
@@ -92,7 +92,7 @@ void 						ft_parse_info(t_vm *vm, t_player *plr, int octet)
 
 int 						ft_add(t_vm *vm, t_player *plr)
 {
-	ft_parse_info(vm, plr, 1);
+	ft_parse_info(vm, plr, plr->info.epd);
 
 	if (plr->info.nb_f_param < 1 || plr->info.nb_f_param > 16 ||
 			plr->info.nb_s_param < 1 || plr->info.nb_s_param > 16 ||
@@ -111,7 +111,7 @@ int 						ft_add(t_vm *vm, t_player *plr)
 
 int 						ft_sub(t_vm *vm, t_player *plr)
 {
-	ft_parse_info(vm, plr, 1);
+	ft_parse_info(vm, plr, plr->info.epd);
 
 	if (plr->info.nb_f_param < 1 || plr->info.nb_f_param > 16 ||
 			plr->info.nb_s_param < 1 || plr->info.nb_s_param > 16 ||
@@ -130,7 +130,7 @@ int 						ft_sub(t_vm *vm, t_player *plr)
 
 int 						ft_and(t_vm *vm, t_player *plr)
 {
-	ft_parse_info(vm, plr, 4);
+	ft_parse_info(vm, plr, plr->info.epd);
 	
 	if (plr->info.nb_t_param < 1 || plr->info.nb_t_param > 16)
 		ft_nothing(vm, plr);
@@ -147,7 +147,7 @@ int 						ft_and(t_vm *vm, t_player *plr)
 
 int 						ft_or(t_vm *vm, t_player *plr)
 {
-	ft_parse_info(vm, plr, 4);
+	ft_parse_info(vm, plr, plr->info.epd);
 	
 	if (plr->info.nb_t_param < 1 || plr->info.nb_t_param > 16)
 		ft_nothing(vm, plr);
@@ -164,7 +164,7 @@ int 						ft_or(t_vm *vm, t_player *plr)
 
 int 						ft_xor(t_vm *vm, t_player *plr)
 {
-	ft_parse_info(vm, plr, 4);
+	ft_parse_info(vm, plr, plr->info.epd);
 	
 	if (plr->info.nb_t_param < 1 || plr->info.nb_t_param > 16)
 		ft_nothing(vm, plr);
@@ -204,7 +204,7 @@ int 						ft_nothing(t_vm *vm, t_player *plr)
 int 						ft_sti(t_vm *vm, t_player *plr)
 {
 	int 					i;
-	ft_parse_info(vm, plr, 2);
+	ft_parse_info(vm, plr, plr->info.epd);
 
 	i = plr->info.nb_s_param + plr->info.nb_t_param;
 	i = ft_check_size_max(i, plr->i_grid);
@@ -232,6 +232,7 @@ int							ft_processus_instruction(t_vm *vm, t_player *plr)
 	{
 		if (g_instruction[i].instruction == vm->array[plr->i_grid].code_hexa)
 		{
+			plr->info.epd = g_instruction[i].epd;
 			g_instruction[i].p(vm, plr);
 			break ;
 		}

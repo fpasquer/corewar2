@@ -117,6 +117,7 @@ typedef struct s_instruction
 {
 	char  		instruction;
 	int			(*p)(t_vm *vm, t_player *plr);
+	int 		epd; 			// encodage parametre direct sous X octets.
 }				t_instruction;
 
 char		*ft_recover_name_champ(int fd);

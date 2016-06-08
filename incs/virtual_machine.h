@@ -77,21 +77,23 @@
 
 typedef struct s_info
 {
-	int 		ocp;
-	int 		size_ocp_param;
-	int 		t_f_param;
-	int 		t_s_param;
-	int 		t_t_param;
-	int 		s_f_param;
-	int 		s_s_param;
-	int 		s_t_param;
-	int 		nb_f_param;
-	int 		nb_s_param;
-	int 		nb_t_param;
-	int 		index_ocp;
-	int 		index_f_param;
-	int 		index_s_param;
-	int 		index_t_param;
+	int 		epd;
+	int 		ocp;					//ocp
+	int 		size_ocp_param;			//size des X parametres.
+	int 		t_f_param; 				//t = type, f = first
+	int 		t_s_param;				//t = type, s = second
+	int 		t_t_param;				//t = type, t = third
+	int 		s_f_param;				//s = size
+	int 		s_s_param;				//s = size
+	int 		s_t_param;				//s = size
+	int 		nb_f_param;				//valeur du parametre 1
+	int 		nb_s_param;				//valeur du parametre 2
+	int 		nb_t_param;				//valeur du parametre 3
+	int 		index_ocp;				//index de l'ocp dans la grille.
+	int 		index_f_param;			//index de du premier parametre dans la grille.
+	int 		index_s_param;			//index de du second parametre dans la grille.
+	int 		index_t_param;			//index de du third parametre dans la grille.
+	int 		reg;					//numero du registre.
 }				t_info;
 
 
