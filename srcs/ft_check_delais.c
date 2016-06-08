@@ -44,7 +44,7 @@ void 						ft_check_delais(t_vm *vm)
 	{
 		if (!tmp->delais)
 			tmp->delais = ft_add_delais(vm, tmp);
-		if (tmp->delais == vm->cycle)
+		if (tmp->delais - 1 == vm->cycle)
 		{
 			tmp->delais = 0;
 			tmp->do_instruction = 1;
