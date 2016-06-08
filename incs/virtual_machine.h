@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/08 11:09:11 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/08 15:42:28 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,9 +193,9 @@ int							ft_ld(t_vm *vm, t_player *plr);
 int							ft_lld(t_vm *vm, t_player *plr);
 int							ft_lfork(t_vm *vm, t_player *plr);
 int							ft_st(t_vm *vm, t_player *plr);
-unsigned int				get_new_index(int decalage, unsigned int i_grid);
+unsigned int				get_new_index(int decalage, unsigned int i_grid, t_vm *vm);
 unsigned int				get_new_index_with_mod(int decalage,
-		unsigned int i_grid);
+		unsigned int i_grid, t_vm *vm);
 
 
 #endif
