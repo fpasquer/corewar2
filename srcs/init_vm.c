@@ -118,10 +118,10 @@ t_vm						*del_vm(t_vm **vm)
 	del_player(&(*vm)->plr);
 	if (((*vm)->flags & DUMP) != 0)
 		close((*vm)->fd);
-	if ((*vm)->w_grid != NULL)
-		ft_memdel((void**)&(*vm)->w_grid);
-	if ((*vm)->w_info != NULL)
-		ft_memdel((void**)&(*vm)->w_info);
-	ft_memdel((void**)vm);
+	// if ((*vm)->w_grid != NULL)
+		// ft_memdel((void**)&(*vm)->w_grid);
+	// if ((*vm)->w_info != NULL)
+		// ft_memdel((void**)&(*vm)->w_info);
+	// ft_memdel((void**)vm);
 	return (NULL);
 }

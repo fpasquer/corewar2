@@ -75,6 +75,26 @@
 
 # define NAME_FILE_DUMP_MEM "dump_memory.txt"
 
+typedef struct s_info
+{
+	int 		ocp;
+	int 		size_ocp_param;
+	int 		t_f_param;
+	int 		t_s_param;
+	int 		t_t_param;
+	int 		s_f_param;
+	int 		s_s_param;
+	int 		s_t_param;
+	int 		nb_f_param;
+	int 		nb_s_param;
+	int 		nb_t_param;
+	int 		index_ocp;
+	int 		index_f_param;
+	int 		index_s_param;
+	int 		index_t_param;
+}				t_info;
+
+
 typedef struct				s_player
 {
 	/*
@@ -97,6 +117,7 @@ typedef struct				s_player
 	unsigned int			i_player;		//index du joueur pour comter live
 	int						size;			//taille du champion
 	int 					carry;
+	t_info					info;
 	struct s_player			*next;			//pour les forks
 }							t_player;
 
