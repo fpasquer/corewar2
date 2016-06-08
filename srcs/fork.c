@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:20:00 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/08 14:31:00 by jchen            ###   ########.fr       */
+/*   Updated: 2016/06/08 16:57:24 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ int							ft_fork(t_vm *vm, t_player *plr)
 
 	if (vm == NULL || plr == NULL)
 		return (-1);
-	if (get_hexa(vm, (plr->i_grid + 1) % NB_CASE_TAB, 2, &adr) == -1)
-		return (-1);
+	//if (get_hexa(vm, (plr->i_grid + 1) % NB_CASE_TAB, 2, &adr) == -1)
+	//	return (-1);
+	adr = ft_param_4_octets(vm, plr, 2, (plr->i_grid + 1) % NB_CASE_TAB);
+	mvwprintw(vm->w_info, 60, 3, "adr = %d", adr);
+
 	if (copy_with_the_new_index(plr, &vm->plr, adr, vm) == NULL)
 		return (-1);
 	plr->i_grid = (plr->i_grid + 3) % NB_CASE_TAB;
