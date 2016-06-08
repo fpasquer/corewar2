@@ -49,8 +49,6 @@ int							ft_fork(t_vm *vm, t_player *plr)
 	//if (get_hexa(vm, (plr->i_grid + 1) % NB_CASE_TAB, 2, &adr) == -1)
 	//	return (-1);
 	adr = ft_param_4_octets(vm, plr, 2, (plr->i_grid + 1) % NB_CASE_TAB);
-	mvwprintw(vm->w_info, 60, 3, "adr = %d", adr);
-
 	if (copy_with_the_new_index(plr, &vm->plr, adr, vm) == NULL)
 		return (-1);
 	plr->i_grid = (plr->i_grid + 3) % NB_CASE_TAB;

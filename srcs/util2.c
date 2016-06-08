@@ -53,10 +53,7 @@ int							get_hexa(t_vm *vm, unsigned int i_grid,
 		i_grid  = (i_grid + 1) % NB_CASE_TAB;
 	}
 	ret = ft_atoi_base(all_octet, 16, nb);
-	// mvwprintw(vm->w_info, line++, 3, "all_octet = %s", all_octet);
 	if (all_octet != NULL)
 		ft_memdel((void**)&all_octet);
-	if (curent_octet != NULL)
-		ft_memdel((void**)&curent_octet);
 	return (ret);
 }

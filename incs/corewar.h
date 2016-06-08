@@ -15,6 +15,8 @@
 ** 	r1, %1, %1 = 104
 **  r1, 14, r1 = 116
 ** 	r1, 14, %1 = 120
+** 
+** // mvwprintw(vm->w_info, 50, 3, "%d", 10);
 **
 **	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 **
@@ -170,7 +172,7 @@ int 		ft_nothing(t_vm *vm, t_player *plr);
 int 		ft_sti(t_vm *vm, t_player *plr);
 int 		ft_zjmp(t_vm *vm, t_player *plr);
 int 		ft_live(t_vm *vm, t_player *plr);
-
+int 		ft_ldi(t_vm *vm, t_player *plr);
 int			ft_fork(t_vm *vm, t_player *plr);
 //int			ft_lfork(t_vm *vm, t_player *plr);
 

@@ -62,3 +62,22 @@ int							ft_lld(t_vm *vm, t_player *plr)
 	plr->carry = val == 0 ? 1 : 0;
 	return (1);
 }
+
+int 						ft_ldi(t_vm *vm, t_player *plr)
+{
+	int 					index;
+	ft_parse_info(vm, plr);
+
+	if (plr->info.error == ERROR_REG)
+		ft_nothing(vm, plr);
+	else
+	{
+		index = get_new_index_with_mod((plr->info.nb_f_param + plr->info.nb_s_param), plr->i_grid, vm);
+		plr->reg[plr->info.reg_t] = ft_param_4_octets(vm, plr, 4, index);
+		plr->i_grid += (plr->info.size_ocp_param + 2) % 4096;
+	}
+
+	plr->do_instruction = 0;
+	ft_bzero(&plr->info, sizeof(t_info));
+	return (0);
+}

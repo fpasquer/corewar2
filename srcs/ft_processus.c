@@ -10,6 +10,7 @@ t_instruction g_instruction[] = {
 	{7, ft_or, 4},
 	{8, ft_xor, 4},
 	{9, ft_zjmp, 2},
+	{10, ft_ldi, 2},
 	{11, ft_sti, 2},
 	{12, ft_fork, 2},
 	{13, ft_lld, 4},
