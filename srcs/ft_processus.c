@@ -1,6 +1,7 @@
 #include "../incs/corewar.h"
 
 t_instruction g_instruction[] = {
+	// {0, ft_nothing, 1},
 	{1, ft_live, 4},
 	{2, ft_ld, 4},
 	{3, ft_st, 2},
@@ -194,7 +195,8 @@ int 						ft_check_size_max(int i, int index)
 
 int 						ft_nothing(t_vm *vm, t_player *plr)
 {
-	plr->i_grid = ft_check_size_max(1, plr->i_grid);
+	// mvwprintw(vm->w_info, 50, 3, "%d", plr->i_grid);
+	plr->i_grid = (plr->i_grid + 1) % NB_CASE_TAB;
 	return (0);
 }
 
@@ -220,6 +222,7 @@ int							ft_processus_instruction(t_vm *vm, t_player *plr)
 	int 					i;
 
 	i = 0;
+	mvwprintw(vm->w_info, 50, 3, "%d", vm->array[plr->i_grid].code_hexa);
 	if (vm->array[plr->i_grid].code_hexa < 1 || vm->array[plr->i_grid].code_hexa > 16)
 	{
 		ft_nothing(vm, plr);

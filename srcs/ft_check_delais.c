@@ -1,7 +1,7 @@
 #include "../incs/corewar.h"
 
 t_delais g_delais[] = {
-	{0, 0}, // revoir
+	{0, 1}, // revoir
 	{LIVE, 10},
 	{LD, 5},
 	{ST, 5},
