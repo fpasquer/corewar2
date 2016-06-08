@@ -28,6 +28,7 @@ int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
 	char 							tab[9];
 	int      						i;
 	int 							octet_save;
+	int							test;
 
 	octet_save = octet;
 	ft_bzero(tab, sizeof(char) * 9);
@@ -46,6 +47,8 @@ int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
 		ft_strdel(&str);
 	}
 	ft_atoi_base(tab, 16, &i);
+	test = (short)i;
+
 	if (octet_save == 2)
 		return ((short)i);
 	return (i);
