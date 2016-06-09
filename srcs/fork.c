@@ -81,6 +81,7 @@ t_player					*copy_with_the_new_index(t_player *plr,
 	new->i_grid = plr->i_grid + i_grid;;
 	new->next = (*lst)->next;
 	(*lst)->next = new;
+	new->prev = (*lst);
 	// curs = (*lst);
 	// while (curs->next != NULL)
 	// curs = curs->next;

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 16:24:16 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:38:31 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ typedef struct				s_player
 	unsigned int			i_player;		//index du joueur pour comter live
 	int						size;			//taille du champion
 	int 					carry;
-	t_info					info
-;	struct s_player			*next;			//pour les forks
+	t_info					info;
+	struct s_player			*next;			//pour les forks
 	struct s_player 		*prev;			//?
 }							t_player;
 

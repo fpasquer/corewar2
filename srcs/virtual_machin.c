@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 11:42:07 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 17:36:16 by jchen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,31 @@ void						loop_virtual_machin(t_vm *vm)
 {
 	int						key;
 
-	key = REFRESH;
+	key = vm->flags & VISU ? REFRESH : 0;
+
+	/*
+	** test
+	*/
+	
+	// t_player *tmp;
+	// tmp = vm->plr;
+	// while (tmp)
+	// {
+	// 	printf("%s ; pos : %d\n", tmp->name, tmp->pos);
+	// 	tmp = tmp->next;
+	// }
+	// printf("%s\n", tmp->name);
+	// printf("----\n");
+	// // tmp = tmp->prev;
+	// while (tmp)
+	// {
+	// 	printf("%s\n", tmp->name);
+	// 	tmp = tmp->prev;
+	// }
+
+	/*
+	** test_end
+	*/
 
 	while (1)
 	{
@@ -50,12 +74,14 @@ void						loop_virtual_machin(t_vm *vm)
 		if ((key = check_key(getch(), vm)) == ESCAPE)
 			break ;
 		get_status_suspend_dump(vm);
-		// printf("<%llu>\n",vm->nb_proces);
+
+
 		/*
 		** JC
 		*/
 		
 		(vm->status != PAUSE) ? ft_processus(vm) : 0;
+
 		// if (vm->nb_proces <= 0)
 		// {
 		// 	// pop_winner_last_process(vm);

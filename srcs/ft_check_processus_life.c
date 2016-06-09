@@ -13,42 +13,35 @@
 	return (i);
 }*/
 
+
 static void 					ft_delete_processus(t_vm *vm, t_player **plr)
 {
 	t_player 					*actuel;
 
 	actuel = *plr;
-	vm->plr = vm->plr->next;
-	// if (actuel == vm->plr && actuel->next)
-	// {
-	// 	vm->plr = actuel->next;
-	// 	*plr = vm->plr;
-	// 	(*plr)->prev = actuel->prev;
-	// }
-	// else if (!actuel->next)
-	// 	(*plr) = (*plr)->next;
-	// else
-	// {
-	// 	actuel->prev->next = actuel->next;
-	// 	actuel->next->prev = actuel->prev;
-	// 	(*plr) = (*plr)->next;
-	// }
-	// free(actuel);
-	// actuel = NULL;
+	if (actuel == vm->plr) 						// Si le maillon est l'origine de la chaine.
+	{											// on incremente le pointeur d'origine, et celui de la liste
+		vm->plr = actuel->next; 				// en n'oubliant pas de recuperer le prev.
+		*plr = vm->plr;
+		if (*plr)
+			(*plr)->prev = NULL;
+	}
+	else if (actuel->next) 					// Si ce n'est pas le dernier maillon, on incremente le pointeur sur le
+	{											// prochain. En modifiant : le prev du next, et le next du prev.
+		(*plr) = (*plr)->next;
+		actuel->prev->next = (*plr);
+		(*plr)->prev = actuel->prev;
+	}
+	else if (!actuel->next)
+	{
+		actuel->prev->next = NULL;
+		ft_memdel((void**)plr);
+		vm->nb_proces--;
+		return ;
+	}
+	ft_memdel((void**)&actuel);
 	vm->nb_proces--;
 }
-
-static int 						ft_count_all_processus_live(t_vm *vm) //Nouveau tableau avec le nombre de live de chacun des joueurs
-{
-	int 					i;
-
-	i = vm->nb_live_each_plr[0];
-	i += vm->nb_live_each_plr[1];
-	i += vm->nb_live_each_plr[2];
-	i += vm->nb_live_each_plr[3];
-	return (i);
-}
-
 
 static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
 {
@@ -67,6 +60,31 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 			break ;
 	}
 }
+
+
+// static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
+// {
+// 	while (plr)
+// 	{
+// 		plr->last_live = plr->nb_live;
+// 		plr->nb_live = 0;
+// 		vm->nb_live_each_plr[plr->pos - 1] = 0;
+// 		plr = plr->next;
+// 	}
+// }
+
+
+static int 						ft_count_all_processus_live(t_vm *vm) //Nouveau tableau avec le nombre de live de chacun des joueurs
+{
+	int 					i;
+
+	i = vm->nb_live_each_plr[0];
+	i += vm->nb_live_each_plr[1];
+	i += vm->nb_live_each_plr[2];
+	i += vm->nb_live_each_plr[3];
+	return (i);
+}
+
 
 void 						ft_check_processus_life(t_vm *vm)
 {

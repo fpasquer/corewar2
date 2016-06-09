@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:06:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 14:35:46 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 17:18:46 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void						pop_winner(t_vm *vm)
 
 	if (is_end(vm) == 0)
 		return ;
+	if ((vm->flags & VISU) == 0)
+		exit (0);
 	refrech_win(vm);
 	print_info(vm);
 	print_grid(vm);
