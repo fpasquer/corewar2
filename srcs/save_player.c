@@ -71,6 +71,7 @@ static void					add_new_player(t_player **lst, t_player **new)
 		while (curs->next != NULL)
 			curs = curs->next;
 		curs->next = (*new);
+		(*new)->prev = curs;
 	}
 }
 

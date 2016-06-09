@@ -39,7 +39,12 @@ void						loop_virtual_machin(t_vm *vm)
 {
 	int						key;
 
+<<<<<<< HEAD
 	key = vm->flags & VISU ? REFRESH : 0;
+=======
+	key = REFRESH;
+
+>>>>>>> 92df042215477da0ea748a32cc9ab6e617bf0abc
 	while (1)
 	{
 		if (key == REFRESH)
@@ -49,12 +54,17 @@ void						loop_virtual_machin(t_vm *vm)
 		if ((key = check_key(getch(), vm)) == ESCAPE)
 			break ;
 		get_status_suspend_dump(vm);
-
+		// printf("<%llu>\n",vm->nb_proces);
 		/*
 		** JC
 		*/
 		
 		(vm->status != PAUSE) ? ft_processus(vm) : 0;
+		if (vm->nb_proces < 1)
+		{
+			pop_winner_last_process(vm);
+			break ;
+		}
 		// if (vm->cycle > 1380)
 		// 	sleep(1);
 

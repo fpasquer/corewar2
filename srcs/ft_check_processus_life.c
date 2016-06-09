@@ -13,6 +13,28 @@
 	return (i);
 }*/
 
+static void 					ft_delete_processus(t_vm *vm, t_player **plr)
+{
+	t_player 					*tmp;
+
+	tmp = *plr;
+	if (tmp == vm->plr && tmp->next)
+	{
+		vm->plr = tmp->next;
+		*plr = vm->plr;
+		(*plr)->prev = tmp->prev;
+	}
+	else if (!tmp->next)
+		;
+	else
+	{
+		tmp->next->prev = tmp->prev;
+		(*plr) = (*plr)->next;
+	}
+	free(tmp);
+	vm->nb_proces--;
+}
+
 static int 						ft_count_all_processus_live(t_vm *vm) //Nouveau tableau avec le nombre de live de chacun des joueurs
 {
 	int 					i;
@@ -29,10 +51,17 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 {
 	while (plr)
 	{
-		plr->last_live = plr->nb_live;
-		plr->nb_live = 0;
-		vm->nb_live_each_plr[plr->pos - 1] = 0;
-		plr = plr->next;
+		if (!plr->nb_live)
+			ft_delete_processus(vm, &plr);
+		else
+		{
+			plr->last_live = plr->nb_live;
+			plr->nb_live = 0;
+			vm->nb_live_each_plr[plr->pos - 1] = 0;
+			plr = plr->next;
+		}
+		if (vm->nb_proces < 1)
+			break ;
 	}
 }
 
