@@ -115,7 +115,8 @@ t_vm						*del_vm(t_vm **vm)
 	if (vm == NULL || *vm ==NULL)
 		return (NULL);
 	fclose((*vm)->mem);
-	del_player(&(*vm)->plr);
+	if ((*vm)->nb_proces > 0)
+		del_player(&(*vm)->plr);
 	if (((*vm)->flags & DUMP) != 0)
 		close((*vm)->fd);
 	// if ((*vm)->w_grid != NULL)
