@@ -56,11 +56,11 @@ void						loop_virtual_machin(t_vm *vm)
 		*/
 		
 		(vm->status != PAUSE) ? ft_processus(vm) : 0;
-		if (vm->nb_proces < 1)
-		{
-			pop_winner_last_process(vm);
-			break ;
-		}
+		// if (vm->nb_proces <= 0)
+		// {
+		// 	// pop_winner_last_process(vm);
+		// 	break ;
+		// }
 		// if (vm->cycle > 1380)
 		// 	sleep(1);
 

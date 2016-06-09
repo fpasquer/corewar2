@@ -15,23 +15,26 @@
 
 static void 					ft_delete_processus(t_vm *vm, t_player **plr)
 {
-	t_player 					*tmp;
+	t_player 					*actuel;
 
-	tmp = *plr;
-	if (tmp == vm->plr && tmp->next)
-	{
-		vm->plr = tmp->next;
-		*plr = vm->plr;
-		(*plr)->prev = tmp->prev;
-	}
-	else if (!tmp->next)
-		;
-	else
-	{
-		tmp->next->prev = tmp->prev;
-		(*plr) = (*plr)->next;
-	}
-	free(tmp);
+	actuel = *plr;
+	vm->plr = vm->plr->next;
+	// if (actuel == vm->plr && actuel->next)
+	// {
+	// 	vm->plr = actuel->next;
+	// 	*plr = vm->plr;
+	// 	(*plr)->prev = actuel->prev;
+	// }
+	// else if (!actuel->next)
+	// 	(*plr) = (*plr)->next;
+	// else
+	// {
+	// 	actuel->prev->next = actuel->next;
+	// 	actuel->next->prev = actuel->prev;
+	// 	(*plr) = (*plr)->next;
+	// }
+	// free(actuel);
+	// actuel = NULL;
 	vm->nb_proces--;
 }
 
@@ -60,7 +63,7 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 			vm->nb_live_each_plr[plr->pos - 1] = 0;
 			plr = plr->next;
 		}
-		if (vm->nb_proces < 1)
+		if (!vm->nb_proces)
 			break ;
 	}
 }

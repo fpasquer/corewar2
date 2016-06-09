@@ -38,6 +38,7 @@
 // 	//mvwprintw(vm->w_info, 60, 3, "i_fils = %d, i_pere = %d", new->i_grid, plr->i_grid);
 // 	return (new);
 // }
+
 /*t_player					*copy_with_the_new_index(t_player *plr,
 		t_player **lst, int i_grid, t_vm *vm)
 {
