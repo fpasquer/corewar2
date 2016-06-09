@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 14:21:07 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 11:31:16 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void						loop_virtual_machin(t_vm *vm)
 	{
 		if (key == REFRESH)
 			refrech_win(vm);
-		print_info(vm);
-		print_grid(vm);
+
 		if ((key = check_key(getch(), vm)) == ESCAPE)
 			break ;
 		get_status_suspend_dump(vm);
@@ -63,6 +62,8 @@ void						loop_virtual_machin(t_vm *vm)
 		*/ 
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
 		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle_tmp;
+		print_info(vm);
+		print_grid(vm);
 		pop_winner(vm);
 	}
 
