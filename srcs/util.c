@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 11:07:53 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/08 15:47:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 10:19:00 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,15 @@ int							**make_tab_2d(int *tab, int height, int width)
 	return (ret);
 }
 
-unsigned int				get_new_index(int decalage, unsigned int i_grid, t_vm *vm)
+unsigned int				get_new_index(int decalage, unsigned int i_grid,
+		t_vm *vm)
 {
 	long long int			cpy_i_grid;
 
+	mvwprintw(stdscr, 62, 3, "decalage %d, i_grid %u ", decalage, i_grid);
 	cpy_i_grid = (long long int)i_grid;
 	if (cpy_i_grid + decalage < NB_CASE_TAB && cpy_i_grid + decalage > 0)
 	{
-
 		return ((cpy_i_grid + decalage) % NB_CASE_TAB);
 	}
 	else if (cpy_i_grid + decalage < 0)
@@ -72,7 +73,6 @@ unsigned int				get_new_index(int decalage, unsigned int i_grid, t_vm *vm)
 		return ((NB_CASE_TAB + decalage) % NB_CASE_TAB);
 	}
 	decalage -= NB_CASE_TAB - i_grid;
-
 	return ((decalage) % NB_CASE_TAB);
 }
 

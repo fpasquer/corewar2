@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 15:58:03 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/08 15:42:21 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 09:39:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@
 
 int							ft_st(t_vm *vm, t_player *plr)
 {
-	ft_parse_info(vm, plr);
 	int 					i;
 
-
+	ft_parse_info(vm, plr);
 	if (plr->info.error == ERROR_REG)
 	{
 		ft_nothing(vm, plr);
@@ -58,7 +57,8 @@ int							ft_st(t_vm *vm, t_player *plr)
 		i = get_new_index_with_mod(plr->info.nb_s_param, plr->i_grid, vm);
 		ft_print_param_to_array_4_octets(vm,plr, i, plr->reg[plr->info.reg_f]);
 	}
-	plr->i_grid = get_new_index_with_mod(plr->info.size_ocp_param + 2, plr->i_grid, vm);
+	plr->i_grid = get_new_index_with_mod(plr->info.size_ocp_param + 2,
+			plr->i_grid, vm);
 	plr->do_instruction = 0;
 	ft_bzero(&plr->info, sizeof(t_info));
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/08 09:24:56 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 09:37:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void						print_dump(t_vm *vm)
 
 void						print_players(t_vm *vm)
 {
-	int						mem;
 	unsigned int			i;
 	t_player				*curs;
 
@@ -129,14 +128,15 @@ void						print_players(t_vm *vm)
 	i = 0;
 	while (i < vm->nb_player)
 	{
-		mem = 8 + i;
 		mvwprintw(vm->w_info, 11 + i * 4, 3, "Name %d : ", curs->reg[1]);
 		init_pair(i + 1, i + 1, COLOR_BLACK);
 		attron(COLOR_PAIR(i + 1));
 		mvwprintw(stdscr, 11 + i * 4, 210,"%s", curs->name);
 		attroff(COLOR_PAIR(i + 1));
-		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %u", vm->cycle_last_live[curs->pos -1]);
-		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %u", vm->nb_live_each_plr[curs->pos - 1]);
+		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %-10u",
+				vm->cycle_last_live[curs->pos -1]);
+		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %-10u",
+				vm->nb_live_each_plr[curs->pos - 1]);
 		curs = curs->next;
 		i++;
 	}
@@ -197,7 +197,6 @@ void 						print_hightlight(t_vm *vm, t_player *plr)
 		attron(A_STANDOUT);
 		attron(COLOR_PAIR(plr->pos));
 		tmp = ft_llitoa_base(vm->array[plr->i_grid].code_hexa, 16, &size);
-		// vm->array[plr->i_grid].code_hexa;
 		mvwprintw(stdscr, vm->array[plr->i_grid].y, vm->array[plr->i_grid].x, "%s", tmp);
 		attroff(A_STANDOUT);
 		attroff(COLOR_PAIR(plr->pos));
@@ -221,8 +220,6 @@ void						print_grid(t_vm *vm)
 	x = 0;
 	while (y < NB_LINE_COLUMN)
 	{
-	//	if (!vm->array[count2].player)
-	//		vm->array[count2].player = 7;
 		init_pair(vm->array[count2].player, vm->array[count2].player, COLOR_BLACK);
 		attron(COLOR_PAIR(vm->array[count2].player));
 		tmp = ft_llitoa_base(vm->array[count].code_hexa, 16, &size);
