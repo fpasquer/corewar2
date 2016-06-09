@@ -42,7 +42,7 @@ static void 					ft_delete_processus(t_vm *vm, t_player **plr)
 	ft_memdel((void**)&actuel);
 	vm->nb_proces--;
 }
-
+/*
 static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
 {
 	while (plr)
@@ -60,18 +60,18 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 			break ;
 	}
 }
+*/
 
-
-// static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
-// {
-// 	while (plr)
-// 	{
-// 		plr->last_live = plr->nb_live;
-// 		plr->nb_live = 0;
-// 		vm->nb_live_each_plr[plr->pos - 1] = 0;
-// 		plr = plr->next;
-// 	}
-// }
+ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
+ {
+ 	while (plr)
+ 	{
+ 		plr->last_live = plr->nb_live;
+ 		plr->nb_live = 0;
+ 		vm->nb_live_each_plr[plr->pos - 1] = 0;
+ 		plr = plr->next;
+ 	}
+ }
 
 
 static int 						ft_count_all_processus_live(t_vm *vm) //Nouveau tableau avec le nombre de live de chacun des joueurs
