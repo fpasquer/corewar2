@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 09:37:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:24:12 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,15 +128,15 @@ void						print_players(t_vm *vm)
 	i = 0;
 	while (i < vm->nb_player)
 	{
-		mvwprintw(vm->w_info, 11 + i * 4, 3, "Name %d : ", curs->reg[1]);
+		mvwprintw(vm->w_info, 11 + i * 4, 3, "Name %d : ", vm->nb_rep_plr[i]);
 		init_pair(i + 1, i + 1, COLOR_BLACK);
 		attron(COLOR_PAIR(i + 1));
-		mvwprintw(stdscr, 11 + i * 4, 210,"%s", curs->name);
+		mvwprintw(stdscr, 11 + i * 4, 210,"%s", vm->name_j[i]);
 		attroff(COLOR_PAIR(i + 1));
 		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %-10u",
-				vm->cycle_last_live[curs->pos -1]);
+				vm->cycle_last_live[i]);
 		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %-10u",
-				vm->nb_live_each_plr[curs->pos - 1]);
+				vm->nb_live_each_plr[i]);
 		curs = curs->next;
 		i++;
 	}

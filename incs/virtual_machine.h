@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/08 15:42:28 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:24:16 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define NB_CASE_TAB 4096
 # define NB_MOD 512
 # define NB_LINE_COLUMN 64
+
+# define LEN_NAME 20
 
 # define MAX_REG 17
 
@@ -136,6 +138,7 @@ typedef struct				s_array
 
 typedef struct				s_vm
 {
+	char					name_j[MAX_PLAYER][LEN_NAME + 1];//affiche le nom des joueurs
 	/*
 	** RAJOUT PAR JC
 	*/
@@ -155,6 +158,7 @@ typedef struct				s_vm
 	int						nb_susp;			//suspend memoire / les nb_susp cycle
 	int						flags;				//flags
 	int						fd;					//ou sera dump la memoire
+	int						nb_rep_plr[MAX_PLAYER];			//affichage du nombre representant le joueur
 	unsigned int			nb_player;			//nombre de joueur de la partie
 	unsigned int			cycle;				//nb de cycle
 	unsigned int			cycle_to_die;		//nb de cycle_to_die

@@ -6,14 +6,14 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:20:00 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 09:06:28 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 15:58:23 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
 #include "../incs/virtual_machine.h"
 
-t_player					*copy_with_the_new_index(t_player *plr,
+/*t_player					*copy_with_the_new_index(t_player *plr,
 		t_player **lst, int i_grid, t_vm *vm)
 {
 	t_player				*new;
@@ -35,11 +35,10 @@ t_player					*copy_with_the_new_index(t_player *plr,
 	curs->next = new;
 	new->next = NULL;
 	vm->nb_proces++;
-	//mvwprintw(vm->w_info, 60, 3, "i_fils = %d, i_pere = %d", new->i_grid, plr->i_grid);
 	return (new);
-}
+}*/
 
-/*t_player					*copy_with_the_new_index(t_player *plr,
+t_player					*copy_with_the_new_index(t_player *plr,
 		t_player **lst, int i_grid, t_vm *vm)
 {
 	t_player				*new;
@@ -67,7 +66,7 @@ t_player					*copy_with_the_new_index(t_player *plr,
 	//mvwprintw(vm->w_info, 60, 3, "i_fils = %d, i_pere = %d", new->i_grid, plr->i_grid);
 	wrefresh(vm->w_info);
 	return (new);
-}*/
+}
 
 int							ft_fork(t_vm *vm, t_player *plr)
 {
