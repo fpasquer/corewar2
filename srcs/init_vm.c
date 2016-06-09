@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 16:48:45 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 17:16:28 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ t_vm						*init_vm(int argc, char **argv)
 		if ((new_->fd = ft_fopen(NAME_FILE_DUMP_MEM, "w+")) == -1)
 			return (NULL);
 	init_ncurse(new_);
+	new_->status = ((new_->flags & VISU) != 0) ? PAUSE : RUN;
 	new_->pause = ((new_->flags & SUSPEND) != 0) ? new_->nb_susp : 0;
 	new_->dump = ((new_->flags & DUMP) != 0) ? new_->nb_dump : 0;
 	curs_set(FALSE);

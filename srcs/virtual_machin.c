@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 11:42:07 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 17:05:08 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void						loop_virtual_machin(t_vm *vm)
 {
 	int						key;
 
-	key = REFRESH;
+	key = vm->flags & VISU ? REFRESH : 0;
 	while (1)
 	{
 		if (key == REFRESH)

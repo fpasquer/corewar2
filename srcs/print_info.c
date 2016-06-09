@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 16:54:26 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:59:10 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,8 @@ void 						print_hightlight(t_vm *vm, t_player *plr)
 		attron(A_STANDOUT);
 		attron(COLOR_PAIR(plr->pos));
 		tmp = ft_llitoa_base(vm->array[plr->i_grid].code_hexa, 16, &size);
-		mvwprintw(stdscr, vm->array[plr->i_grid].y, vm->array[plr->i_grid].x, "%s", tmp);
+		mvwprintw(stdscr, vm->array[plr->i_grid].y, vm->array[plr->i_grid].x,
+				"%s", tmp);
 		attroff(A_STANDOUT);
 		attroff(COLOR_PAIR(plr->pos));
 		plr = plr->next;
@@ -218,6 +219,8 @@ void						print_grid(t_vm *vm)
 	count = 0;
 	y = 0;
 	x = 0;
+	if ((vm->flags & VISU) == 0)
+		return ;
 	while (y < NB_LINE_COLUMN)
 	{
 		init_pair(vm->array[count2].player, vm->array[count2].player, COLOR_BLACK);
