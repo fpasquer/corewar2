@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 16:24:12 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:54:26 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,9 @@ void						print_dump(t_vm *vm)
 void						print_players(t_vm *vm)
 {
 	unsigned int			i;
-	t_player				*curs;
 
-	curs = vm->plr;
+	if ((vm->flags & VISU) == 0)
+		return ;
 	i = 0;
 	while (i < vm->nb_player)
 	{
@@ -137,14 +137,14 @@ void						print_players(t_vm *vm)
 				vm->cycle_last_live[i]);
 		mvwprintw(vm->w_info, 13 + i * 4, 5, "Nb live : %-10u",
 				vm->nb_live_each_plr[i]);
-		curs = curs->next;
 		i++;
 	}
-	wrefresh(vm->w_info);
 }
 
 void						print_info(t_vm *vm)
 {
+	if ((vm->flags & VISU) == 0)
+		return ;
 	mvwprintw(vm->w_info, 2, 3, "** %s **  ", vm->status == PAUSE ?
 			"PAUSED" : "RUNNNING");
 	mvwprintw(vm->w_info, 4, 3, "Cyles/second limit : %d", CYCLE_SEG);

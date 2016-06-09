@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 16:21:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/09 16:48:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,17 @@ void						init_affichage(t_vm *vm)
 	}
 }
 
+void						init_ncurse(t_vm *vm)
+{
+	if ((vm->flags & VISU) != 0)
+	{
+		initscr();
+		noecho();
+		start_color();
+		init_color_grid(vm);
+	}
+}
+
 t_vm						*init_vm(int argc, char **argv)
 {
 	t_vm					*new_;
@@ -92,13 +103,10 @@ t_vm						*init_vm(int argc, char **argv)
 		return (NULL);
 	if ((new_->plr = save_player(argc - 1, &argv[1], new_)) == NULL)
 		return (NULL);
-	initscr();
-	noecho();
-	start_color();
-	init_color_grid(new_);
 	if ((new_->flags & DUMP) != 0 || (new_->flags & DUMP_M) != 0)
 		if ((new_->fd = ft_fopen(NAME_FILE_DUMP_MEM, "w+")) == -1)
 			return (NULL);
+	init_ncurse(new_);
 	new_->pause = ((new_->flags & SUSPEND) != 0) ? new_->nb_susp : 0;
 	new_->dump = ((new_->flags & DUMP) != 0) ? new_->nb_dump : 0;
 	curs_set(FALSE);
@@ -127,9 +135,10 @@ void						refrech_win(t_vm *vm)
 
 t_vm						*del_vm(t_vm **vm)
 {
-	endwin();
 	if (vm == NULL || *vm ==NULL)
 		return (NULL);
+	if (((*vm)->flags & VISU) != 0)
+		endwin();
 	fclose((*vm)->mem);
 	del_player(&(*vm)->plr);
 	if (((*vm)->flags & DUMP) != 0)
