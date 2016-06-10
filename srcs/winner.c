@@ -6,14 +6,15 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:06:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 17:18:46 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/10 09:13:30 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
 #include "../incs/virtual_machine.h"
 
-static void					clear_winner(unsigned int nb_line, unsigned int nb_column, void* w_winner)
+static void					clear_winner(unsigned int nb_line,
+		unsigned int nb_column, void* w_winner)
 {
 	unsigned int			y;
 	unsigned int			x;
@@ -42,7 +43,10 @@ static int					is_end(t_vm *vm)
 	if (vm->nb_proces == 0)
 		return (1);
 	if (vm->cycle_to_die == 4294967282)
+	{
+		vm->cycle_to_die = 0;
 		return (1);
+	}
 	return (0);
 }
 
@@ -63,6 +67,23 @@ static t_player				*get_winner(t_vm *vm)
 	return (ret);
 }
 
+void						write_winner(t_vm *vm)
+{
+	t_player				*winner;
+
+	if ((winner = get_winner(vm)) != NULL)
+	{
+		ft_putstr("Contestant ");
+		ft_putnbr(winner->pos);
+		ft_putstr(", \"");
+		ft_putstr(winner->name);
+		ft_putstr("\", has won!\n");
+	}
+	del_vm(&vm);
+	exit(0);
+
+}
+
 void						pop_winner(t_vm *vm)
 {
 	unsigned int			y;
@@ -72,7 +93,7 @@ void						pop_winner(t_vm *vm)
 	if (is_end(vm) == 0)
 		return ;
 	if ((vm->flags & VISU) == 0)
-		exit (0);
+		write_winner(vm);
 	refrech_win(vm);
 	print_info(vm);
 	print_grid(vm);
