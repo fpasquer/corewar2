@@ -126,6 +126,7 @@ typedef struct				s_player
 	int 					carry;
 	t_info					info;
 	struct s_player			*next;			//pour les forks
+	struct s_player 		*prev;			//?
 }							t_player;
 
 typedef struct				s_array

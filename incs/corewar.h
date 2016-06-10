@@ -149,6 +149,7 @@ int 		ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index);
 int 		ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index);
 void 		ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsigned int nb);
 int 						ft_check_size_max(int i, int index);
+void						pop_winner_last_process(t_vm *vm);
 
 /*
 ** DIVERS INSTRUCTION

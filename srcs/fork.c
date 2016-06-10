@@ -6,12 +6,42 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:20:00 by fpasquer          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2016/06/10 09:56:25 by fpasquer         ###   ########.fr       */
+=======
+/*   Updated: 2016/06/09 16:32:52 by jchen            ###   ########.fr       */
+>>>>>>> 64bbc37eee5de9b09e404548f6065644fde0dc6e
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
 #include "../incs/virtual_machine.h"
+
+// t_player					*copy_with_the_new_index(t_player *plr,
+// 		t_player **lst, int i_grid, t_vm *vm)
+// {
+// 	t_player				*new;
+// 	t_player				*curs;
+
+// 	if (lst == NULL || *lst == NULL || plr == NULL ||
+// 			(new = ft_memalloc(sizeof(t_player))) == NULL)
+// 		return (NULL);
+// 	ft_memcpy(new, plr, sizeof(t_player));
+// 	if ((new->name = ft_strdup(plr->name)) == NULL)
+// 		return (NULL);
+// 	if ((new->comment = ft_strdup(plr->comment)) == NULL)
+// 		return (NULL);
+// 	new->i_grid = plr->i_grid + i_grid;;
+// 	curs = (*lst);
+// 	while (curs->next != NULL)
+// 		curs = curs->next;
+// 	new->do_instruction = 0;
+// 	curs->next = new;
+// 	new->next = NULL;
+// 	vm->nb_proces++;
+// 	//mvwprintw(vm->w_info, 60, 3, "i_fils = %d, i_pere = %d", new->i_grid, plr->i_grid);
+// 	return (new);
+// }
 
 /*t_player					*copy_with_the_new_index(t_player *plr,
 		t_player **lst, int i_grid, t_vm *vm)
@@ -53,12 +83,12 @@ t_player					*copy_with_the_new_index(t_player *plr,
 	if ((new->comment = ft_strdup(plr->comment)) == NULL)
 		return (NULL);
 	new->i_grid = plr->i_grid + i_grid;;
-	
 	new->next = (*lst)->next;
 	(*lst)->next = new;
+	new->prev = (*lst);
 	// curs = (*lst);
 	// while (curs->next != NULL)
-	// 	curs = curs->next;
+	// curs = curs->next;
 	// new->do_instruction = 0;
 	// curs->next = new;
 	// new->next = NULL;
