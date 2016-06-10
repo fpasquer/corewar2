@@ -53,7 +53,6 @@ static t_player				*new_player(char *name, int nb,
 	new->reg[1] = nb;
 	spacing += y;
 	i++;
-
 	return (new);
 }
 

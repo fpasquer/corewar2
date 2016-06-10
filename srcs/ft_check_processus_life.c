@@ -47,6 +47,14 @@ static void 					ft_delete_processus(t_vm *vm, t_player **plr)
 }
 static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
 {
+	int 					i;
+
+	i = 0;
+	while (i < vm->count_pos)
+	{
+		vm->nb_live_each_plr[i] = 0;
+		i++;
+	}
 	while (plr)
 	{
 		// printf("%d, %s, %lld = nb_proc\n", plr->nb_live, plr->name, vm->nb_proces);
@@ -61,7 +69,7 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 		{
 			plr->last_live = plr->nb_live;
 			plr->nb_live = 0;
-			vm->nb_live_each_plr[plr->pos - 1] = 0;
+			// vm->nb_live_each_plr[plr->pos - 1] = 0;
 			plr = plr->next;
 		}
 		if (!vm->nb_proces)
@@ -131,7 +139,7 @@ void 						ft_check_processus_life(t_vm *vm)
 	else
 	{
 		vm->check_max++;
-		if (vm->check_max == 10)
+		if (vm->check_max == 9)
 		{
 			vm->cycle_to_die -= 50;
 			vm->check_max = 0;

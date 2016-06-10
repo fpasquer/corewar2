@@ -147,6 +147,8 @@ typedef struct				s_vm
 
 	unsigned int 			cycle_tmp;			// compteur s'incremente jusqu'a cycle_to_die puis reset a 0;
 	unsigned int 			check_max;
+	int 					*array_pos;
+	int 					count_pos;
 
 	/*
 	**

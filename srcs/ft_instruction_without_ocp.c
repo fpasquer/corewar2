@@ -3,44 +3,48 @@
 int 						ft_live(t_vm *vm, t_player *plr)
 {
 	int 					i;
-	t_player 				*tmp;
-	int 					bol;
+	int 					count;
 
-	bol = 0;
+	// bol = 0;
+	count = 0;
 	i = ft_param_4_octets(vm, plr, 4,   plr->i_grid + 1); //attention il faut % 4096
-	tmp = vm->plr;
-	// printf("%d = i\n", i);
-	if (plr->reg[1] == i && (bol = 1))
+	// printf("%d", i);
+	plr->nb_live++;
+	while (count < vm->count_pos)
 	{
-		vm->cycle_last_live[plr->pos - 1] = vm->cycle;
-		plr->nb_live++;
-		vm->nb_live_each_plr[plr->pos - 1]++;
-	}
-	else
-	{
-		while (tmp)
+		// printf("%d = pos\n", vm->array_pos[count]);
+		if (i == vm->array_pos[count])
 		{
-			// printf("%d = n, %s\n", tmp->reg[1], tmp->name);
-			if (tmp->reg[1] == i && (bol = 1))
-		{
-			// printf("%s, tmp->name\n", tmp->name);
-			vm->cycle_last_live[tmp->pos - 1] = vm->cycle;
-			tmp->nb_live++;
-			vm->nb_live_each_plr[tmp->pos - 1]++;
-			break;
+			// printf("ok\n");
+			vm->cycle_last_live[count] = vm->cycle;
+			vm->nb_live_each_plr[count]++;
+			break ;
 		}
-		tmp = tmp->next;
-		// if (i == plr->reg[1])
-		// {
-			// vm->cycle_last_live[plr->pos - 1] = vm->cycle;
-			// plr->nb_live++;
-			// vm->nb_live_each_plr[plr->pos - 1]++;
-		// }
-		// else
-			// vm->nb_live++;
-		}
+		count++;
 	}
-	vm->nb_live = (!bol) ? vm->nb_live + 1 : vm->nb_live ;
+	// printf("end\n");
+
+
+	// if (plr->reg[1] == i && (bol = 1))
+	// {
+	// 	vm->cycle_last_live[plr->pos - 1] = vm->cycle;
+	// 	vm->nb_live_each_plr[plr->pos - 1]++;
+	// }
+	// else
+	// {
+	// 	while (tmp)
+	// 	{
+	// 		if (tmp->reg[1] == i && (bol = 1))
+	// 		{
+	// 			vm->cycle_last_live[tmp->pos - 1] = vm->cycle;
+	// 			plr->nb_live++;
+	// 			vm->nb_live_each_plr[tmp->pos - 1]++;
+	// 			break;
+	// 		}
+	// 		tmp = tmp->next;
+	// 	}
+	// }
+	// vm->nb_live = (!bol) ? vm->nb_live + 1 : vm->nb_live ;
 	plr->i_grid = ft_check_size_max(5, plr->i_grid);
 	return (0);
 }
