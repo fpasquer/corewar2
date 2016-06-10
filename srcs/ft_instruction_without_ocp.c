@@ -9,13 +9,24 @@ int 						ft_live(t_vm *vm, t_player *plr)
 	bol = 0;
 	i = ft_param_4_octets(vm, plr, 4,   plr->i_grid + 1); //attention il faut % 4096
 	tmp = vm->plr;
-	while (tmp)
+	// printf("%d = i\n", i);
+	if (plr->reg[1] == i && (bol = 1))
 	{
-		if (tmp->reg[1] == i && (bol = 1))
+		vm->cycle_last_live[plr->pos - 1] = vm->cycle;
+		plr->nb_live++;
+		vm->nb_live_each_plr[plr->pos - 1]++;
+	}
+	else
+	{
+		while (tmp)
 		{
-			vm->cycle_last_live[plr->pos - 1] = vm->cycle;
+			// printf("%d = n, %s\n", tmp->reg[1], tmp->name);
+			if (tmp->reg[1] == i && (bol = 1))
+		{
+			// printf("%s, tmp->name\n", tmp->name);
+			vm->cycle_last_live[tmp->pos - 1] = vm->cycle;
 			tmp->nb_live++;
-			vm->nb_live_each_plr[plr->pos - 1]++;
+			vm->nb_live_each_plr[tmp->pos - 1]++;
 			break;
 		}
 		tmp = tmp->next;
@@ -27,6 +38,7 @@ int 						ft_live(t_vm *vm, t_player *plr)
 		// }
 		// else
 			// vm->nb_live++;
+		}
 	}
 	vm->nb_live = (!bol) ? vm->nb_live + 1 : vm->nb_live ;
 	plr->i_grid = ft_check_size_max(5, plr->i_grid);

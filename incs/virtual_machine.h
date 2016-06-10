@@ -124,6 +124,7 @@ typedef struct				s_player
 	unsigned int			i_player;		//index du joueur pour comter live
 	int						size;			//taille du champion
 	int 					carry;
+	// int 					cycle_tmp;
 	t_info					info;
 	struct s_player			*next;			//pour les forks
 	struct s_player 		*prev;			//?

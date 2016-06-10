@@ -49,6 +49,7 @@ void 						ft_check_delais(t_vm *vm)
 			tmp->delais = 0;
 			tmp->do_instruction = 1;
 		}
+		// tmp->cycle_tmp++;
 		tmp = tmp->next;
 	}
 }

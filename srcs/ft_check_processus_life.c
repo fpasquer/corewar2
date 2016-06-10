@@ -25,18 +25,21 @@ static void 					ft_delete_processus(t_vm *vm, t_player **plr)
 		*plr = vm->plr;
 		if (*plr)
 			(*plr)->prev = NULL;
+		// printf("start\n");
 	}
 	else if (actuel->next) 					// Si ce n'est pas le dernier maillon, on incremente le pointeur sur le
 	{											// prochain. En modifiant : le prev du next, et le next du prev.
 		(*plr) = (*plr)->next;
 		actuel->prev->next = (*plr);
 		(*plr)->prev = actuel->prev;
+		// printf("mid\n");
 	}
 	else if (!actuel->next)
 	{
 		actuel->prev->next = NULL;
 		ft_memdel((void**)plr);
 		vm->nb_proces--;
+		// printf("end_delete\n");
 		return ;
 	}
 	ft_memdel((void**)&actuel);
@@ -47,8 +50,14 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 {
 	while (plr)
 	{
+		// printf("%d, %s, %lld = nb_proc\n", plr->nb_live, plr->name, vm->nb_proces);
 		if (!plr->nb_live)
+		{
+			// printf("%lld = nb_proc | 2\n", vm->nb_proces);
+			// printf("%s proc die\n", plr->name);
 			ft_delete_processus(vm, &plr);
+			// printf("%lld = nb_proc | 2\n", vm->nb_proces);
+		}
 		else
 		{
 			plr->last_live = plr->nb_live;
@@ -59,6 +68,7 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 		if (!vm->nb_proces)
 			break ;
 	}
+	// printf("end\n");
 }
 
 
@@ -68,6 +78,18 @@ static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur l
 // 	{
 // 		plr->last_live = plr->nb_live;
 // 		plr->nb_live = 0;
+// 		vm->nb_live_each_plr[plr->pos - 1] = 0;
+// 		plr = plr->next;
+// 	}
+// 	// printf("end\n");
+// }
+
+// static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
+// {
+// 	while (plr)
+// 	{
+// 		plr->last_live = plr->nb_live;
+// 		// plr->nb_live = 0;
 // 		vm->nb_live_each_plr[plr->pos - 1] = 0;
 // 		plr = plr->next;
 // 	}
