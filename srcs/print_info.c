@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 16:59:10 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/10 09:39:59 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,25 @@ static void					print_flags(t_vm *vm)
 		mvwprintw(vm->w_info, 25 + vm->nb_player * 3 + 1, 5, "DUMP_M  : No");
 }
 
-static void					dump_print_player(t_vm *vm)
+void						dump_print_player(t_vm *vm, int fd)
 {
 	unsigned int			i;
 	t_player				*curs;
 
 	i = 0;
 	curs = vm->plr;
+	ft_putstr_fd("Introducing contestants...\n", fd);
 	while (curs != NULL && i++ < vm->nb_player)
 	{
-		ft_putstr_fd("* Player ", vm->fd);
-		ft_putnbr_fd(i, vm->fd);
-		ft_putstr_fd(", weighing ", vm->fd);
-		ft_putnbr_fd(curs->size, vm->fd);
-		ft_putstr_fd(" bytes, \"", vm->fd);
-		ft_putstr_fd(curs->name, vm->fd);
-		ft_putstr_fd("\" (\"", vm->fd);
-		ft_putstr_fd(curs->comment, vm->fd);
-		ft_putstr_fd("\") !\n", vm->fd);
+		ft_putstr_fd("* Player ", fd);
+		ft_putnbr_fd(i, fd);
+		ft_putstr_fd(", weighing ", fd);
+		ft_putnbr_fd(curs->size, fd);
+		ft_putstr_fd(" bytes, \"", fd);
+		ft_putstr_fd(curs->name, fd);
+		ft_putstr_fd("\" (\"", fd);
+		ft_putstr_fd(curs->comment, fd);
+		ft_putstr_fd("\") !\n", fd);
 		curs = curs->next;
 	}
 }
@@ -92,8 +93,12 @@ static void					dump_memory(t_vm *vm)
 	unsigned int			i;
 
 	i = 0;
-	ft_putstr_fd("Introducing contestants...\n", vm->fd);
-	dump_print_player(vm);
+	if ((vm->flags & DUMP_M) != 0)
+	{
+		ft_putstr_fd("Cycle : ", vm->fd);
+		ft_putnbr_fd(vm->cycle, vm->fd);
+		ft_putchar_fd('\n', vm->fd);
+	}
 	while (i < NB_CASE_TAB)
 	{
 		if ((s = ft_itoa_base(vm->array[i++].code_hexa, 16)) == NULL)
@@ -116,7 +121,10 @@ void						print_dump(t_vm *vm)
 		return ;
 	dump_memory(vm);
 	if ((vm->flags & DUMP_M) != 0)
+	{
+		ft_putchar_fd('\n', vm->fd);
 		vm->dump += vm->nb_dump;
+	}
 }
 
 void						print_players(t_vm *vm)

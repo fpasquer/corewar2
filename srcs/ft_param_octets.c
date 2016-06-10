@@ -1,4 +1,4 @@
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 int 			ft_param_0_octet(t_vm *vm, t_player *plr, int octet, int index)
 {
@@ -21,11 +21,6 @@ int 			ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index)
 	plr->info.reg_t = plr->info.index_t_param == index ? reg : plr->info.reg_t ;
 	return (plr->reg[reg]);
 }
-
-// static char		*get_str(char val)
-// {
-
-// }
 
 int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
 {

@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 16:38:31 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/10 09:57:03 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,8 @@ void						print_info(t_vm *vm);
 void						print_dump(t_vm *vm);
 t_player					*save_player(int argc, char **argv, t_vm *vm);
 t_player					*del_player(t_player **lst);
-int							get_hexa(t_vm *vm, unsigned int i_grid,
-		unsigned int nb_octet, int *nb);
+//int							get_hexa(t_vm *vm, unsigned int i_grid,
+//		unsigned int nb_octet, int *nb);
 int							change_index(int i, char *argv, int argc);
 int							change_index2(t_vm *vm, int i, char **argv,
 		int argc);
@@ -202,6 +202,7 @@ int							ft_st(t_vm *vm, t_player *plr);
 unsigned int				get_new_index(int decalage, unsigned int i_grid, t_vm *vm);
 unsigned int				get_new_index_with_mod(int decalage,
 		unsigned int i_grid, t_vm *vm);
+void						dump_print_player(t_vm *vm, int fd);
 
 
 #endif

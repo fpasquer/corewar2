@@ -6,12 +6,25 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2016/06/10 09:37:05 by fpasquer         ###   ########.fr       */
+=======
 /*   Updated: 2016/06/09 17:36:16 by jchen            ###   ########.fr       */
+>>>>>>> 64bbc37eee5de9b09e404548f6065644fde0dc6e
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
 #include "../incs/corewar.h"
+
+static void					print_plr(t_vm *vm)
+{
+	if ((vm->flags & DUMP) != 0 || (vm->flags & DUMP_M) != 0)
+		dump_print_player(vm, vm->fd);
+	if ((vm->flags & VISU) != 0)
+		return ;
+	dump_print_player(vm, STDOUT_FILENO);
+}
 
 void						print_lst(t_player *lst, int fd)
 {
@@ -39,6 +52,7 @@ void						loop_virtual_machin(t_vm *vm)
 {
 	int						key;
 
+	print_plr(vm);
 	key = vm->flags & VISU ? REFRESH : 0;
 
 	/*
