@@ -18,7 +18,7 @@ t_delais g_delais[] = {
 	{LLDI, 50},
 	{LFORK, 1000},
 	{AFF, 2},
-	{25, 0},
+	{25, 1},
 };
 
 int 						ft_add_delais(t_vm *vm, t_player *plr)
@@ -32,7 +32,7 @@ int 						ft_add_delais(t_vm *vm, t_player *plr)
 			return (g_delais[i].delais + vm->cycle);
 		i++;
 	}
-	return (0);
+	return (1 + vm->cycle);
 }
 
 void 						ft_check_delais(t_vm *vm)
@@ -49,7 +49,6 @@ void 						ft_check_delais(t_vm *vm)
 			tmp->delais = 0;
 			tmp->do_instruction = 1;
 		}
-		// tmp->cycle_tmp++;
 		tmp = tmp->next;
 	}
 }

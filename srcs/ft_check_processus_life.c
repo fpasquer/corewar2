@@ -129,20 +129,22 @@ static int 						ft_count_all_processus_live(t_vm *vm) //Nouveau tableau avec le
 
 void 						ft_check_processus_life(t_vm *vm)
 {
+	// static 					int test = 10;
 	int 					count_live;
 
 	count_live = ft_count_all_processus_live(vm) + vm->nb_live;
-	if (count_live > 21 && !(vm->check_max = 0))
+	if (count_live >= 21 && !(vm->check_max = 0))
 	{
 		vm->cycle_to_die -= 50;
 	}
 	else
 	{
 		vm->check_max++;
-		if (vm->check_max == 9)
+		if (vm->check_max == 10)
 		{
 			vm->cycle_to_die -= 50;
 			vm->check_max = 0;
+			// test--;
 		}
 	}
 	ft_reset_live(vm->plr, vm);
