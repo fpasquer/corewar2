@@ -41,7 +41,7 @@
 **	1, %1, r1 = 228
 **	1, 1, r1 = 244
 **
-**
+**  ./corewar -d 8910 champ/helltrain.cor && ./corewar_zaz -d 8910 champ/helltrain.cor > mem.txt && diff mem.txt dump_memory.txt
 **
 **
 **
@@ -125,6 +125,8 @@ typedef struct s_instruction
 	char  		instruction;
 	int			(*p)(t_vm *vm, t_player *plr);
 	int 		epd; 			// encodage parametre direct sous X octets.
+	int 		ocp_array[4];
+	int 		nb_arg;
 }				t_instruction;
 
 char		*ft_recover_name_champ(int fd);
@@ -150,6 +152,7 @@ int 		ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index);
 void 		ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsigned int nb);
 int 						ft_check_size_max(int i, int index);
 void						pop_winner_last_process(t_vm *vm);
+void 						ft_parse_info(t_vm *vm, t_player *plr);
 
 /*
 ** DIVERS INSTRUCTION

@@ -40,7 +40,8 @@ static void					get_status_suspend_dump(t_vm *vm)
 		print_dump(vm);
 	if ((vm->flags & SUSPEND) == 0 || vm->cycle != vm->pause)
 		return ;
-	vm->pause += vm->nb_susp;
+	// vm->pause += vm->nb_susp;
+	vm->pause += 1;
 	vm->status = PAUSE;
 }
 

@@ -80,6 +80,8 @@
 typedef struct s_info
 {
 	int 		epd;
+	int 		nb_arg;
+	int 		instruction;
 	int 		ocp;					//ocp
 	int 		size_ocp_param;			//size des X parametres.
 	int 		t_f_param; 				//t = type, f = first
@@ -126,6 +128,8 @@ typedef struct				s_player
 	int 					carry;
 	// int 					cycle_tmp;
 	t_info					info;
+	int 					pc;
+	int 					wait;
 	struct s_player			*next;			//pour les forks
 	struct s_player 		*prev;			//?
 }							t_player;

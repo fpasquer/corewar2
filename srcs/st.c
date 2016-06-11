@@ -45,12 +45,11 @@ int							ft_st(t_vm *vm, t_player *plr)
 	int 					i;
 
 	ft_parse_info(vm, plr);
-	if (plr->info.error == ERROR_REG)
-	{
-		ft_nothing(vm, plr);
-		return (0);
-	}
-	else if (plr->info.t_s_param == T_REG)
+	// if (plr->info.error == ERROR_REG)
+	// {
+
+	// }
+	/*else*/ if (plr->info.t_s_param == T_REG)
 		plr->reg[plr->info.reg_s] = plr->info.nb_f_param;
 	else
 	{
