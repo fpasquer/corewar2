@@ -99,6 +99,7 @@
 # define ERROR_FILE 12
 # define ERROR_SIZE_CHAMP 13
 # define ERROR_REG 55
+# define ERROR_OCP 56
 
 # define DIR_C 30
 # define IND_C 31
@@ -125,9 +126,16 @@ typedef struct s_instruction
 	char  		instruction;
 	int			(*p)(t_vm *vm, t_player *plr);
 	int 		epd; 			// encodage parametre direct sous X octets.
-	int 		ocp_array[4];
-	int 		nb_arg;
 }				t_instruction;
+
+typedef struct s_ocp_param
+{
+	char 		instruction;
+	char 		f_p[4];
+	char 		s_p[4];
+	char 		t_p[4];
+	int 		nb_param;
+}				t_ocp_param;
 
 char		*ft_recover_name_champ(int fd);
 char		*ft_recover_comment_champ(int fd, int *champ_size);
