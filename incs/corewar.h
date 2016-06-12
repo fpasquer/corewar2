@@ -161,7 +161,7 @@ void 		ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsi
 int 						ft_check_size_max(int i, int index);
 void						pop_winner_last_process(t_vm *vm);
 void 						ft_parse_info(t_vm *vm, t_player *plr);
-
+int 						ft_check_size_max2(int i, int index);
 /*
 ** DIVERS INSTRUCTION
 */

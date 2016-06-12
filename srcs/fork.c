@@ -44,7 +44,7 @@ int							ft_fork(t_vm *vm, t_player *plr)
 
 	if (vm == NULL || plr == NULL)
 		return (-1);
-	adr = ft_param_4_octets(vm, plr, 2, (plr->i_grid + 1) % NB_CASE_TAB);
+	adr = (ft_param_4_octets(vm, plr, 2, (plr->i_grid + 1) % NB_CASE_TAB) % 512);
 	if (copy_with_the_new_index(plr, &vm->plr, adr, vm) == NULL)
 		return (-1);
 	plr->i_grid = (plr->i_grid + 3) % NB_CASE_TAB;

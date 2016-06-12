@@ -60,7 +60,7 @@ unsigned int				get_new_index(int decalage, unsigned int i_grid,
 {
 	long long int			cpy_i_grid;
 
-	mvwprintw(stdscr, 62, 3, "decalage %d, i_grid %u ", decalage, i_grid);
+	// mvwprintw(stdscr, 62, 3, "decalage %d, i_grid %u ", decalage, i_grid);
 	cpy_i_grid = (long long int)i_grid;
 	if (cpy_i_grid + decalage < NB_CASE_TAB && cpy_i_grid + decalage > 0)
 	{
