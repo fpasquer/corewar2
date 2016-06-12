@@ -109,7 +109,7 @@ typedef struct				s_player
 	/*
 	** RAJOUT PAR JC
 	*/
-
+	char 					instruction;
 	int 					do_instruction;
 	unsigned int 			delais;
 

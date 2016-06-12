@@ -29,10 +29,13 @@ int 						ft_add_delais(t_vm *vm, t_player *plr)
 	while (g_delais[i].instruction < 25)
 	{
 		if (vm->array[plr->i_grid].code_hexa == g_delais[i].instruction)
+		{
+			plr->instruction = i;
 			return (g_delais[i].delais + vm->cycle);
+		}
 		i++;
 	}
-	return (0);
+	return (g_delais[i].delais + vm->cycle);
 }
 
 void 						ft_check_delais(t_vm *vm)
