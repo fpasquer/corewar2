@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/10 09:57:03 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/14 08:48:59 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@
 # define VISU 4
 # define SUSPEND 8
 # define DUMP_M 16
+# define SHOW 32
 
 # define NAME_FILE_DUMP_MEM "dump_memory.txt"
 
@@ -120,6 +121,7 @@ typedef struct				s_player
 	char					*name;			//nom du joueur
 	char					*comment;		//commentaire du joueur
 	unsigned int			reg[MAX_REG];	//les 16 registres du joueur
+	unsigned int			process;		//process
 	unsigned int			i_grid;			//index dans la grille
 	unsigned int			nb_live;		//nb de live dans le cicle
 	unsigned int			last_live;		//cicle du last live
@@ -206,6 +208,7 @@ unsigned int				get_new_index(int decalage, unsigned int i_grid, t_vm *vm);
 unsigned int				get_new_index_with_mod(int decalage,
 		unsigned int i_grid, t_vm *vm);
 void						dump_print_player(t_vm *vm, int fd);
-
+void						print_show(t_vm *vm, char *fonction_name,
+		unsigned int process);
 
 #endif

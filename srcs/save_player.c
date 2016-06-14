@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 09:10:13 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/14 09:04:52 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_player				*new_player(char *name, int nb,
 	new->name = ft_recover_name_champ(fd);
 	new->comment = ft_recover_comment_champ(fd, &new->size);
 	new->pos = i;
+	new->process = i;
 	ft_recover_instruction(fd, &array[spacing], &new->size);
 	close(fd);
 	new->reg[1] = nb;

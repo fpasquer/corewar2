@@ -145,6 +145,17 @@ void 						ft_parse_info(t_vm *vm, t_player *plr)
 	}
 }
 
+static void					print_show_ld(t_vm *vm, t_player *plr)
+{
+	if ((vm->flags & SHOW) != 0)
+	{
+		print_show(vm, "ld", plr->process);
+		ft_putnbr_fd(plr->info.nb_f_param, vm->fd);
+		ft_putstr_fd(" r", vm->fd);
+		ft_putnbr_fd(plr->info.reg_s, vm->fd);
+		ft_putchar_fd('\n', vm->fd);
+	}
+}
 
 int 						ft_ld(t_vm *vm, t_player *plr)
 {
@@ -155,11 +166,12 @@ int 						ft_ld(t_vm *vm, t_player *plr)
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param);
 	else if (plr->info.error == ERROR_OCP)
 		plr->i_grid = (plr->i_grid + 2) % NB_CASE_TAB;
-	else 
+	else
 	{
 		plr->reg[plr->info.reg_s] = plr->info.nb_f_param;
 		plr->carry = plr->reg[plr->info.reg_s] ? 0 : 1;
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param) % NB_CASE_TAB;
+		print_show_ld(vm, plr);
 	}
 	plr->do_instruction = 0;
 	ft_bzero(&plr->info, sizeof(t_info));
@@ -187,6 +199,33 @@ int 						ft_ldi(t_vm *vm, t_player *plr)
 	return (0);
 }
 
+static void					print_show_add(t_vm *vm, t_player *plr, int i)
+{
+	if ((vm->flags & SHOW) != 0)
+	{
+		if (i == 0)
+		{
+			print_show(vm, "add", plr->process);
+			ft_putstr_fd("(r", vm->fd);
+			ft_putnbr_fd(plr->info.reg_f, vm->fd);
+			ft_putstr_fd(" = ", vm->fd);
+			ft_putnbr_fd(plr->reg[plr->info.reg_f], vm->fd);
+			ft_putstr_fd(") + (r", vm->fd);
+			ft_putnbr_fd(plr->info.reg_s, vm->fd);
+			ft_putstr_fd(" = ", vm->fd);
+			ft_putnbr_fd(plr->reg[plr->info.reg_s], vm->fd);
+			ft_putstr_fd(") = (r", vm->fd);
+			ft_putnbr_fd(plr->info.reg_s, vm->fd);
+			ft_putstr_fd(" = ", vm->fd);
+		}
+		else
+		{
+			ft_putnbr_fd(plr->reg[plr->info.reg_t], vm->fd);
+			ft_putstr_fd(")\n", vm->fd);
+		}
+	}
+}
+
 int 						ft_add(t_vm *vm, t_player *plr)
 {
 	ft_parse_info(vm, plr);
@@ -197,15 +236,43 @@ int 						ft_add(t_vm *vm, t_player *plr)
 		plr->i_grid = (plr->i_grid + 2) % NB_CASE_TAB;
 	else
 	{
+		print_show_add(vm, plr, 0);
 		plr->reg[plr->info.reg_t] = plr->info.nb_f_param + plr->info.nb_s_param;
 		plr->carry = plr->reg[plr->info.reg_t] ? 0 : 1;
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param) % NB_CASE_TAB;
+		print_show_add(vm, plr, 1);
 	}
 	plr->do_instruction = 0;
 	ft_bzero(&plr->info, sizeof(t_info));
 	return (0);
 }
 
+static void					print_show_sub(t_vm *vm, t_player *plr, int i)
+{
+	if ((vm->flags & SHOW) != 0)
+	{
+		if (i == 0)
+		{
+			print_show(vm, "add", plr->process);
+			ft_putstr_fd("(r", vm->fd);
+			ft_putnbr_fd(plr->info.reg_f, vm->fd);
+			ft_putstr_fd(" = ", vm->fd);
+			ft_putnbr_fd(plr->reg[plr->info.reg_f], vm->fd);
+			ft_putstr_fd(") - (r", vm->fd);
+			ft_putnbr_fd(plr->info.reg_s, vm->fd);
+			ft_putstr_fd(" = ", vm->fd);
+			ft_putnbr_fd(plr->reg[plr->info.reg_s], vm->fd);
+			ft_putstr_fd(") = (r", vm->fd);
+			ft_putnbr_fd(plr->info.reg_s, vm->fd);
+			ft_putstr_fd(" = ", vm->fd);
+		}
+		else
+		{
+			ft_putnbr_fd(plr->reg[plr->info.reg_t], vm->fd);
+			ft_putstr_fd(")\n", vm->fd);
+		}
+	}
+}
 int 						ft_sub(t_vm *vm, t_player *plr)
 {
 	ft_parse_info(vm, plr);
@@ -216,9 +283,11 @@ int 						ft_sub(t_vm *vm, t_player *plr)
 		plr->i_grid = (plr->i_grid + 2) % NB_CASE_TAB;
 	else
 	{
+		print_show_sub(vm, plr, 0);
 		plr->reg[plr->info.reg_t] = plr->info.nb_f_param - plr->info.nb_s_param;
 		plr->carry = plr->reg[plr->info.reg_t] ? 0 : 1;
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param) % NB_CASE_TAB;
+		print_show_sub(vm, plr, 1);
 	}
 	plr->do_instruction = 0;
 	ft_bzero(&plr->info, sizeof(t_info));
@@ -307,8 +376,8 @@ int 						ft_nothing(t_vm *vm, t_player *plr)
 int 						ft_sti(t_vm *vm, t_player *plr)
 {
 	int 					i;
-	ft_parse_info(vm, plr);
 
+	ft_parse_info(vm, plr);
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param);
 	else if (plr->info.error == ERROR_OCP)

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/08 11:12:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/08 11:15:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/14 08:50:33 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,19 @@ int							get_hexa(t_vm *vm, unsigned int i_grid,
 	if (all_octet != NULL)
 		ft_memdel((void**)&all_octet);
 	return (ret);
+}
+
+void						print_show(t_vm *vm, char *fonction_name,
+		unsigned int process)
+{
+	unsigned int			len_process;
+
+	len_process = ft_nblen(process);
+	ft_putstr_fd("P ", vm->fd);
+	while (len_process++ < 4)
+		ft_putchar_fd(' ', vm->fd);
+	ft_putnbr_fd(process, vm->fd);
+	ft_putstr_fd(" | ", vm->fd);
+	ft_putstr_fd(fonction_name, vm->fd);
+	ft_putchar_fd(' ', vm->fd);
 }

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/06 14:20:00 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/10 09:56:25 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/14 11:48:14 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_player					*copy_with_the_new_index(t_player *plr,
 		return (NULL);
 	if ((new->comment = ft_strdup(plr->comment)) == NULL)
 		return (NULL);
-	new->i_grid = plr->i_grid + i_grid;
+	new->i_grid = get_new_index_with_mod(i_grid, plr->i_grid, vm);
 	new->next = *lst;
 	new->prev = NULL;
 	(*lst)->prev = new;

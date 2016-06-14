@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/10 09:39:59 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/14 08:14:59 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static void					print_flags(t_vm *vm)
 				"DUMP_M  : Yes / %d", vm->nb_dump);
 	else
 		mvwprintw(vm->w_info, 25 + vm->nb_player * 3 + 1, 5, "DUMP_M  : No");
+	mvwprintw(vm->w_info, 26 + vm->nb_player * 3 + 1, 5,
+			"SHOW    : %s", (vm->flags & SHOW) != 0 ? "Yes" : "No");
+
 }
 
 void						dump_print_player(t_vm *vm, int fd)
