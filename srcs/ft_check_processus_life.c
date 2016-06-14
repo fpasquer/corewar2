@@ -28,6 +28,25 @@ static void 					ft_delete_processus(t_vm *vm, t_player **plr)
 	ft_memdel((void**)&actuel);
 	vm->nb_proces--;
 }
+
+// static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
+// {
+// 	int 					i;
+
+// 	i = 0;
+// 	while (i < vm->count_pos)
+// 	{
+// 		vm->nb_live_each_plr[i] = 0;
+// 		i++;
+// 	}
+// 	while (plr)
+// 	{
+// 		plr->last_live = plr->nb_live;
+// 		plr->nb_live = 0;
+// 		plr = plr->next;
+// 	}
+// }
+
 static void 				ft_reset_live(t_player *plr, t_vm *vm) // peut boucler que sur le nombre de joueur
 {
 	int 					i;

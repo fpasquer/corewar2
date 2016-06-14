@@ -75,6 +75,23 @@ static void					add_new_player(t_player **lst, t_player **new)
 	}
 }
 
+// static void					add_new_player(t_player **lst, t_player **new)
+// {
+// 	t_player				*curs;
+
+// 	if (lst == NULL || new == NULL)
+// 		return ;
+// 	if ((*lst) == NULL)
+// 		(*lst) = (*new);
+// 	else
+// 	{
+// 		(*lst)->prev = (*new);
+// 		(*new)->next = (*lst);
+// 		(*lst) = (*new);
+// 	}
+// }
+
+
 t_player					*save_player(int argc, char **argv, t_vm *vm)
 {
 	int						i;

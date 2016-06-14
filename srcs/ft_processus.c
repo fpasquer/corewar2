@@ -15,6 +15,7 @@ t_instruction g_instruction[] = {
 	{11, ft_sti, 2},
 	{12, ft_fork, 2},
 	{13, ft_ld, 4},
+	{14, ft_ldi, 2},
 	{15, ft_lfork, 2},
 	{-1, NULL},
 };
@@ -115,8 +116,13 @@ int  						ft_indirect_param(t_vm *vm, t_player *plr, int move)
 	if (plr->instruction != LLD && plr->instruction != LLDI && plr->instruction != LFORK)
 		i = get_new_index_with_mod(move, plr->i_grid, vm);
 	else
-		i = ft_check_size_max2(move % 4096, plr->i_grid);
-	i = ft_param_4_octets(vm, plr, 4, i);
+		// i = ft_check_size_max2(move % 4096, plr->i_grid);
+		i = get_new_index(move, plr->i_grid, vm);
+	if (plr->instruction == STI || plr->instruction == LD || plr->instruction == LDI || plr->instruction == LLDI)
+		i = ft_param_4_octets(vm, plr, 4, i);
+	else
+		i = ft_param_4_octets(vm, plr, 2, i);
+	// i = ft_param_4_octets(vm, plr, plr->instruction != STI ? 4 : 2, i);
 	return (i);
 }
 
@@ -178,6 +184,28 @@ int 						ft_ld(t_vm *vm, t_player *plr)
 	return (0);
 }
 
+// int 						ft_ld(t_vm *vm, t_player *plr)
+// {
+// 	int 					i;
+// 	ft_parse_info(vm, plr);
+
+// 	if (plr->info.error == ERROR_REG)
+// 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param);
+// 	else if (plr->info.error == ERROR_OCP)
+// 		plr->i_grid = (plr->i_grid + 2) % NB_CASE_TAB;
+// 	else
+// 	{
+// 		plr->reg[plr->info.reg_s] = plr->info.nb_f_param;
+// 		plr->carry = plr->reg[plr->info.reg_s] ? 0 : 1;
+// 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param) % NB_CASE_TAB;
+// 		print_show_ld(vm, plr);
+// 	}
+// 	plr->do_instruction = 0;
+// 	ft_bzero(&plr->info, sizeof(t_info));
+// 	return (0);
+// }
+
+
 int 						ft_ldi(t_vm *vm, t_player *plr)
 {
 	int 					i;
@@ -194,6 +222,7 @@ int 						ft_ldi(t_vm *vm, t_player *plr)
 		plr->reg[plr->info.reg_t] = i;
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param) % NB_CASE_TAB;
 	}
+	plr->carry = (plr->instruction == LLDI && plr->reg[plr->info.reg_t]) ? 0 : 1;
 	plr->do_instruction = 0;
 	ft_bzero(&plr->info, sizeof(t_info));
 	return (0);
