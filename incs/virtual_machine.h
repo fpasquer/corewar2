@@ -85,6 +85,7 @@ typedef struct s_info
 	int 		instruction;
 	int 		ocp;					//ocp
 	int 		size_ocp_param;			//size des X parametres.
+	int 		size_ocp_param2;
 	int 		t_f_param; 				//t = type, f = first
 	int 		t_s_param;				//t = type, s = second
 	int 		t_t_param;				//t = type, t = third

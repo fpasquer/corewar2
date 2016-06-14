@@ -6,7 +6,7 @@ int 						ft_live(t_vm *vm, t_player *plr)
 	int 					count;
 
 	count = 0;
-	i = ft_param_4_octets(vm, plr, 4,   plr->i_grid + 1); //attention il faut % 4096
+	i = ft_param_4_octets(vm, plr, 4, (plr->i_grid + 1) % 4096); //attention il faut % 4096
 	if ((vm->flags & SHOW) != 0)
 	{
 		print_show(vm, "live", plr->process);

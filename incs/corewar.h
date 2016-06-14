@@ -173,7 +173,7 @@ void 		ft_check_delais(t_vm *vm);
 /* 
 ** OPERATIONS / BITWISES
 */
-
+int					ft_aff(t_vm *vm, t_player *plr);
 // int 		ft_st(t_vm *vm, t_player *plr);
 int 		ft_and(t_vm *vm, t_player *plr);
 int 		ft_xor(t_vm *vm, t_player *plr);
