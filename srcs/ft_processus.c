@@ -87,10 +87,10 @@ static int			ft_ocp_instruction(unsigned char str, int i, t_info *info)
 	return (size);
 }
 
-void  						ft_check_ocp(t_info *info)
+void  						ft_check_ocp(t_info *info, t_vm *vm)
 {
 	int 					i;
-
+	static 					test;
 	i = 0;
 	if (g_ocp_param[info->instruction].f_p[info->t_f_param])
 	{
@@ -108,7 +108,11 @@ void  						ft_check_ocp(t_info *info)
 		i++;
 	}
 	if (g_ocp_param[info->instruction].nb_param != i)
+	{
+		test++;
+		printf("%d, %d = ocp, %d s_f_p, %d, s_s_p, %d, s_t_p | %d nb error | %d cycle \n", info->instruction, info->ocp, info->s_f_param,info->s_s_param,info->s_t_param, test, vm->cycle);
 		info->error = ERROR_OCP;
+	}
 }
 
 int 						ft_check_size_max2(int i, int index)
@@ -152,7 +156,7 @@ void 						ft_parse_info(t_vm *vm, t_player *plr)
 	tmp->index_f_param = (tmp->index_ocp + 1) % NB_CASE_TAB;
 	tmp->index_s_param = (tmp->index_ocp + tmp->s_f_param + 1) % NB_CASE_TAB;
 	tmp->index_t_param = (tmp->index_ocp + + tmp->s_f_param + tmp->s_s_param + 1) % NB_CASE_TAB;
-	ft_check_ocp(tmp);
+	ft_check_ocp(tmp, vm);
 	if (tmp->error)
 		return ;
 	tmp->nb_f_param = g_ocp[tmp->t_f_param].p(vm, plr, tmp->s_f_param, tmp->index_f_param);
@@ -187,6 +191,7 @@ int 						ft_ld(t_vm *vm, t_player *plr)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
 		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		// plr->i_grid = (plr->i_grid + 4 + 2) % NB_CASE_TAB;
 	else
 	{
 		plr->reg[plr->info.reg_s] = plr->info.nb_f_param;
