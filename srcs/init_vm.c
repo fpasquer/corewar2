@@ -35,12 +35,10 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 	flag = NONE;
 	while (i++ < argc)
 		if (ft_strcmp("-d", argv[i - 1]) == 0 ||
-				ft_strcmp("-dm", argv[i - 1]) == 0 ||
-				ft_strcmp("-s", argv[i - 1]) == 0 )
+				ft_strcmp("-dm", argv[i - 1]) == 0)
 		{
 			flag = ft_strcmp("-d", argv[i - 1]) == 0 ? flag | DUMP : flag;
 			flag = ft_strcmp("-dm", argv[i - 1]) == 0 ? flag | DUMP_M : flag;
-			flag = ft_strcmp("-s", argv[i - 1]) == 0 ? flag | SUSPEND : flag;
 			if ((vm->nb_dump = get_number(argv[i])) == -1)
 				return (-1);
 		}
@@ -48,14 +46,12 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 			flag = flag | NUMBER;
 		else if (ft_strcmp("-v", argv[i - 1]) == 0)
 			flag = flag | VISU;
-/*		else if (ft_strcmp("-s", argv[i - 1]) == 0)
+		else if (ft_strcmp("-s", argv[i - 1]) == 0)
 		{
 			flag = flag | SUSPEND;
 			if ((vm->nb_susp = get_number(argv[i])) == -1)
 				return (-1);
-		}*/
-		else if (ft_strcmp("-show", argv[i - 1]) == 0)
-			flag = flag | SHOW;
+		}
 	return (flag);
 }
 

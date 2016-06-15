@@ -43,7 +43,10 @@ int							ft_st(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param);
 	else if (plr->info.error == ERROR_OCP)
+	{
+		printf("%d\n", plr->info.size_ocp_param2);
 		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+	}
 	else if (plr->info.t_s_param == T_REG)
 	{
 		plr->reg[plr->info.reg_s] = plr->info.nb_f_param;
