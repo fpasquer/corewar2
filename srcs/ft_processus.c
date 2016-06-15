@@ -4,9 +4,9 @@ t_instruction g_instruction[] = {
 	{0, NULL, 0},
 	{1, ft_live, 4}, // ok
 	{2, ft_ld, 4},
-	{3, ft_st, 2}, // ok
-	{4, ft_add, 0}, // ok
-	{5, ft_sub, 0}, // ok
+	{3, ft_st, 4}, // ok
+	{4, ft_add, 4}, // ok
+	{5, ft_sub, 4}, // ok
 	{6, ft_and, 4}, // ok
 	{7, ft_or, 4}, // ok
 	{8, ft_xor, 4}, // ok
@@ -65,7 +65,7 @@ static void 		ft_instruction_type(int tmp, int i, int *size, int *size_param)
 
 int					ft_aff(t_vm *vm, t_player *plr)
 {
-	plr->i_grid = (plr->i_grid + 3) % 40;
+	plr->i_grid = (plr->i_grid + 3) % 4096;
 	return (0);
 }
 
@@ -198,7 +198,7 @@ int 						ft_ld(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 		// plr->i_grid = (plr->i_grid + 4 + 2) % NB_CASE_TAB;
 	else
 	{
@@ -220,7 +220,7 @@ int 						ft_ld(t_vm *vm, t_player *plr)
 // 	if (plr->info.error == ERROR_REG)
 // 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 // 	else if (plr->info.error == ERROR_OCP)
-// 		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+// 		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 // 	else
 // 	{
 // 		plr->reg[plr->info.reg_s] = plr->info.nb_f_param;
@@ -242,7 +242,7 @@ int 						ft_ldi(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 	else 
 	{
 		i = plr->info.nb_f_param + plr->info.nb_s_param;
@@ -290,7 +290,7 @@ int 						ft_add(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 	else
 	{
 		print_show_add(vm, plr, 0);
@@ -337,7 +337,7 @@ int 						ft_sub(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 	else
 	{
 		print_show_sub(vm, plr, 0);
@@ -358,7 +358,7 @@ int 						ft_and(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 	else
 	{
 		plr->reg[plr->info.reg_t] = plr->info.nb_f_param & plr->info.nb_s_param;
@@ -377,7 +377,7 @@ int 						ft_or(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 	else
 	{
 		plr->reg[plr->info.reg_t] = plr->info.nb_f_param | plr->info.nb_s_param;
@@ -396,7 +396,7 @@ int 						ft_xor(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 	else
 	{
 		plr->reg[plr->info.reg_t] = plr->info.nb_f_param ^ plr->info.nb_s_param;
@@ -438,7 +438,7 @@ int 						ft_sti(t_vm *vm, t_player *plr)
 	if (plr->info.error == ERROR_REG)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
-		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param2 + 2) % NB_CASE_TAB;
+		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
 	else
 	{
 		i = plr->info.nb_s_param + plr->info.nb_t_param;
