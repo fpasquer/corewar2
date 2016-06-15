@@ -65,7 +65,7 @@ static void 		ft_instruction_type(int tmp, int i, int *size, int *size_param)
 
 int					ft_aff(t_vm *vm, t_player *plr)
 {
-	plr->i_grid = (plr->i_grid + 3) % 4096;
+	plr->i_grid = (plr->i_grid + 2) % 4096;
 	return (0);
 }
 
@@ -115,12 +115,13 @@ void  						ft_check_ocp(t_info *info, t_vm *vm)
 	{
 		test++;
 		// if ((vm->flags & VISU) == 0)
-		// printf("%02x, %02x = ocp, %5d s_f_p, %5d, s_s_p, %5d, s_t_p | %3d nb error | %6d cycle \n", info->instruction, info->ocp, info->s_f_param,info->s_s_param,info->s_t_param, test, vm->cycle);
+			// printf("%02x, %02x = ocp, %5d s_f_p, %5d, s_s_p, %5d, s_t_p | %3d nb error | %6d cycle \n", info->instruction, info->ocp, info->s_f_param,info->s_s_param,info->s_t_param, test, vm->cycle);
 		info->error = ERROR_OCP;
 	}
-	// printf("%02x, %02x = ocp, %5d s_f_p, %5d, s_s_p, %5d, s_t_p, %5d, t_f_p, %5d, t_s_p, %5d, t_t_p | %3d nb error | %6d cycle \n", 
-	// 	info->instruction, info->ocp, info->s_f_param,info->s_s_param,info->s_t_param,  
-	// 	info->t_f_param,info->t_s_param,info->t_t_param,test, vm->cycle);
+		if ((vm->flags & VISU) == 0)
+			printf("%02x, %02x = ocp, %5d s_f_p, %5d, s_s_p, %5d, s_t_p, %5d, t_f_p, %5d, t_s_p, %5d, t_t_p | %3d nb error | %6d cycle \n", 
+		info->instruction, info->ocp, info->s_f_param,info->s_s_param,info->s_t_param,  
+		info->t_f_param,info->t_s_param,info->t_t_param,test, vm->cycle);
 }
 
 int 						ft_check_size_max2(int i, int index)
@@ -199,7 +200,6 @@ int 						ft_ld(t_vm *vm, t_player *plr)
 		plr->i_grid = get_new_index_with_mod(2 + plr->info.size_ocp_param, plr->i_grid, vm);
 	else if (plr->info.error == ERROR_OCP)
 		plr->i_grid = (plr->i_grid + plr->info.size_ocp_param + 2) % NB_CASE_TAB;
-		// plr->i_grid = (plr->i_grid + 4 + 2) % NB_CASE_TAB;
 	else
 	{
 		plr->reg[plr->info.reg_s] = plr->info.nb_f_param;
@@ -521,11 +521,11 @@ void						ft_check_processus(t_vm *vm)
 
 void 						ft_processus(t_vm *vm)
 {
-	ft_check_delais(vm);
-	ft_check_processus(vm);
 	if (vm->cycle_tmp == vm->cycle_to_die)
 	{
 		ft_check_processus_life(vm);
 		vm->cycle_tmp = 0;
 	}
+	ft_check_delais(vm);
+	ft_check_processus(vm);
 }

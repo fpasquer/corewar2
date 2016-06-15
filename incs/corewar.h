@@ -42,7 +42,7 @@
 **	1, 1, r1 = 244
 **
 **  ./corewar -d 8910 champ/helltrain.cor && ./corewar_zaz -d 8910 champ/helltrain.cor > mem.txt && diff mem.txt dump_memory.txt
-**
+**	./corewar -d 5900 champ/helltrain.cor champ/Machine-gun.cor champ/Misaka_Mikoto.cor && ./corewar_zaz -d 5900 champ/helltrain.cor champ/Machine-gun.cor champ/Misaka_Mikoto.cor > mem.txt && diff mem.txt dump_memory.txt
 **
 **
 */

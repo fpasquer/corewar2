@@ -123,6 +123,8 @@ void						print_dump(t_vm *vm)
 	if (vm->dump != vm->cycle)
 		return ;
 	dump_memory(vm);
+	del_vm(&vm); //
+	exit(0); //
 	if ((vm->flags & DUMP_M) != 0)
 	{
 		ft_putchar_fd('\n', vm->fd);

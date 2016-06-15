@@ -78,6 +78,7 @@ void						loop_virtual_machin(t_vm *vm)
 
 	while (1)
 	{
+		(vm->status != PAUSE) ? ft_processus(vm) : 0;
 		if (key == REFRESH)
 			refrech_win(vm);
 		print_info(vm);
@@ -91,7 +92,7 @@ void						loop_virtual_machin(t_vm *vm)
 		** JC
 		*/
 		
-		(vm->status != PAUSE) ? ft_processus(vm) : 0;
+		// (vm->status != PAUSE) ? ft_processus(vm) : 0;
 
 		// if (vm->nb_proces <= 0)
 		// {

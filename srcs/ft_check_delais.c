@@ -21,22 +21,6 @@ t_delais g_delais[] = {
 	{25, 1},
 };
 
-// int 						ft_add_delais(t_vm *vm, t_player *plr)
-// {
-// 	int 					i;
-
-// 	i = 0;
-// 	while (g_delais[i].instruction < 25)
-// 	{
-// 		if (vm->array[plr->i_grid].code_hexa == g_delais[i].instruction)
-// 		{
-// 			return (g_delais[i].delais + vm->cycle);
-// 		}
-// 		i++;
-// 	}
-// 	return (g_delais[i].delais + vm->cycle);
-// }
-
 int 						ft_add_delais(t_vm *vm, t_player *plr)
 {
 	int 					i;

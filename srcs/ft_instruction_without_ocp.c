@@ -4,7 +4,9 @@ int 						ft_live(t_vm *vm, t_player *plr)
 {
 	int 					i;
 	int 					count;
+	int 					found;
 
+	found = 0;
 	count = 0;
 	i = ft_param_4_octets(vm, plr, 4, (plr->i_grid + 1) % 4096); //attention il faut % 4096
 	if ((vm->flags & SHOW) != 0)
@@ -18,12 +20,15 @@ int 						ft_live(t_vm *vm, t_player *plr)
 	{
 		if (i == vm->array_pos[count])
 		{
+			found = 1;
 			vm->cycle_last_live[count] = vm->cycle;
 			vm->nb_live_each_plr[count]++;
 			break ;
 		}
 		count++;
 	}
+	if (!found)
+		vm->nb_live++;
 	plr->i_grid = (5 + plr->i_grid) % NB_CASE_TAB;
 	return (0);
 }
