@@ -130,12 +130,12 @@ void						ft_check_ocp(t_info *info, t_vm *vm)
 	if (g_ocp_param[info->instruction].nb_param != i)
 	{
 		test++;
+	// if ((vm->flags & VISU) == 0)
+	// 	printf("%02x, %02x = ocp, %5d s_f_p, %5d, s_s_p, %5d, s_t_p, %5d, t_f_p, %5d, t_s_p, %5d, t_t_p | %3d nb error | %6d cycle \n",
+	// 	info->instruction, info->ocp, info->s_f_param, info->s_s_param, info->s_t_param,
+	// 	info->t_f_param, info->t_s_param, info->t_t_param, test, vm->cycle);
 		info->error = ERROR_OCP;
 	}
-	if ((vm->flags & VISU) == 0)
-		printf("%02x, %02x = ocp, %5d s_f_p, %5d, s_s_p, %5d, s_t_p, %5d, t_f_p, %5d, t_s_p, %5d, t_t_p | %3d nb error | %6d cycle \n",
-	info->instruction, info->ocp, info->s_f_param, info->s_s_param, info->s_t_param,
-	info->t_f_param, info->t_s_param, info->t_t_param, test, vm->cycle);
 }
 
 int							ft_check_size_max2(int i, int index)

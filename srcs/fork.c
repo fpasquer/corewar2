@@ -33,8 +33,11 @@ t_player					*copy_with_the_new_index(t_player *plr,
 	new->prev = NULL;
 	(*lst)->prev = new;
 	*lst = new;
+
 	vm->nb_proces++;
 	new->do_instruction = 0;
+	new->instruction = 0;
+	plr->do_instruction = 0;
 	wrefresh(vm->w_info);
 	return (new);
 }
