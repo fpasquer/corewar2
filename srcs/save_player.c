@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/14 09:04:52 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/16 10:43:02 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static t_player				*new_player(char *name, int nb,
 {
 	t_player				*new;
 	int						fd;
-	int 					y;
-	static int 				spacing;
-	static int 				i = 1;
+	int						y;
+	static int				spacing;
+	static int				i = 1;
 
 	y = NB_CASE_TAB / nb_champ;
 	if ((fd = ft_fopen(name, "r")) == -1)
@@ -75,28 +75,11 @@ static void					add_new_player(t_player **lst, t_player **new)
 	}
 }
 
-// static void					add_new_player(t_player **lst, t_player **new)
-// {
-// 	t_player				*curs;
-
-// 	if (lst == NULL || new == NULL)
-// 		return ;
-// 	if ((*lst) == NULL)
-// 		(*lst) = (*new);
-// 	else
-// 	{
-// 		(*lst)->prev = (*new);
-// 		(*new)->next = (*lst);
-// 		(*lst) = (*new);
-// 	}
-// }
-
-
 t_player					*save_player(int argc, char **argv, t_vm *vm)
 {
 	int						i;
 	int						j;
-	unsigned int 			nb_champ;
+	unsigned int			nb_champ;
 	t_player				*new;
 	t_player				*lst;
 

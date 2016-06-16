@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:06:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/10 09:13:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/16 11:29:57 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../incs/virtual_machine.h"
 
 static void					clear_winner(unsigned int nb_line,
-		unsigned int nb_column, void* w_winner)
+		unsigned int nb_column, void *w_winner)
 {
 	unsigned int			y;
 	unsigned int			x;
@@ -50,38 +50,23 @@ static int					is_end(t_vm *vm)
 	return (0);
 }
 
-static t_player				*get_winner(t_vm *vm)
-{
-	t_player				*ret;
-	t_player				*curs;
-
-	ret = NULL;
-	curs = vm->plr;
-	while (curs != NULL)
-	{
-		ret = ret == NULL ? curs : ret;
-		if (ret->last_live < curs->last_live)
-			ret = curs;
-		curs = curs->next;
-	}
-	return (ret);
-}
-
 void						write_winner(t_vm *vm)
 {
 	t_player				*winner;
 
-	if ((winner = get_winner(vm)) != NULL)
+	if ((vm->flags & VISU) == 0)
 	{
-		ft_putstr("Contestant ");
-		ft_putnbr(winner->pos);
-		ft_putstr(", \"");
-		ft_putstr(winner->name);
-		ft_putstr("\", has won!\n");
+		if ((winner = get_winner2(vm)) != NULL)
+		{
+			ft_putstr("Contestant ");
+			ft_putnbr(winner->pos);
+			ft_putstr(", \"");
+			ft_putstr(winner->name);
+			ft_putstr("\", has won!\n");
+		}
+		del_vm(&vm);
+		exit(0);
 	}
-	del_vm(&vm);
-	exit(0);
-
 }
 
 void						pop_winner(t_vm *vm)
@@ -92,8 +77,7 @@ void						pop_winner(t_vm *vm)
 
 	if (is_end(vm) == 0)
 		return ;
-	if ((vm->flags & VISU) == 0)
-		write_winner(vm);
+	write_winner(vm);
 	refrech_win(vm);
 	print_info(vm);
 	print_grid(vm);
@@ -101,14 +85,14 @@ void						pop_winner(t_vm *vm)
 	x = ((NB_LINE_COLUMN * 3 + 1) - WIDTH_WINNER) / 2;
 	vm->w_winner = subwin(stdscr, HEIGHT_WINNER, WIDTH_WINNER, y, x);
 	clear_winner(y, x, vm->w_winner);
-	if ((winner = get_winner(vm)) != NULL)
+	if ((winner = get_winner2(vm)) != NULL)
 	{
 		print_info_winner(vm->w_winner, winner);
 		box(vm->w_winner, ACS_VLINE, ACS_HLINE);
 		wrefresh(vm->w_winner);
 		refresh();
 		while (check_key(getch(), vm) != ESCAPE)
-				;
+			;
 	}
 	del_vm(&vm);
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/14 08:10:54 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/16 10:35:41 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,44 +55,6 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 	return (flag);
 }
 
-static void					init_color_grid(t_vm *vm)
-{
-		init_pair(1, COLOR_RED, COLOR_BLACK);
-		init_pair(2, COLOR_GREEN, COLOR_BLACK);
-		init_pair(3, COLOR_YELLOW, COLOR_BLACK);
-		init_pair(4, COLOR_BLUE, COLOR_BLACK);
-		init_pair(5, COLOR_BLACK, COLOR_RED);
-		init_pair(6, COLOR_BLACK, COLOR_GREEN);
-		init_pair(7, COLOR_BLACK, COLOR_YELLOW);
-		init_pair(8, COLOR_BLACK, COLOR_BLUE);
-}
-
-void						init_affichage(t_vm *vm)
-{
-	unsigned int			i;
-	t_player				*curs;
-
-	i = 0;
-	curs = vm->plr;
-	while (i < vm->nb_player && i < MAX_PLAYER && curs != NULL)
-	{
-		 ft_strncpy(vm->name_j[i], curs->name, LEN_NAME);
-		vm->nb_rep_plr[i++] = curs->reg[1];
-		curs = curs->next;
-	}
-}
-
-void						init_ncurse(t_vm *vm)
-{
-	if ((vm->flags & VISU) != 0)
-	{
-		initscr();
-		noecho();
-		start_color();
-		init_color_grid(vm);
-	}
-}
-
 t_vm						*init_vm(int argc, char **argv)
 {
 	t_vm					*new_;
@@ -114,41 +76,19 @@ t_vm						*init_vm(int argc, char **argv)
 	nodelay(stdscr, TRUE);
 	new_->nb_proces = new_->nb_player;
 	new_->cycle_to_die = INIT_CYCLE_TO_DIE;
-	if ((new_->mem = fopen("mem.txt", "w+")) == NULL)
-		return (NULL);
 	init_affichage(new_);
 	return (new_->nb_player <= MAX_PLAYER ? new_ : del_vm(&new_));
 }
 
-void						refrech_win(t_vm *vm)
-{
-	clear();
-	vm->w_grid = subwin(stdscr, NB_LINE_COLUMN + 2, NB_LINE_COLUMN * 2 +
-			NB_LINE_COLUMN + 3, 0, 0);
-	vm->w_info = subwin(stdscr, NB_LINE_COLUMN + 2, WIDTH_INFO, 0,
-			NB_LINE_COLUMN * 2 + NB_LINE_COLUMN + 3);
-	box(vm->w_grid, ACS_VLINE, ACS_HLINE);
-	box(vm->w_info, ACS_VLINE, ACS_HLINE);
-	wrefresh(vm->w_grid);
-	wrefresh(vm->w_info);
-	refresh();
-}
-
 t_vm						*del_vm(t_vm **vm)
 {
-	if (vm == NULL || *vm ==NULL)
+	if (vm == NULL || *vm == NULL)
 		return (NULL);
 	if (((*vm)->flags & VISU) != 0)
 		endwin();
-	fclose((*vm)->mem);
 	if ((*vm)->nb_proces > 0)
 		del_player(&(*vm)->plr);
 	if (((*vm)->flags & DUMP) != 0)
 		close((*vm)->fd);
-	// if ((*vm)->w_grid != NULL)
-		// ft_memdel((void**)&(*vm)->w_grid);
-	// if ((*vm)->w_info != NULL)
-		// ft_memdel((void**)&(*vm)->w_info);
-	// ft_memdel((void**)vm);
 	return (NULL);
 }

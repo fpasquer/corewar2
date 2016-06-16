@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/16 09:34:48 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 09:35:39 by fpasquer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/corewar.h"
 
 static int					check_char_base(char c, int base)
@@ -11,7 +23,7 @@ static int					check_char_base(char c, int base)
 	return ((base <= c) ? 0 : 1);
 }
 
-static short						ret_val(char c, size_t exp, int base)
+static short				ret_val(char c, size_t exp, int base)
 {
 	unsigned long long int	power;
 
@@ -24,7 +36,8 @@ static short						ret_val(char c, size_t exp, int base)
 	return (c * power);
 }
 
-short							ft_atoi_base2(const char *s, int base, short *nb)
+short						ft_atoi_base2(const char *s, int base,
+		short *nb)
 {
 	size_t					len;
 	size_t					i;

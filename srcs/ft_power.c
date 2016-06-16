@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/16 09:52:12 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 09:52:27 by fpasquer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/corewar.h"
 
-int 	ft_power(int power, int nb)
+int							ft_power(int power, int nb)
 {
-	int i;
-	int tmp;
+	int						i;
+	int						tmp;
 
 	tmp = nb;
 	if (power == 0)

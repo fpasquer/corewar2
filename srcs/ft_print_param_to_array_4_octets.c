@@ -1,10 +1,22 @@
-#include "corewar.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_param_to_array_4_octets.c                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/16 09:52:58 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 10:02:05 by fpasquer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static char						*ft_fill_less(char *str, int size, int octet)
+#include "../incs/corewar.h"
+
+static char					*ft_fill_less(char *str, int size, int octet)
 {
-	char 					*tmp;
-	int 					i;
-	int 					count;
+	char					*tmp;
+	int						i;
+	int						count;
 
 	octet = (octet == 2) ? 4 : 8;
 	count = 0;
@@ -12,7 +24,7 @@ static char						*ft_fill_less(char *str, int size, int octet)
 	if (size == octet)
 		return (str);
 	if (!(tmp = ft_strnew(octet)))
-		exit (-1);
+		exit(-1);
 	while (i < octet)
 	{
 		tmp[i] = str[count];
@@ -20,12 +32,12 @@ static char						*ft_fill_less(char *str, int size, int octet)
 		count++;
 	}
 	free(str);
-	return(tmp);
+	return (tmp);
 }
 
-static void  						ft_str_base_16(char *str)
+static void					ft_str_base_16(char *str)
 {
-	int 					i;
+	int						i;
 
 	i = 0;
 	while (i < 8)
@@ -38,11 +50,12 @@ static void  						ft_str_base_16(char *str)
 	}
 }
 
-void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, unsigned int nb)
+void						ft_print_param_to_array_4_octets(t_vm *vm,
+		t_player *plr, int index, unsigned int nb)
 {
-	int 					size;
-	char 					*tmp;
-	int 					i;
+	int						size;
+	char					*tmp;
+	int						i;
 
 	i = 0;
 	tmp = ft_llitoa_base2(nb, 16, &size);
@@ -55,7 +68,7 @@ void 						ft_print_param_to_array_4_octets(t_vm *vm, t_player *plr, int index, 
 		i += 2;
 		index++;
 		if (index > 4095)
-			index %= 4096; 
+			index %= 4096;
 	}
 	ft_strdel(&tmp);
 }

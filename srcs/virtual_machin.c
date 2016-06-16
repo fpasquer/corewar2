@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 17:36:16 by jchen            ###   ########.fr       */
+/*   Updated: 2016/06/16 10:46:40 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,6 @@ void						loop_virtual_machin(t_vm *vm)
 
 	print_plr(vm);
 	key = vm->flags & VISU ? REFRESH : 0;
-
-	/*
-	** test
-	*/
-	
-	// t_player *tmp;
-	// tmp = vm->plr;
-	// while (tmp)
-	// {
-	// 	printf("%s ; pos : %d\n", tmp->name, tmp->pos);
-	// 	tmp = tmp->next;
-	// }
-	// printf("%s\n", tmp->name);
-	// printf("----\n");
-	// // tmp = tmp->prev;
-	// while (tmp)
-	// {
-	// 	printf("%s\n", tmp->name);
-	// 	tmp = tmp->prev;
-	// }
-
-	/*
-	** test_end
-	*/
-
 	while (1)
 	{
 		(vm->status != PAUSE) ? ft_processus(vm) : 0;
@@ -86,25 +61,6 @@ void						loop_virtual_machin(t_vm *vm)
 		if ((key = check_key(getch(), vm)) == ESCAPE)
 			break ;
 		get_status_suspend_dump(vm);
-
-
-		/*
-		** JC
-		*/
-		
-		// (vm->status != PAUSE) ? ft_processus(vm) : 0;
-
-		// if (vm->nb_proces <= 0)
-		// {
-		// 	// pop_winner_last_process(vm);
-		// 	break ;
-		// }
-		// if (vm->cycle > 1380)
-		// 	sleep(1);
-
-		/*
-		** JC
-		*/ 
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
 		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle_tmp;
 		pop_winner(vm);

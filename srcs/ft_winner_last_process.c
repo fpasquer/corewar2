@@ -6,14 +6,15 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:06:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/07 14:35:46 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/16 10:30:12 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
 #include "../incs/virtual_machine.h"
 
-static void					clear_winner(unsigned int nb_line, unsigned int nb_column, void* w_winner)
+static void					clear_winner(unsigned int nb_line,
+		unsigned int nb_column, void *w_winner)
 {
 	unsigned int			y;
 	unsigned int			x;
@@ -75,13 +76,12 @@ void						pop_winner_last_process(t_vm *vm)
 	x = ((NB_LINE_COLUMN * 3 + 1) - WIDTH_WINNER) / 2;
 	vm->w_winner = subwin(stdscr, HEIGHT_WINNER, WIDTH_WINNER, y, x);
 	clear_winner(y, x, vm->w_winner);
-
 	print_info_winner(vm->w_winner);
 	box(vm->w_winner, ACS_VLINE, ACS_HLINE);
 	wrefresh(vm->w_winner);
 	refresh();
 	while (check_key(getch(), vm) != ESCAPE)
-			;
+		;
 	del_vm(&vm);
 	exit(0);
 }

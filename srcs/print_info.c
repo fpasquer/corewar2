@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/14 08:14:59 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/16 10:41:50 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ static void					print_flags(t_vm *vm)
 				"DUMP_M  : Yes / %d", vm->nb_dump);
 	else
 		mvwprintw(vm->w_info, 25 + vm->nb_player * 3 + 1, 5, "DUMP_M  : No");
-	mvwprintw(vm->w_info, 26 + vm->nb_player * 3 + 1, 5,
-			"SHOW    : %s", (vm->flags & SHOW) != 0 ? "Yes" : "No");
-
 }
 
 void						dump_print_player(t_vm *vm, int fd)
@@ -85,7 +82,7 @@ static int					change_line(t_vm *vm, unsigned int i, char *line)
 	}
 	ft_putstr_fd(line, vm->fd);
 	ft_putstr_fd(j == 63 ? " \n" : " ", vm->fd);
-	j = j == 63 ? j = 0 : j + 1;
+	j = j == 63 ? 0 : j + 1;
 	return (0);
 }
 
@@ -144,7 +141,7 @@ void						print_players(t_vm *vm)
 		mvwprintw(vm->w_info, 11 + i * 4, 3, "Name %d : ", vm->nb_rep_plr[i]);
 		init_pair(i + 1, i + 1, COLOR_BLACK);
 		attron(COLOR_PAIR(i + 1));
-		mvwprintw(stdscr, 11 + i * 4, 210,"%s", vm->name_j[i]);
+		mvwprintw(stdscr, 11 + i * 4, 210, "%s", vm->name_j[i]);
 		attroff(COLOR_PAIR(i + 1));
 		mvwprintw(vm->w_info, 12 + i * 4, 5, "Last live : %-10u",
 				vm->cycle_last_live[i]);
@@ -176,34 +173,10 @@ void						print_info(t_vm *vm)
 	wrefresh(vm->w_info);
 }
 
-// void						print_grid(t_vm *vm)
-// {
-// 	unsigned int			x;
-// 	unsigned int			y;
-// 	unsigned int			decalage;
-
-// 	y = 0;
-// 	while (y < NB_LINE_COLUMN)
-// 	{
-// 		x = 0;
-// 		decalage = 0;
-// 		while (x < NB_LINE_COLUMN * 2)
-// 		{
-// 			mvwprintw(vm->w_grid, y + 1, x + 2 + decalage, "%c",
-// 					vm->grid2d[y][x] + ((vm->grid2d[y][x] > 0 &&
-// 					vm->grid2d[y][x] < 9) ? '0' : 'A'));
-// 			decalage = (x % 2 == 1) ? decalage + 1 : decalage;
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	wrefresh(vm->w_grid);
-// }
-
-void 						print_hightlight(t_vm *vm, t_player *plr)
+void						print_hightlight(t_vm *vm, t_player *plr)
 {
-	char 					*tmp;
-	int 					size;
+	char					*tmp;
+	int						size;
 
 	while (plr)
 	{
@@ -223,10 +196,10 @@ void						print_grid(t_vm *vm)
 {
 	unsigned int			x;
 	unsigned int			y;
-	int 					size;
-	char 					*tmp;
-	int 					count;
-	int 					count2;
+	int						size;
+	char					*tmp;
+	int						count;
+	int						count2;
 
 	count2 = 0;
 	count = 0;
@@ -236,7 +209,8 @@ void						print_grid(t_vm *vm)
 		return ;
 	while (y < NB_LINE_COLUMN)
 	{
-		init_pair(vm->array[count2].player, vm->array[count2].player, COLOR_BLACK);
+		init_pair(vm->array[count2].player, vm->array[count2].player,
+				COLOR_BLACK);
 		attron(COLOR_PAIR(vm->array[count2].player));
 		tmp = ft_llitoa_base(vm->array[count].code_hexa, 16, &size);
 		mvwprintw(stdscr, y + 1, x + 2, "%s ", tmp);
@@ -253,57 +227,3 @@ void						print_grid(t_vm *vm)
 	print_hightlight(vm, vm->plr);
 	wrefresh(vm->w_grid);
 }
-
-// static int					return_color_grid(t_vm *vm, unsigned int position)
-// {
-// 	unsigned int			i;
-// 	t_player				*curs;
-
-// 	curs = vm->plr;
-// 	i = 0;
-// 	if (vm->array[position].player == 0)
-// 		return (0);
-// 	while (curs != NULL)
-// 	{
-// 		if (position == curs->i_grid)
-// 			return (curs->pos + 5 - 1);
-// 		curs = curs->next;
-// 		i++;
-// 	}
-// 	return (vm->array[position].player);
-// }
-
-// void						print_nb_in_grid(t_vm *vm, int i,
-// 		unsigned int y, unsigned int x)
-// {
-// 	char 					*tmp;
-// 	int 					size;
-// 	int						color;
-
-// 	attron(COLOR_PAIR((color = return_color_grid(vm, i))));
-// 	// attron(COLOR_PAIR(vm->array[i].player));
-// 	tmp = ft_llitoa_base(vm->array[i].code_hexa, 16, &size);
-// 	mvwprintw(stdscr, y + 1, x + 2, "%s", tmp);
-// 	attroff(COLOR_PAIR(color));
-// 	ft_strdel(&tmp);
-// }
-
-
-// void						print_grid(t_vm *vm)
-// {
-// 	unsigned int			x;
-// 	unsigned int			y;
-// 	int 					count2;
-
-// 	count2 = 0;
-// 	y = 0;
-// 	x = 0;
-// 	while (y < NB_LINE_COLUMN)
-// 	{
-// 		print_nb_in_grid(vm, count2++, y, x);
-// 		x += 3;
-// 		if (x > 190 && ++y)
-// 			x = 0;
-// 	}
-// 	wrefresh(vm->w_grid);
-// }

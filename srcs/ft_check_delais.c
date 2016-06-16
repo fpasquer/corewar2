@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_delais.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/16 09:35:56 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 09:37:09 by fpasquer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/corewar.h"
 
 t_delais g_delais[] = {
-	{0, 1}, // revoir
+	{0, 1},
 	{LIVE, 10},
 	{LD, 5},
 	{ST, 5},
@@ -21,9 +33,9 @@ t_delais g_delais[] = {
 	{25, 1},
 };
 
-int 						ft_add_delais(t_vm *vm, t_player *plr)
+int							ft_add_delais(t_vm *vm, t_player *plr)
 {
-	int 					i;
+	int						i;
 
 	i = 0;
 	while (g_delais[i].instruction < 25)
@@ -38,9 +50,9 @@ int 						ft_add_delais(t_vm *vm, t_player *plr)
 	return (g_delais[i].delais + vm->cycle);
 }
 
-void 						ft_check_delais(t_vm *vm)
+void						ft_check_delais(t_vm *vm)
 {
-	t_player 				*tmp;
+	t_player				*tmp;
 
 	tmp = vm->plr;
 	while (tmp)

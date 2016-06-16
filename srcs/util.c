@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 11:07:53 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/09 10:19:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/16 10:44:42 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ unsigned int				get_new_index(int decalage, unsigned int i_grid,
 {
 	long long int			cpy_i_grid;
 
-	// mvwprintw(stdscr, 62, 3, "decalage %d, i_grid %u ", decalage, i_grid);
 	cpy_i_grid = (long long int)i_grid;
 	if (cpy_i_grid + decalage < NB_CASE_TAB && cpy_i_grid + decalage > 0)
 	{

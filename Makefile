@@ -32,10 +32,11 @@ SRC_NAME =	main.c util.c init_vm.c virtual_machin.c print_info.c save_player.c\
 			ft_instruction_without_ocp.c\
 			ft_print_param_to_array_4_octets.c\
 			winner.c\
-			ld.c\
 			st.c\
 			util2.c\
 			ft_winner_last_process.c\
+			winner2.c\
+			init_vm2.c
 			
 OTHERS		= libft Makefile auteur exemple
 
@@ -80,6 +81,9 @@ push	:	fclean
 #			echo "Enter Your Commit : "
 #			read root_path ; git commit -m "$$root_path"
 			git push
+
+norm:
+	norminette $(SRC) $(INC)
 
 
 # NAME 		= corewar

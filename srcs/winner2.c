@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_convert_hexa_to_int.c                           :+:      :+:    :+:   */
+/*   winner2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/16 09:40:52 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 09:40:54 by fpasquer         ###   ########.fr       */
+/*   Created: 2016/06/16 10:49:12 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 10:51:12 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
+#include "../incs/virtual_machine.h"
 
-int							ft_convert_hexa_to_int(unsigned char *str)
+t_player					*get_winner2(t_vm *vm)
 {
-	int						str_len;
-	int						count;
-	int						result;
+	t_player				*ret;
+	t_player				*curs;
 
-	result = 0;
-	str_len = ft_strlen((char*)str) - 1;
-	count = 0;
-	while (str_len >= 0)
+	ret = NULL;
+	curs = vm->plr;
+	while (curs != NULL)
 	{
-		if (str[str_len] >= 'a')
-			result += (str[str_len] - 97 + 10) * ft_power(count, 16);
-		else
-			result += (str[str_len] - 48) * ft_power(count, 16);
-		str_len--;
-		count++;
+		ret = ret == NULL ? curs : ret;
+		if (ret->last_live < curs->last_live)
+			ret = curs;
+		curs = curs->next;
 	}
-	return (result);
+	return (ret);
 }

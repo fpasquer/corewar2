@@ -1,16 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_param_octets.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/16 09:44:12 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 09:49:25 by fpasquer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/corewar.h"
 
-int 			ft_param_0_octet(t_vm *vm, t_player *plr, int octet, int index)
+int							ft_param_0_octet(t_vm *vm, t_player *plr,
+		int octet, int index)
 {
 	return (0);
 }
 
-int 			ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index)
+int							ft_param_1_octets(t_vm *vm, t_player *plr,
+		int octet, int index)
 {
-	int			reg;
-	static int toto = 0;
+	int						reg;
+	static int				toto = 0;
+
 	reg = vm->array[index].code_hexa;
-		// mvwprintw(vm->w_info, 55 + toto++, 3, "reg = %d", reg);
 	if (reg < 1 || reg > 16)
 	{
 		plr->info.error = ERROR_REG;
@@ -18,17 +32,18 @@ int 			ft_param_1_octets(t_vm *vm, t_player *plr, int octet, int index)
 	}
 	plr->info.reg_f = plr->info.index_f_param == index ? reg : plr->info.reg_f;
 	plr->info.reg_s = plr->info.index_s_param == index ? reg : plr->info.reg_s;
-	plr->info.reg_t = plr->info.index_t_param == index ? reg : plr->info.reg_t ;
+	plr->info.reg_t = plr->info.index_t_param == index ? reg : plr->info.reg_t;
 	return (plr->reg[reg]);
 }
 
-int 			ft_param_4_octets(t_vm *vm, t_player *plr, int octet, int index)
+int							ft_param_4_octets(t_vm *vm, t_player *plr,
+		int octet, int index)
 {
-	char 							*str;
-	char 							tab[9];
-	char 							zero[3];
-	int      						i;
-	int 								octet_save;
+	char					*str;
+	char					tab[9];
+	char					zero[3];
+	int						i;
+	int						octet_save;
 
 	i = 0;
 	octet_save = octet;

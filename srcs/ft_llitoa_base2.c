@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llitoa_base.c                                   :+:      :+:    :+:   */
+/*   ft_llitoa_base2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchen <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/18 13:39:42 by jchen             #+#    #+#             */
-/*   Updated: 2016/02/18 13:39:48 by jchen            ###   ########.fr       */
+/*   Created: 2016/06/16 09:43:46 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 09:43:53 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "../incs/corewar.h"
 
 static int		ft_count(long long int n, int base, int *tab)
 {

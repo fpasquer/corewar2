@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_recover_instruction.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/16 10:26:30 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 10:27:01 by fpasquer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/corewar.h"
 
-void		ft_recover_instruction(int fd, t_array *array, int *size)
+void						ft_recover_instruction(int fd, t_array *array,
+		int *size)
 {
-	char	instruction[10000];
-	int 	y;
-	int 	i;
-	static int player = 0;
+	char					instruction[10000];
+	int						y;
+	int						i;
+	static int				player = 0;
 
 	player++;
 	ft_bzero(instruction, sizeof(char) * 10000);

@@ -6,16 +6,16 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:20:21 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/06 18:22:54 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/16 10:37:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/virtual_machine.h"
 
-void 						ft_stock_n_player(t_vm *vm, t_player *plr)
+void						ft_stock_n_player(t_vm *vm, t_player *plr)
 {
-	t_player 				*tmp;
-	int 					i;
+	t_player				*tmp;
+	int						i;
 
 	i = 0;
 	tmp = plr;

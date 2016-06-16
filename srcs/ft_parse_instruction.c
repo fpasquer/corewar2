@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_instruction.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/06/16 09:49:38 by fpasquer          #+#    #+#             */
+/*   Updated: 2016/06/16 09:52:01 by fpasquer         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../incs/corewar.h"
 
-static void 		ft_stock_hexa_to_array(t_array *array, unsigned char *str, int size)
+static void					ft_stock_hexa_to_array(t_array *array,
+		unsigned char *str, int size)
 {
-	int 	i;
+	int						i;
 
 	i = 0;
 	while (i < size)
@@ -12,7 +25,8 @@ static void 		ft_stock_hexa_to_array(t_array *array, unsigned char *str, int siz
 	}
 }
 
-static int 		ft_name_instruction(char instruction, t_array *array)
+static int					ft_name_instruction(char instruction,
+		t_array *array)
 {
 	if (instruction == LD || instruction == AND || instruction == OR
 			|| instruction == XOR || instruction == LLD)
@@ -31,7 +45,7 @@ static int 		ft_name_instruction(char instruction, t_array *array)
 	return (instruction);
 }
 
-static void 		ft_instruction_type(int tmp, int i, int *size_param)
+static void					ft_instruction_type(int tmp, int i, int *size_param)
 {
 	if (tmp == 3)
 		tmp--;
@@ -41,10 +55,11 @@ static void 		ft_instruction_type(int tmp, int i, int *size_param)
 		*size_param += tmp;
 }
 
-static int			ft_ocp_instruction(unsigned char *str, int i, t_array *array)
+static int					ft_ocp_instruction(unsigned char *str, int i,
+		t_array *array)
 {
-	unsigned char 	tmp;
-	int 	size_param;
+	unsigned char			tmp;
+	int						size_param;
 
 	size_param = 0;
 	tmp = *str >> 6;
@@ -59,16 +74,14 @@ static int			ft_ocp_instruction(unsigned char *str, int i, t_array *array)
 }
 
 /*
-**
 ** Preminer byte contient le nom de l'instruction
 ** Dexieme byte contient les types de parametres
 ** si l'instruction est autre que zjmp & fork
-**
 */
 
-int 		ft_parse_instruction(char *str, t_array *array)
+int							ft_parse_instruction(char *str, t_array *array)
 {
-	int 	i;
+	int						i;
 
 	i = ft_name_instruction(str[0], array);
 	if (i <= 4 && i != LIVE)
