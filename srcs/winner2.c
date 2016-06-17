@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 10:49:12 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/17 10:39:32 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 18:09:33 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_player					*get_winner2(t_vm *vm)
 	while (curs != NULL)
 	{
 		ret = ret == &vm->last_del ? curs : ret;
-		if (ret->last_live < curs->last_live)
+		if (ret->cycle_last_live < curs->cycle_last_live)
 			ret = curs;
 		curs = curs->next;
 	}

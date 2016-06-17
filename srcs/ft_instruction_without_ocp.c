@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 09:41:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 09:42:36 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 18:09:42 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int							ft_live(t_vm *vm, t_player *plr)
 	count = 0;
 	i = ft_param_4_octets(vm, plr, 4, (plr->i_grid + 1) % 4096);
 	plr->nb_live++;
+	if (plr->reg[1] == (unsigned int)i)
+		plr->cycle_last_live = vm->cycle;
 	while (count < vm->count_pos)
 	{
 		if (i == vm->array_pos[count])

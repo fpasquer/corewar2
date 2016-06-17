@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/17 10:35:39 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 17:39:00 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ typedef struct				s_player
 	unsigned int			i_grid;
 	unsigned int			nb_live;
 	unsigned int			last_live;
+	unsigned int			cycle_last_live;
 	unsigned int			i_player;
 	int						size;
 	int						carry;

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/17 15:11:01 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 17:34:02 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ void						loop_virtual_machin(t_vm *vm)
 	key = vm->flags & VISU ? REFRESH : 0;
 	while (1)
 	{
-		get_status_suspend_dump(vm);
-		(vm->status != PAUSE) ? ft_processus(vm) : 0;
 		if (key == REFRESH)
 			refrech_win(vm);
 		print_info(vm);
 		print_grid(vm);
 		if ((key = check_key(getch(), vm)) == ESCAPE)
 			break ;
+		get_status_suspend_dump(vm);
+		(vm->status != PAUSE) ? ft_processus(vm) : 0;
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
 		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle_tmp;
 		pop_winner(vm);
