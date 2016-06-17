@@ -259,6 +259,7 @@ typedef struct				s_vm
 	WINDOW					*w_grid;
 	WINDOW					*w_info;
 	WINDOW					*w_winner;
+	char 					ff;
 }							t_vm;
 
 void						error(char *s);

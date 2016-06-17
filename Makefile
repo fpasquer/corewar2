@@ -64,7 +64,7 @@ $(LIBRARY) :
 	make -C libft
 
 $(OBJDIR)/%.o : $(SRCDIR)/%.c $(INCLUDES) 
-	$(GCC) $(INCDIR1) $(CFLAG) -o $@ -c $<
+	$(GCC) $(INCDIR1) $(CFLAGS) -o $@ -c $<
 
 clean :
 	rm -rf $(OBJ)

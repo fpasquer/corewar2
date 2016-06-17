@@ -38,14 +38,14 @@ static void					print_info_winner(void *w_winner)
 	attroff(COLOR_PAIR(1));
 }
 
-static int					is_end(t_vm *vm)
-{
-	if (vm->nb_proces == 0)
-		return (1);
-	if (vm->cycle_to_die == 4294967282)
-		return (1);
-	return (0);
-}
+// static int					is_end(t_vm *vm)
+// {
+// 	if (vm->nb_proces == 0)
+// 		return (1);
+// 	if (vm->cycle_to_die == 4294967282)
+// 		return (1);
+// 	return (0);
+// }
 
 void						pop_winner_last_process(t_vm *vm)
 {

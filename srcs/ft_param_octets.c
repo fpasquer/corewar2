@@ -15,6 +15,10 @@
 int							ft_param_0_octet(t_vm *vm, t_player *plr,
 		int octet, int index)
 {
+	vm->ff = 0;
+	(void)plr;
+	octet = 0;
+	index = 0;
 	return (0);
 }
 
@@ -22,7 +26,6 @@ int							ft_param_1_octets(t_vm *vm, t_player *plr,
 		int octet, int index)
 {
 	int						reg;
-	static int				toto = 0;
 
 	reg = vm->array[index].code_hexa;
 	if (reg < 1 || reg > 16)
@@ -33,6 +36,7 @@ int							ft_param_1_octets(t_vm *vm, t_player *plr,
 	plr->info.reg_f = plr->info.index_f_param == index ? reg : plr->info.reg_f;
 	plr->info.reg_s = plr->info.index_s_param == index ? reg : plr->info.reg_s;
 	plr->info.reg_t = plr->info.index_t_param == index ? reg : plr->info.reg_t;
+	octet = 0;
 	return (plr->reg[reg]);
 }
 
@@ -64,5 +68,6 @@ int							ft_param_4_octets(t_vm *vm, t_player *plr,
 		ft_strdel(&str);
 	}
 	ft_atoi_base(tab, 16, &i);
+	(void)plr;
 	return (octet_save == 2 ? (short)i : i);
 }
