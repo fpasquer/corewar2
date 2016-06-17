@@ -53,7 +53,7 @@ static void					ft_reset_live(t_player *plr, t_vm *vm)
 	}
 	while (plr)
 	{
-		if (!plr->nb_live)
+		if (plr->nb_live <= 0)
 			ft_delete_processus(vm, &plr);
 		else
 		{

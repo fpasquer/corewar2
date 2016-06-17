@@ -232,8 +232,8 @@ int							ft_ldi(t_vm *vm, t_player *plr)
 		plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param) %
 			NB_CASE_TAB;
 	}
-	plr->carry = (plr->instruction == LLDI &&
-			plr->reg[plr->info.reg_t]) ? 0 : 1;
+	if (plr->instruction == LLDI)
+		plr->carry = (plr->reg[plr->info.reg_t]) ? 0 : 1;
 	plr->do_instruction = 0;
 	ft_bzero(&plr->info, sizeof(t_info));
 	return (0);

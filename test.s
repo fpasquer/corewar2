@@ -1,15 +1,16 @@
 .name "test"
 .comment "qwe"
 
-ld %196557, r5
-ld %225282, r4
+#ld %196557, r5
+#ld %225282, r4
 #ld 	%192151552, r5
 #sti r1, %:live, %1
-
-#live: live %1
-#fork: fork %:live
-st r4, 55
-st r5, 47
+sub r5,r5, r6
+live: live %1
+live %10
+zjmp: zjmp %10
+#st r4, 55
+#st r5, 47
 #live: live %1
 
 #fork: fork %:live

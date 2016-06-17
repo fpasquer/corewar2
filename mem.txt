@@ -1,0 +1,71 @@
+Introducing contestants...
+* Player 1, weighing 681 bytes, "Misaka Mikoto" ("Misaka Mikoto (御坂 美琴 Misaka Mikoto) (born May 2) is a main heroine in Toaru Majutsu no Index and the main protagonist of Toaru Kagaku no Railgun. Introduced in the first volume of the light novels, her role in the story was later expanded in the third volume as well as the release of the Toaru Kagaku no Railgun manga, making her the main heroine of the science side and the second main heroine of the series.
+
+	She is the third ranked Level 5 esper in Academy City, and is nicknamed the Railgun due to her signature move. Kamijou Touma coined the nickname Biri-Biri (ビリビリ?) (a Japanese onomatopoeia imitating the sound of electricity) for her and whenever the two meet he usually calls her that, even after his amnesia") !
+* Player 2, weighing 235 bytes, "terminator" ("Hasta la vista, baby!") !
+* Player 3, weighing 681 bytes, "Ultimate Surrender" ("Y'en a qui vont prendre cher... :)") !
+* Player 4, weighing 671 bytes, "skynet" ("j'aime les chats") !
+0x0000 : 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 01 ce 09 09 
+0x0040 : 0f ff ce 09 1a 01 0f ff ce 09 04 0f ff ce 09 0c 00 0f ff ce 09 09 0f ff ce 09 ff ff 0f ff ce 09 09 0f ff ce 09 ff ff 0f ff ce 09 09 0f ff ce 09 1c 09 0f ff ce 09 ff 0f ff ce 09 27 09 0f ff ce 
+0x0080 : 09 00 0f ff ce 09 1f 09 0f ff ce 09 00 0f ff ce 09 1a 09 0f ff ce 09 ff 0f ff ce 09 0c 09 0f ff ce 09 90 0f ff ce 09 00 5e 0f ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 de 0f ff ce 09 03 03 0f 
+0x00c0 : ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 c8 0f ff ce 09 03 03 0f ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 b5 0f ff ce 09 03 03 0f ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 9f 0f ff ce 09 03 
+0x0100 : 03 0f ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 89 0f ff ce 09 03 03 0f ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 3b 0f ff ce 09 03 03 0f ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 25 0f ff ce 
+0x0140 : 09 03 03 0f ff ce 09 90 0f ff ce 09 09 0a 0f ff ce 09 0f 0f ff ce 09 03 03 0f ff ce 09 ff 0f ff ce 09 64 08 0f ff ce 09 ff 0f ff ce 09 64 08 0f ff ce 09 ff 0f ff ce 09 64 08 0f ff ce 09 ff 0f 
+0x0180 : ff ce 09 64 08 0f ff ce 09 ff 0f ff ce 09 64 08 0f ff ce 09 ff 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 
+0x01c0 : 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff 
+0x0200 : ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 
+0x0240 : 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 
+0x0280 : 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff 
+0x02c0 : ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 
+0x0300 : 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 
+0x0340 : 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f 
+0x0380 : ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 
+0x03c0 : 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 
+0x0400 : 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f 
+0x0440 : ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 
+0x0480 : 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff 
+0x04c0 : ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 
+0x0500 : 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 
+0x0540 : 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff 
+0x0580 : ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 
+0x05c0 : 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 
+0x0600 : 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f 
+0x0640 : ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 
+0x0680 : 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 
+0x06c0 : 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f 
+0x0700 : ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 
+0x0740 : 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff 
+0x0780 : ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 
+0x07c0 : 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 
+0x0800 : 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff 
+0x0840 : ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 
+0x0880 : 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 
+0x08c0 : 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f 
+0x0900 : ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 
+0x0940 : 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 
+0x0980 : 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f 
+0x09c0 : ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 
+0x0a00 : 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff 
+0x0a40 : ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 
+0x0a80 : 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 
+0x0ac0 : 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff 
+0x0b00 : ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 
+0x0b40 : 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 
+0x0b80 : 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f 
+0x0bc0 : ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 
+0x0c00 : 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 09 64 08 0f ff ce 09 00 0f ff ce 
+0x0c40 : 09 64 08 0f ff ce 09 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 
+0x0c80 : 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 
+0x0cc0 : 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 
+0x0d00 : 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 
+0x0d40 : ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 
+0x0d80 : 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 
+0x0dc0 : ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 
+0x0e00 : 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 00 00 00 00 ff 0b 64 08 ff fb 09 01 ff ff ff ff 0b 64 08 ff fb 09 
+0x0e40 : 01 ff ff ff ff 0b 64 08 ff fb 09 0b 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 
+0x0e80 : 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 
+0x0ec0 : 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 
+0x0f00 : 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 
+0x0f40 : 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 
+0x0f80 : 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 
+0x0fc0 : 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 00 01 09 00 00 09 00 00 01 09 00 
