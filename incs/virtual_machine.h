@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 10:51:30 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 10:35:39 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,6 +255,7 @@ typedef struct				s_vm
 	unsigned long long int	dump;
 	t_array					array[NB_CASE_TAB];
 	t_player				*plr;
+	t_player				last_del;
 	WINDOW					*w_grid;
 	WINDOW					*w_info;
 	WINDOW					*w_winner;

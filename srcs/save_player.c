@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 15:05:25 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 10:43:02 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 10:51:43 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 	i = 0;
 	while (i < argc && argv[i][0] == '-' && ft_is_number(argv[i]) == 0)
 		if ((i = change_index(i, argv[i], argc)) < 0)
-			return (del_player(&lst));
+			return (NULL);
 	j = -1;
 	lst = NULL;
 	nb_champ = ((vm->flags & NUMBER) != 0) ? (argc - i + 1) / 2 : argc - i;
@@ -95,10 +95,10 @@ t_player					*save_player(int argc, char **argv, t_vm *vm)
 	{
 		if ((new = new_player(argv[i], (vm->flags & NUMBER)
 			!= 0 ? ft_atoi(argv[i - 1]) : j--, nb_champ, vm->array)) == NULL)
-			return (del_player(&lst));
+			return (NULL);
 		add_new_player(&lst, &new);
 		if ((i = change_index2(vm, i, argv, argc)) == -1)
-			return (del_player(&lst));
+			return (NULL);
 		vm->nb_player++;
 	}
 	return (save_curs_player(lst, nb_champ));

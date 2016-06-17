@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 09:37:26 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 12:21:40 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 10:38:45 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void					ft_delete_processus(t_vm *vm, t_player **plr)
 {
 	t_player				*actuel;
 
-	actuel = *plr;
-	if (actuel == vm->plr)
+	ft_memcpy(&vm->last_del, *plr, sizeof(t_player));
+	if ((actuel = *plr) == vm->plr)
 	{
 		vm->plr = actuel->next;
 		*plr = vm->plr;

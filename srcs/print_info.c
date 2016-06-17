@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/02 09:49:33 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 10:41:50 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 11:47:19 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,11 @@ void						print_dump(t_vm *vm)
 	if (vm->dump != vm->cycle)
 		return ;
 	dump_memory(vm);
-	del_vm(&vm); //
-	exit(0); //
+	if ((vm->flags & DUMP) != 0 && (vm->flags & VISU) == 0)
+	{
+		del_vm(&vm);
+		exit(0);
+	}
 	if ((vm->flags & DUMP_M) != 0)
 	{
 		ft_putchar_fd('\n', vm->fd);

@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 10:46:48 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 10:35:41 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 11:13:41 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,31 @@ static int					get_flag(t_vm *vm, int argc, char **argv)
 	return (flag);
 }
 
+static int					check_all_flags(int cpy_flags)
+{
+	int						flags;
+
+	flags = 0;
+	flags = ((cpy_flags & DUMP) != 0) ? flags | DUMP : flags;
+	flags = ((cpy_flags & DUMP_M && (cpy_flags & DUMP) == 0) != 0) ?
+			flags | DUMP_M : flags;
+	flags = ((cpy_flags & NUMBER) != 0) ? flags | NUMBER : flags;
+	flags = ((cpy_flags & VISU) != 0) ? flags | VISU : flags;
+	flags = ((cpy_flags & SUSPEND) != 0 && (cpy_flags & VISU) != 0) ?
+			flags | SUSPEND : flags;
+	return (flags);
+}
+
 t_vm						*init_vm(int argc, char **argv)
 {
+	int						tmp_flags;
 	t_vm					*new_;
 
 	if ((new_ = ft_memalloc(sizeof(t_vm))) == NULL)
 		return (NULL);
-	if ((new_->flags = get_flag(new_, argc, argv)) == -1)
+	if ((tmp_flags = get_flag(new_, argc, argv)) == -1)
 		return (NULL);
+	new_->flags = check_all_flags(tmp_flags);
 	if ((new_->plr = save_player(argc - 1, &argv[1], new_)) == NULL)
 		return (NULL);
 	if ((new_->flags & DUMP) != 0 || (new_->flags & DUMP_M) != 0)

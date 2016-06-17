@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/07 11:06:43 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 10:30:12 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 10:40:18 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,6 @@ static int					is_end(t_vm *vm)
 	if (vm->cycle_to_die == 4294967282)
 		return (1);
 	return (0);
-}
-
-static t_player				*get_winner(t_vm *vm)
-{
-	t_player				*ret;
-	t_player				*curs;
-
-	ret = NULL;
-	curs = vm->plr;
-	while (curs != NULL)
-	{
-		ret = ret == NULL ? curs : ret;
-		if (ret->last_live < curs->last_live)
-			ret = curs;
-		curs = curs->next;
-	}
-	return (ret);
 }
 
 void						pop_winner_last_process(t_vm *vm)
