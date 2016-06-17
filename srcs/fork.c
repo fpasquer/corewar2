@@ -17,7 +17,6 @@ t_player					*copy_with_the_new_index(t_player *plr,
 		t_player **lst, int i_grid, t_vm *vm)
 {
 	t_player				*new;
-	t_player				*curs;
 
 	if (lst == NULL || *lst == NULL || plr == NULL ||
 			(new = ft_memalloc(sizeof(t_player))) == NULL)

@@ -72,6 +72,7 @@ unsigned int				get_new_index(int decalage, unsigned int i_grid,
 		return ((NB_CASE_TAB + decalage) % NB_CASE_TAB);
 	}
 	decalage -= NB_CASE_TAB - i_grid;
+	vm->ff = 0;
 	return ((decalage) % NB_CASE_TAB);
 }
 
