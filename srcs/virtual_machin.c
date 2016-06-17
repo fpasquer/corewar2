@@ -6,7 +6,7 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/01 13:22:08 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/17 11:53:01 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/17 15:11:01 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void					print_plr(t_vm *vm)
 	}
 	else if ((vm->flags & DUMP) == 0)
 		dump_print_player(vm, STDOUT_FILENO);
+	else if ((vm->flags & DUMP) != 0)
+		dump_print_player(vm, vm->fd);
 }
 
 void						print_lst(t_player *lst, int fd)
@@ -54,14 +56,14 @@ void						loop_virtual_machin(t_vm *vm)
 	key = vm->flags & VISU ? REFRESH : 0;
 	while (1)
 	{
-		if (key == REFRESH)
-			refrech_win(vm);
-		if ((key = check_key(getch(), vm)) == ESCAPE)
-			break ;
-		print_info(vm);
-		print_grid(vm);
 		get_status_suspend_dump(vm);
 		(vm->status != PAUSE) ? ft_processus(vm) : 0;
+		if (key == REFRESH)
+			refrech_win(vm);
+		print_info(vm);
+		print_grid(vm);
+		if ((key = check_key(getch(), vm)) == ESCAPE)
+			break ;
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
 		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle_tmp;
 		pop_winner(vm);
