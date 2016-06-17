@@ -56,16 +56,16 @@ void						loop_virtual_machin(t_vm *vm)
 	key = vm->flags & VISU ? REFRESH : 0;
 	while (1)
 	{
-		get_status_suspend_dump(vm);
-		(vm->status != PAUSE) ? ft_processus(vm) : 0;
 		if (key == REFRESH)
 			refrech_win(vm);
-		print_info(vm);
-		print_grid(vm);
 		if ((key = check_key(getch(), vm)) == ESCAPE)
 			break ;
+		get_status_suspend_dump(vm);
+		(vm->status != PAUSE) ? ft_processus(vm) : 0;
+		print_info(vm);
+		print_grid(vm);
+		pop_winner(vm);
 		vm->cycle = vm->status != PAUSE ? vm->cycle + 1 : vm->cycle;
 		vm->cycle_tmp = vm->status != PAUSE ? vm->cycle_tmp + 1 : vm->cycle_tmp;
-		pop_winner(vm);
 	}
 }
