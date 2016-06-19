@@ -36,8 +36,9 @@ SRC_NAME =	main.c util.c init_vm.c virtual_machin.c print_info.c save_player.c\
 			util2.c\
 			ft_winner_last_process.c\
 			winner2.c\
-			init_vm2.c
-			
+			init_vm2.c\
+			print_info2.c
+
 OTHERS		= libft Makefile auteur exemple
 
 NCURSE_FLAGS = -lncurses

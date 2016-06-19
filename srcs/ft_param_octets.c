@@ -6,11 +6,13 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 09:44:12 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 09:49:25 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/19 11:41:00 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
+
+#define P i = 0; octet_save = octet; ft_bzero(tab, sizeof(char) * 9);
 
 int							ft_param_0_octet(t_vm *vm, t_player *plr,
 		int octet, int index)
@@ -49,9 +51,7 @@ int							ft_param_4_octets(t_vm *vm, t_player *plr,
 	int						i;
 	int						octet_save;
 
-	i = 0;
-	octet_save = octet;
-	ft_bzero(tab, sizeof(char) * 9);
+	P;
 	while (octet-- > 0)
 	{
 		str = ft_itoa_base(vm->array[index].code_hexa, 16);

@@ -6,11 +6,13 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 09:43:20 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 09:43:22 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/19 11:39:34 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
+
+#define T 	*u = 0; str = NULL;
 
 static int		ft_count(long long int n, int base, int *tab)
 {
@@ -56,10 +58,9 @@ char			*ft_llitoa_base(long long int n, int base, int *u)
 	char		*str;
 	int			tab[64];
 	int			tmp;
-	char 		*tmp2;
+	char		*tmp2;
 
-	*u = 0;
-	str = NULL;
+	T;
 	*u = ft_count(n, base, tab);
 	str = (*u) ? ft_strnew(*u) : ft_strnew(2);
 	if (!*u && str)

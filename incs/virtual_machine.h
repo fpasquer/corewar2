@@ -6,7 +6,7 @@
 /*   By: fpasquer <fpasquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/17 11:57:41 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/17 17:39:00 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/19 12:10:13 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ typedef struct				s_vm
 	WINDOW					*w_grid;
 	WINDOW					*w_info;
 	WINDOW					*w_winner;
-	char 					ff;
+	char					ff;
 }							t_vm;
 
 void						error(char *s);
@@ -293,5 +293,8 @@ void						print_show(t_vm *vm, char *fonction_name,
 void						init_ncurse(t_vm *vm);
 void						init_affichage(t_vm *vm);
 t_player					*get_winner2(t_vm *vm);
+void						dump_memory(t_vm *vm);
+void						print_flags(t_vm *vm);
+void						print_hightlight(t_vm *vm, t_player *plr);
 
 #endif

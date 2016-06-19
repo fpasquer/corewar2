@@ -6,11 +6,15 @@
 /*   By: fpasquer <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 10:02:17 by fpasquer          #+#    #+#             */
-/*   Updated: 2016/06/16 14:26:31 by fpasquer         ###   ########.fr       */
+/*   Updated: 2016/06/19 11:58:08 by fpasquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/corewar.h"
+
+#define I index_f_param
+#define J index_s_param
+#define K index_t_param
 
 t_instruction g_instruction[] = {
 	{0, NULL, 0},
@@ -77,7 +81,7 @@ static void					ft_instruction_type(int tmp, int i, int *size,
 
 int							ft_aff(t_vm *vm, t_player *plr)
 {
-	ft_parse_info(vm,plr);
+	ft_parse_info(vm, plr);
 	plr->i_grid = (plr->i_grid + 2 + plr->info.size_ocp_param) % 4096;
 	ft_bzero(&plr->info, sizeof(t_info));
 	plr->do_instruction = 0;
@@ -175,12 +179,9 @@ void						ft_parse_info(t_vm *vm, t_player *plr)
 	ft_check_ocp(tmp, vm);
 	if (tmp->error)
 		return ;
-	tmp->nb_f_param = g_ocp[tmp->t_f_param].p(vm, plr, tmp->s_f_param,
-			tmp->index_f_param);
-	tmp->nb_s_param = g_ocp[tmp->t_s_param].p(vm, plr, tmp->s_s_param,
-			tmp->index_s_param);
-	tmp->nb_t_param = g_ocp[tmp->t_t_param].p(vm, plr, tmp->s_t_param,
-			tmp->index_t_param);
+	tmp->nb_f_param = g_ocp[tmp->t_f_param].p(vm, plr, tmp->s_f_param, tmp->I);
+	tmp->nb_s_param = g_ocp[tmp->t_s_param].p(vm, plr, tmp->s_s_param, tmp->J);
+	tmp->nb_t_param = g_ocp[tmp->t_t_param].p(vm, plr, tmp->s_t_param, tmp->K);
 	if (plr->instruction != ST && plr->instruction != ZJMP)
 	{
 		tmp->nb_f_param = tmp->t_f_param == T_IND ?
